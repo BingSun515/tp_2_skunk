@@ -23,7 +23,7 @@ public class Die
 		this.index_of_next_roll = 0;
 	}
 
-	public int getLastRoll() // getter or accessor method
+	public int getLastRoll() // getter or accessor method.
 	{
 
 		return this.lastRoll;
