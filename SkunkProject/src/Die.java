@@ -2,20 +2,25 @@
 public class Die
 {
 	private int lastRoll;
-	private int[] rolls;
 	private boolean predictable = false;
-
+	private int[] rolls;
+	private int index_of_next_roll;
+	
 	public Die()
 	{
-		this.predictable = false;
 		this.roll();
 	}
-	
-	public Die(int[] initialValues)
+
+	public Die(int[] predictable_rolls)
 	{
-		this.rolls = initialValues;
+		if(predictable_rolls == null)
+		{
+			throw new RuntimeException("null initializing int[] array");
+		}
+		
 		this.predictable = true;
-		this.roll();
+		this.rolls = predictable_rolls;
+		this.index_of_next_roll = 0;
 	}
 
 	public int getLastRoll() // getter or accessor method
@@ -24,16 +29,22 @@ public class Die
 		return this.lastRoll;
 	}
 
-	public void roll() // note how this changes Die's state, but doesn't return anything
+	public void roll() // note how this changes Die's state, but doesn't return
+						// anything
 	{
 		if (!predictable)
 			this.lastRoll = (int) (Math.random() * 6 + 1);
 		else
 		{
-			this.lastRoll = this.rolls[0];
+			this.lastRoll = this.rolls[index_of_next_roll];
+			index_of_next_roll++;
+			if (index_of_next_roll >= this.rolls.length)
+			{
+				index_of_next_roll = 0; //back to start
+			}
 		}
 	}
-	
+
 	@Override
 	public String toString() // this OVERRIDES the default Object.toString()
 	{
