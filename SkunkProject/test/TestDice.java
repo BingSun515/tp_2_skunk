@@ -44,6 +44,34 @@ public class TestDice {
 		assertEquals("value is not 4", 4, dice.getLastRoll());
 	}
 	
+	@Test
+	public void Dice_roll_Thrice_threenumbers_equals_provides_firstRoll_total()
+	{
+		Die die1 = new Die(new int[] {3, 4, 6});
+		Die die2 = new Die(new int[] {1, 2, 3});
+		
+		Dice dice = new Dice(die1, die2);
+		
+		dice.roll();
+		dice.roll();		
+		dice.roll();
+		assertEquals("value is not 9", 9, dice.getLastRoll());
+	}
+	
+	@Test
+	public void Dice_roll_Fourtimes_FourandThreenumbers_equals_provides_firstRoll_total()
+	{
+		Die die1 = new Die(new int[] {3, 4, 5, 6});
+		Die die2 = new Die(new int[] {1, 2, 3});
+		
+		Dice dice = new Dice(die1, die2);
+		
+		dice.roll();
+		dice.roll();		
+		dice.roll();
+		dice.roll();
+		assertEquals("value is not 7", 7, dice.getLastRoll());
+	}
 	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
 	{
