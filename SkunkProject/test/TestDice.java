@@ -30,6 +30,20 @@ public class TestDice {
 		assertEquals("value is not 6", 6, dice.getLastRoll());
 	}
 	
+	@Test
+	public void Dice_roll_Thrice_twonumbers_equals_provides_firstRoll_total()
+	{
+		Die die1 = new Die(new int[] {3, 4});
+		Die die2 = new Die(new int[] {1, 2});
+		
+		Dice dice = new Dice(die1, die2);
+		
+		dice.roll();
+		dice.roll();		
+		dice.roll();
+		assertEquals("value is not 4", 4, dice.getLastRoll());
+	}
+	
 	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void Dice_roll_once_OneEmptyArray_throws_ArrayIndexOutOfBoundsException()
 	{
