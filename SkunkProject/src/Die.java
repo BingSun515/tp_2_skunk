@@ -36,12 +36,12 @@ public class Die
 			this.lastRoll = (int) (Math.random() * 6 + 1);
 		else
 		{
-			this.lastRoll = this.rolls[index_of_next_roll];
-			index_of_next_roll++;
 			if (index_of_next_roll >= this.rolls.length)
 			{
 				index_of_next_roll = 0; //back to start
 			}
+			this.lastRoll = this.rolls[index_of_next_roll];
+			index_of_next_roll++;
 		}
 	}
 
