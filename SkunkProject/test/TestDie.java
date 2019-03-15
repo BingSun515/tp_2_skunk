@@ -82,8 +82,8 @@ public class TestDie
 	{
 		try
 		{
-			Die die1 = new Die(null);
-			die1.roll();
+			Die die = new Die(null);
+			die.roll();
 		}
 		catch (RuntimeException rtx)
 		{
