@@ -76,4 +76,20 @@ public class TestDie
 		Die die = new Die(null);
 		die.roll();
 	}
+	
+	@Test()
+	public void test_null_initial_int_array2()
+	{
+		try
+		{
+			Die die1 = new Die(null);
+			die1.roll();
+		}
+		catch (RuntimeException rtx)
+		{
+			return;
+		}
+
+		fail();
+	}
 }

@@ -72,6 +72,17 @@ public class TestDice {
 		dice.roll();
 		assertEquals("value is not 7", 7, dice.getLastRoll());
 	}
+	
+	@Test
+	public void test_to_string() {
+		Die die1 = new Die(new int[] {1,2,3});
+		Die die2 = new Die(new int[] {2,3,4});
+
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(dice.toString(), "Dice with last roll: 3 => 1 + 2");
+	}
+	
 	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
 	{
