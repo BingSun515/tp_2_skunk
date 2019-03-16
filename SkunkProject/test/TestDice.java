@@ -83,7 +83,7 @@ public class TestDice {
 		assertEquals(dice.toString(), "Dice with last roll: 3 => 1 + 2");
 	}
 	
-	@Test(expected=ArrayIndexOutOfBoundsException.class)
+	@Test(expected=RuntimeException.class)
 	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
 	{
 		Die die1 = new Die(new int[] {3, 4});
@@ -95,11 +95,8 @@ public class TestDice {
 	
 	@Test(expected=RuntimeException.class)
 	public void Dice_roll_once_NullInitializer_throws_RuntimeException()
-	{
-		Die die1 = new Die(new int[] {3, 4});
-		Die die2 = new Die(null);
-		
-		Dice dice = new Dice(die1, die2);		
+	{	
+		Dice dice = new Dice(null, null);		
 		dice.roll();
 	}
 }
