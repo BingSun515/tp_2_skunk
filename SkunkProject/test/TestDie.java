@@ -77,19 +77,10 @@ public class TestDie
 		die.roll();
 	}
 	
-	@Test()
-	public void test_null_initial_int_array2()
+	@Test(expected=RuntimeException.class)
+	public void test_empty_initial_array()
 	{
-		try
-		{
-			Die die = new Die(null);
-			die.roll();
-		}
-		catch (RuntimeException rtx)
-		{
-			return;
-		}
-
-		fail();
+		Die die = new Die(new int[] {});
+		die.roll();
 	}
 }
