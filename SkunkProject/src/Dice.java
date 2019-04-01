@@ -68,6 +68,23 @@ public class Dice
 		return "Dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
 
 	}
+	
+	public boolean isDiceLastRollSingleSkunk()
+	{
+		return (this.die1.getLastRoll() == 1 || this.die2.getLastRoll() == 1);
+	}
+	
+	public boolean isDiceLastRollDoubleSkunk()
+	{
+		return (this.die1.getLastRoll() == 1 && this.die2.getLastRoll() == 1);
+	}
+	
+	public boolean isDiceLastRollDeuceSkunk()
+	{
+		return (this.die1.getLastRoll() == 1 && this.die2.getLastRoll() == 2) ||
+				(this.die2.getLastRoll() == 1 && this.die1.getLastRoll() == 2);
+	}
+	
 
 	// static methods can go anywhere - but at end is standard
 
