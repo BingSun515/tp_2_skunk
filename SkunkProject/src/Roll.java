@@ -1,7 +1,9 @@
+//import java.util.ArrayList;
 
 public class Roll {
 	private Dice dice;
-	
+//	private ArrayList<Score> scores;
+
 	public Roll()
 	{
 		this.dice = new Dice();
@@ -26,5 +28,10 @@ public class Roll {
 	public boolean isSkunk()
 	{
 		return (this.isDoubleSkunk() || this.isDeuceSkunk() || this.isSingleSkunk());
+	}
+
+	public int getDiceLastRoll()
+	{
+		return this.dice.getLastRoll();
 	}
 }

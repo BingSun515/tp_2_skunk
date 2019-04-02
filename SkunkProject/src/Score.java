@@ -1,21 +1,33 @@
 
 public class Score {
 	private int turnScore;
-	private int chips;
-	private int kitty;
+	private int chipScore;
+	private int kittyScore;
 
 	public Score()
 	{
 		this.turnScore = 0;
-		this.chips = 0;
-		this.kitty = 0;
+		this.chipScore = 0;
+		this.kittyScore = 0;
+	}
+
+	public Score(int score)
+	{
+		this.turnScore = score;
 	}
 	
-	public void addScore(int score, int chipChange, int kittyChange)
+	public Score(int score, int chipCount, int kittyCount)
+	{
+		this.turnScore = score;
+		this.chipScore = chipCount;
+		this.kittyScore = kittyCount;
+	}
+	
+	public void setTurnScore(int score, int chipCount, int kittyCount)
 	{
 		this.turnScore += score;
-		this.chips += chipChange;
-		this.kitty += kittyChange;
+		this.chipScore += chipCount;
+		this.kittyScore += kittyCount;
 	}
 	
 	public int getTurnScore()
@@ -25,12 +37,12 @@ public class Score {
 	
 	public int getChipChangeScore()
 	{
-		return this.chips;
+		return this.chipScore;
 	}
 	
 	public int getKittyChangeScore()
 	{
-		return this.kitty;
+		return this.kittyScore;
 	}
 	
 	public void resetScore()
