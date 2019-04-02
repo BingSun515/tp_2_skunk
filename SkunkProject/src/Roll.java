@@ -2,6 +2,12 @@
 public class Roll {
 	private Dice dice;
 	
+	public Roll()
+	{
+		this.dice = new Dice();
+//		this.dice.roll();
+	}
+	
 	public boolean isDoubleSkunk()
 	{
 		return this.dice.isDiceLastRollDoubleSkunk();
