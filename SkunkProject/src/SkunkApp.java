@@ -23,5 +23,9 @@ public class SkunkApp
 		{
 			gameUi.displayPlayerPlayDenialMessage();
 		}
+		else
+		{
+			gameUi.startGame();
+		}
 	}	
 }

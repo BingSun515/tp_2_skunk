@@ -27,7 +27,7 @@ public class Turn {
 	
 	public Roll getLastRoll()
 	{
-		if (this.rolls.size() -1 > 0)
+		if (this.rolls.size() -1 > -1)
 		{
 			return this.rolls.get(this.rolls.size() -1 );
 		}
@@ -37,12 +37,18 @@ public class Turn {
 		}
 	}
 	
-	public void newRoll()
+	public void rollAndSetScore()
+	{
+		this.newRoll();
+		this.setScore();
+	}
+
+	private void newRoll()
 	{
 		this.rolls.add(new Roll());
 	}
 	
-	public void setScore()
+	private void setScore()
 	{
 		if (this.getLastRoll().isSkunk())
 		{

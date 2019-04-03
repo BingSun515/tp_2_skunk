@@ -14,7 +14,7 @@ public class SkunkAppUi {
 	{
 		String message = "\nThe Game is about to begin";
 		message += "\nAre you ready to roll ?";
-		message += "\nEnter (y/n):";
+		message += "\nEnter (y/n): ";
 		SkunkAppUi.displayMessage(message);
 		return SkunkAppUi.getPlayerInput();
 	}
@@ -23,7 +23,7 @@ public class SkunkAppUi {
 	{
 		String playerInput;
 		playerInput = StdIn.readLine();
-		return playerInput.equalsIgnoreCase("y");
+		return playerInput.trim().equalsIgnoreCase("y");
 	}
 
 	public void displayGameStart()
@@ -41,13 +41,18 @@ public class SkunkAppUi {
 		SkunkAppUi.displayMessage(message);
 	}
 	
+	public void startGame()
+	{
+		this.controller.startGame();
+	}
+	
 	private void getPlayerName()
 	{
 		String playerName = StdIn.readLine();
 		Player player = new Player(playerName);
 		this.controller.setPlayer(player);
 		//test remove later
-		SkunkAppUi.displayMessage("Player name is :: " + this.controller.getPlayer().getPlayerName());
+//		SkunkAppUi.displayMessage("Player name is :: " + this.controller.getPlayer().getPlayerName());
 	}
 	
 	private static void displayMessage(String message)

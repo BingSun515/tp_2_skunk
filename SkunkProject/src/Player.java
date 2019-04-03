@@ -1,5 +1,6 @@
 public class Player {
 	
+	private Boolean isActive;
 	private String playerName;
 	Player(String name)
 	{
@@ -9,5 +10,13 @@ public class Player {
 	public String getPlayerName()
 	{
 		return this.playerName;
+	}
+	
+	public boolean isPlayerActive() {
+		return isActive;
+	}
+	
+	public void isPlayerActive(boolean active) {
+		isActive = active;
 	}
 }
