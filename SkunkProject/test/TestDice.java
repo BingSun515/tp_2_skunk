@@ -99,4 +99,32 @@ public class TestDice {
 		Dice dice = new Dice(null, null);		
 		dice.roll();
 	}
+	
+	@Test
+	public void isSingleSkunk()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);	
+		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+	}
+	
+	@Test
+	public void isDoubleSkunk()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);	
+		assertEquals(dice.isDiceLastRollDoubleSkunk(), false);
+	}
+	
+	@Test
+	public void isDeuceSkunk()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);	
+		assertEquals(dice.isDiceLastRollDeuceSkunk(), false);
+	}
+	
 }
