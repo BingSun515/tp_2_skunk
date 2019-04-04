@@ -152,6 +152,7 @@ public class TestDice {
 		Die die2 = new Die(new int[] {1});
 		Dice dice = new Dice(die1, die2);	
 		assertEquals(dice.isDiceLastRollDeuceSkunk(), false);
+		
 	}
 	
 }
