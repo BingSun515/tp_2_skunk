@@ -105,7 +105,8 @@ public class TestDice {
 	{	
 		Die die1 = new Die(new int[] {1});
 		Die die2 = new Die(new int[] {1});
-		Dice dice = new Dice(die1, die2);	
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
 		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
 	}
 	
@@ -114,8 +115,9 @@ public class TestDice {
 	{	
 		Die die1 = new Die(new int[] {1});
 		Die die2 = new Die(new int[] {3});
-		Dice dice = new Dice(die1, die2);	
-		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(dice.isDiceLastRollSingleSkunk(), true);
 	}
 	
 	@Test
@@ -124,7 +126,8 @@ public class TestDice {
 		Die die1 = new Die(new int[] {3});
 		Die die2 = new Die(new int[] {1});
 		Dice dice = new Dice(die1, die2);	
-		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+		dice.roll();
+		assertEquals(dice.isDiceLastRollSingleSkunk(), true);
 	}
 	
 	@Test

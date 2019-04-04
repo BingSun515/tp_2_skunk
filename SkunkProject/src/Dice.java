@@ -71,7 +71,7 @@ public class Dice
 	
 	public boolean isDiceLastRollSingleSkunk()
 	{
-		return (this.die1.getLastRoll() == 1 || this.die2.getLastRoll() == 1);
+		return (this.die1.getLastRoll() == 1 && this.die1.getLastRoll() + this.die2.getLastRoll() != 2 || this.die2.getLastRoll() == 1 && this.die1.getLastRoll() + this.die2.getLastRoll() != 2);
 	}
 	
 	public boolean isDiceLastRollDoubleSkunk()
