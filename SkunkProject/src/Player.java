@@ -2,7 +2,8 @@ public class Player {
 	
 	private Boolean isActive;
 	private String playerName;
-	Player(String name)
+	
+	public Player(String name)
 	{
 		this.playerName = name;
 	}
