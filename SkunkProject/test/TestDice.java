@@ -114,6 +114,26 @@ public class TestDice {
 	public void isSingleSkunk2()
 	{	
 		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {2});
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+	}
+	
+	@Test
+	public void isSingleSkunk3()
+	{	
+		Die die1 = new Die(new int[] {2});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);	
+		dice.roll();
+		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+	}
+	
+	@Test
+	public void isSingleSkunk4()
+	{	
+		Die die1 = new Die(new int[] {1});
 		Die die2 = new Die(new int[] {3});
 		Dice dice = new Dice(die1, die2);
 		dice.roll();
@@ -121,7 +141,7 @@ public class TestDice {
 	}
 	
 	@Test
-	public void isSingleSkunk3()
+	public void isSingleSkunk5()
 	{	
 		Die die1 = new Die(new int[] {3});
 		Die die2 = new Die(new int[] {1});
@@ -138,6 +158,26 @@ public class TestDice {
 		Dice dice = new Dice(die1, die2);
 		dice.roll();
 		assertEquals(dice.isDiceLastRollDoubleSkunk(), true);
+	}
+	
+	@Test
+	public void isDoubleSkunk2()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {2});
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(dice.isDiceLastRollDoubleSkunk(), false);
+	}
+	
+	@Test
+	public void isDoubleSkunk3()
+	{	
+		Die die1 = new Die(new int[] {2});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(dice.isDiceLastRollDoubleSkunk(), false);
 	}
 	
 	@Test
@@ -159,5 +199,26 @@ public class TestDice {
 		dice.roll();
 		assertEquals(dice.isDiceLastRollDeuceSkunk(), true);
 	}
+	
+	@Test
+	public void isDeuceSkunk3()
+	{	
+		Die die1 = new Die(new int[] {3});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);	
+		dice.roll();
+		assertEquals(dice.isDiceLastRollDeuceSkunk(), false);
+	}
+	
+	@Test
+	public void isDeuceSkunk4()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {3});
+		Dice dice = new Dice(die1, die2);	
+		dice.roll();
+		assertEquals(dice.isDiceLastRollDeuceSkunk(), false);
+	}
+	
 	
 }
