@@ -69,6 +69,26 @@ public class Dice
 
 	}
 	
+	public SkunkEnum getSkunk()
+	{
+		if (this.isDiceLastRollSingleSkunk())
+		{
+			return SkunkEnum.SingleSkunk;
+		}
+		else if (this.isDiceLastRollDoubleSkunk())
+		{
+			return SkunkEnum.DoubleSkunk;
+		}
+		else if (this.isDiceLastRollDeuceSkunk())
+		{
+			return SkunkEnum.DeuceSkunk;
+		}
+		else
+		{
+			return SkunkEnum.NoSkunk;
+		}
+	}
+	
 	public boolean isDiceLastRollSingleSkunk()
 	{
 		return (this.die1.getLastRoll() == 1 || this.die2.getLastRoll() == 1);

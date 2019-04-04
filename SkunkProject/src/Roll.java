@@ -1,33 +1,29 @@
-//import java.util.ArrayList;
-
 public class Roll {
 	private Dice dice;
-//	private ArrayList<Score> scores;
 
 	public Roll()
 	{
 		this.dice = new Dice();
-//		this.dice.roll();
 	}
 	
 	public boolean isDoubleSkunk()
 	{
-		return this.dice.isDiceLastRollDoubleSkunk();
+		return this.getSkunk() == SkunkEnum.DoubleSkunk;
 	}
 	
 	public boolean isDeuceSkunk()
 	{
-		return this.dice.isDiceLastRollDeuceSkunk();
+		return this.getSkunk() == SkunkEnum.DeuceSkunk;
 	}
 
 	public boolean isSingleSkunk()
 	{
-		return this.dice.isDiceLastRollSingleSkunk();
+		return this.getSkunk() == SkunkEnum.SingleSkunk;
 	}
 	
 	public boolean isSkunk()
 	{
-		return (this.isDoubleSkunk() || this.isDeuceSkunk() || this.isSingleSkunk());
+		return this.getSkunk() != SkunkEnum.NoSkunk;
 	}
 
 	public int getDiceLastRoll()
@@ -38,5 +34,10 @@ public class Roll {
 	public String getDiceDisplay()
 	{
 		return this.dice.toString();
+	}
+	
+	public SkunkEnum getSkunk()
+	{
+		return this.dice.getSkunk();
 	}
 }

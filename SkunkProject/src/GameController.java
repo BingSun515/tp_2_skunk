@@ -4,8 +4,9 @@ public class GameController {
 	
 	Turn turn;
 	ArrayList<Player> players = null;
-	GameStatus status;
+	GameStatusEnum status = GameStatusEnum.INPROGRESS;
 	GameResult result;
+
 	GameController()
 	{
 	}
@@ -32,38 +33,45 @@ public class GameController {
 	
 	public void startGame()
 	{
-		if (turn == null)
+		if (this.turn == null)
 		{
-			turn = new Turn();
+			this.turn = new Turn();
 		}
 		this.getPlayer().setActivePlayer();
-		status = GameStatus.INPROGRESS;
 		this.startTurn();
+		this.displayGameSummary();
 	}
 
-	public String getGameResult()
-	{
-		return result.getRollScore();
-	}
-	
 	private void startTurn()
 	{
-		while(status != GameStatus.DECLINED_TO_ROLL)
+		while(this.status != GameStatusEnum.GAME_COMPLETED)
 		{
-			switch(status)
+			switch(this.status)
 			{
 				case INPROGRESS:
-					turn.rollAndSetScore();
-					result = new GameResult(this.getPlayer(), this.turn.getLastRoll());
-					//todo: remove. Temporary to stop the loop
-					status = GameStatus.DECLINED_TO_ROLL;
+					this.turn.rollAndSetScore();
+					this.result = new GameResult(this.getPlayer(), this.turn.getLastRoll());
+					SkunkAppUi.displayResults(this.result.getRollScore());
+					this.status = this.result.getGameStatus();
 					break; 
+
+				case TURN_COMPLETED:
+					this.status = GameStatusEnum.GAME_COMPLETED;
+					break;
 				default:
 						break;
 			}
+			
+			if (this.status == GameStatusEnum.INPROGRESS && !SkunkAppUi.getPlayerRollChoice())
+			{
+				//DECLINED_TO_ROLL
+				this.status = GameStatusEnum.TURN_COMPLETED;
+			}
 		}
-		//A Turn starts with asking the player by name if they wish to roll and ends after 
-		//either a decline-to-roll response or throwing a Skunk
 	}
-
+	
+	private void displayGameSummary()
+	{
+		//todo
+	}
 }
