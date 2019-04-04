@@ -32,7 +32,7 @@ public class SkunkAppUi {
 		message+= "\n";
 		message+= "Enter a player name : ";
 		SkunkAppUi.displayMessage(message);
-		this.getPlayerName();
+		this.getPlayerNameFromPlayer();
 	}
 	
 	public void displayPlayerPlayDenialMessage()
@@ -44,9 +44,10 @@ public class SkunkAppUi {
 	public void startGame()
 	{
 		this.controller.startGame();
+		SkunkAppUi.displayMessage(this.controller.getGameResult());
 	}
 	
-	private void getPlayerName()
+	private void getPlayerNameFromPlayer()
 	{
 		String playerName = StdIn.readLine();
 		Player player = new Player(playerName);

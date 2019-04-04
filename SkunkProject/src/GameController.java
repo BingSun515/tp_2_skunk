@@ -5,7 +5,7 @@ public class GameController {
 	Turn turn;
 	ArrayList<Player> players = null;
 	GameStatus status;
-
+	GameResult result;
 	GameController()
 	{
 	}
@@ -36,9 +36,14 @@ public class GameController {
 		{
 			turn = new Turn();
 		}
-		this.getPlayer().isPlayerActive(true);
+		this.getPlayer().setActivePlayer();
 		status = GameStatus.INPROGRESS;
 		this.startTurn();
+	}
+
+	public String getGameResult()
+	{
+		return result.getRollScore();
 	}
 	
 	private void startTurn()
@@ -49,6 +54,7 @@ public class GameController {
 			{
 				case INPROGRESS:
 					turn.rollAndSetScore();
+					result = new GameResult(this.getPlayer(), this.turn.getLastRoll());
 					//todo: remove. Temporary to stop the loop
 					status = GameStatus.DECLINED_TO_ROLL;
 					break; 
@@ -59,4 +65,5 @@ public class GameController {
 		//A Turn starts with asking the player by name if they wish to roll and ends after 
 		//either a decline-to-roll response or throwing a Skunk
 	}
+
 }

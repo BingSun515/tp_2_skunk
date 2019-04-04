@@ -17,7 +17,7 @@ public class Player {
 		return isActive;
 	}
 	
-	public void isPlayerActive(boolean active) {
-		isActive = active;
+	public void setActivePlayer() {
+		isActive = true;
 	}
 }

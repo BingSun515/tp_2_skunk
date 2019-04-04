@@ -34,4 +34,9 @@ public class Roll {
 	{
 		return this.dice.getLastRoll();
 	}
+	
+	public String getDiceDisplay()
+	{
+		return this.dice.toString();
+	}
 }
