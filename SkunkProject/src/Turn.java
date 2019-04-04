@@ -69,10 +69,12 @@ public class Turn {
 	public Score getTurnScore()
 	{
 		Score score = new Score();
+		Score nextScore;
 		Iterator<Score> scores = this.turnScores.iterator();
 		while(scores.hasNext())
-		{
-			score.setTurnScore(scores.next().getTurnScore(), scores.next().getChipChangeScore(), scores.next().getKittyChangeScore());
+		{ 
+			nextScore = scores.next();
+			score.setTurnScore(nextScore.getTurnScore(), nextScore.getChipChangeScore(), nextScore.getKittyChangeScore());
 		}
 		return score;
 	}

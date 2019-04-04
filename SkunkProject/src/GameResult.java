@@ -1,8 +1,7 @@
-import java.lang.StringBuilder;
+import org.apache.commons.text.TextStringBuilder;
 
 public class GameResult {
 
-	final char NEWLINE = '\n';
 	Player activePlayer;
 	Roll lastRoll;
 	GameStatusEnum gameStatus;
@@ -15,18 +14,26 @@ public class GameResult {
 	
 	public String getRollScore()
 	{
-		StringBuilder sb = new StringBuilder();
-		
-		sb.append(this.activePlayer.getPlayerName());
-		sb.append(this.NEWLINE);
-		sb.append(this.lastRoll.getDiceDisplay());
-		sb.append(this.NEWLINE);
+		TextStringBuilder tb = new TextStringBuilder();
+		tb.appendln(this.activePlayer.getPlayerName());
+		tb.appendln(this.lastRoll.getDiceDisplay());
 		
 		if (this.lastRoll.isSkunk())
 		{
-			this.getSkunkRollMessage(sb);
+			this.getSkunkRollMessage(tb);
 		}
-		return sb.toString();
+		return tb.toString();
+	}
+	
+	public String getGameSummary(Score score)
+	{
+		TextStringBuilder tb = new TextStringBuilder().appendln("");
+		tb.appendln("********** GAME SUMMARY **********");
+		tb.appendln("turn score :: " + score.getTurnScore());
+		tb.appendln("chip change :: " + score.getChipChangeScore());
+		tb.appendln("kitty change :: " + score.getKittyChangeScore());
+		
+		return tb.toString();
 	}
 	
 	public GameStatusEnum getGameStatus()
@@ -34,23 +41,19 @@ public class GameResult {
 		return this.gameStatus = this.lastRoll.isSkunk() ? GameStatusEnum.TURN_COMPLETED : GameStatusEnum.INPROGRESS;
 	}
 	
-	private void getSkunkRollMessage(StringBuilder sb)
+	private void getSkunkRollMessage(TextStringBuilder tb)
 	{
 		if (this.lastRoll.isSingleSkunk())
 		{
-			sb.append("Last roll was a single skunk");
+			tb.appendln("Last roll was a single skunk");
 		}
 		else if (this.lastRoll.isDoubleSkunk())
 		{
-			sb.append("Last roll was a double skunk");
+			tb.appendln("Last roll was a double skunk");
 		}
 		else if (this.lastRoll.isDeuceSkunk())
 		{
-			sb.append("Last roll was a Deuce skunk");
-		}
-		else if (this.lastRoll.isDeuceSkunk())
-		{
-			sb.append("Last roll was a Deuce skunk");
+			tb.appendln("Last roll was a Deuce skunk");
 		}
 	}
 }

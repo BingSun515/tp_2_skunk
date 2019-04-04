@@ -72,6 +72,8 @@ public class GameController {
 	
 	private void displayGameSummary()
 	{
-		//todo
+		Score score = this.turn.getTurnScore();
+		String message = this.result.getGameSummary(score);
+		SkunkAppUi.displayResults(message);
 	}
 }
