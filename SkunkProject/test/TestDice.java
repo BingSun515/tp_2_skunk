@@ -110,6 +110,24 @@ public class TestDice {
 	}
 	
 	@Test
+	public void isSingleSkunk2()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {3});
+		Dice dice = new Dice(die1, die2);	
+		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+	}
+	
+	@Test
+	public void isSingleSkunk3()
+	{	
+		Die die1 = new Die(new int[] {3});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);	
+		assertEquals(dice.isDiceLastRollSingleSkunk(), false);
+	}
+	
+	@Test
 	public void isDoubleSkunk()
 	{	
 		Die die1 = new Die(new int[] {1});
@@ -122,6 +140,15 @@ public class TestDice {
 	public void isDeuceSkunk()
 	{	
 		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {2});
+		Dice dice = new Dice(die1, die2);	
+		assertEquals(dice.isDiceLastRollDeuceSkunk(), false);
+	}
+	
+	@Test
+	public void isDeuceSkunk2()
+	{	
+		Die die1 = new Die(new int[] {2});
 		Die die2 = new Die(new int[] {1});
 		Dice dice = new Dice(die1, die2);	
 		assertEquals(dice.isDiceLastRollDeuceSkunk(), false);
