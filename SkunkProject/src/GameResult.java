@@ -15,9 +15,8 @@ public class GameResult {
 	public String getRollScore()
 	{
 		TextStringBuilder tb = new TextStringBuilder();
-		tb.appendln(this.activePlayer.getPlayerName());
 		tb.appendln(this.lastRoll.getDiceDisplay());
-		
+		tb.appendln("-----------");
 		if (this.lastRoll.isSkunk())
 		{
 			this.getSkunkRollMessage(tb);

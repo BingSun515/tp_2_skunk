@@ -17,15 +17,14 @@ public class SkunkApp
 //		StdOut.println("dice roll: " + dice.getLastRoll());
 //
 		SkunkAppUi gameUi = new SkunkAppUi();
-		gameUi.displayGameStart();
-		
-		if (!SkunkAppUi.canStartGame())
-		{
-			gameUi.displayPlayerPlayDenialMessage();
-		}
-		else
-		{
-			gameUi.startGame();
-		}
+		gameUi.startGame();
+//		if (!SkunkAppUi.canStartGame())
+//		{
+//			gameUi.displayPlayerPlayDenialMessage();
+//		}
+//		else
+//		{
+//			gameUi.startGame();
+//		}
 	}	
 }

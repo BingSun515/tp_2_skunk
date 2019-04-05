@@ -11,18 +11,17 @@ public class GameController {
 	{
 	}
 	
-	public void setPlayer(Player player)
+	public void setPlayer(String playerName)
 	{
 		if (this.players == null) 
 		{
 			this.players = new ArrayList<Player>();
 		}
-		this.players.add(player);
+		this.players.add(new Player(playerName));
 	}
 
 	public Player getPlayer()
 	{
-		//todo: remove index and find alternative approach
 		return this.players.get(0);
 	}
 	
@@ -31,13 +30,13 @@ public class GameController {
 		return this.getPlayer().getPlayerName();
 	}
 	
-	public void startGame()
+	public void startGame(String playerName)
 	{
 		if (this.turn == null)
 		{
 			this.turn = new Turn();
 		}
-		this.getPlayer().setActivePlayer();
+		this.setPlayer(playerName);
 		this.startTurn();
 		this.displayGameSummary();
 	}
