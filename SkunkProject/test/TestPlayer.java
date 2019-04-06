@@ -5,18 +5,17 @@ import org.junit.Test;
 public class TestPlayer {
 
 	@Test
-	public void PlayerTest() 
+	public void PlayerSetGetTest() 
 	{
 		Player p1 = new Player("Eric");
 		assertEquals(p1.getPlayerName(), "Eric");
 	}
 	
-	@Test
-	public void PlayerActiveTest() 
-	{
-		Player p1 = new Player("Eric");
-		p1.setActivePlayer();
-		assertEquals(p1.isPlayerActive(), true);
-	}
+//	@Test
+//	public void PlayerActiveTest() 
+//	{
+//		Player p1 = new Player("Eric");
+//		assertEquals(p1.isPlayerActive(), true);
+//	}
 
 }
