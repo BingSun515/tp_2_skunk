@@ -1,5 +1,5 @@
 
-public enum GameStatusEnum
+enum GameStatusEnum
 {
 	TURN_COMPLETED,
 	GAME_COMPLETED,

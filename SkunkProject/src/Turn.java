@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Turn {
+class Turn {
 	private final int DOUBLE_SKUNK_CHIP = -4; 
 	private final int DOUBLE_SKUNK_KITTY = 4;
 
@@ -37,7 +37,7 @@ public class Turn {
 		}
 	}
 	
-	public void rollAndSetScore()
+	void rollAndSetScore()
 	{
 		this.newRoll();
 		this.setScore();
@@ -97,5 +97,4 @@ public class Turn {
 		turnScores.add(score);
 	}
 
-	
 }

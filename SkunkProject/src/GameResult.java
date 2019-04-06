@@ -1,10 +1,10 @@
 import org.apache.commons.text.TextStringBuilder;
 
-public class GameResult {
+class GameResult {
 
-	Player activePlayer;
-	Roll lastRoll;
-	GameStatusEnum gameStatus;
+	private Player activePlayer;
+	private Roll lastRoll;
+	private GameStatusEnum gameStatus;
 
 	GameResult(Player player, Roll roll)
 	{
@@ -24,7 +24,7 @@ public class GameResult {
 		return tb.toString();
 	}
 	
-	public String getGameSummary(Score score)
+	String getGameSummary(Score score)
 	{
 		TextStringBuilder tb = new TextStringBuilder().appendln("");
 		tb.appendln("********** GAME SUMMARY **********");

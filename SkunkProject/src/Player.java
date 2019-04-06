@@ -1,9 +1,9 @@
-public class Player {
+class Player {
 	
 	private Boolean isActive;
 	private String playerName;
 	
-	public Player(String name)
+	Player(String name)
 	{
 		this.playerName = name;
 	}
@@ -17,7 +17,4 @@ public class Player {
 		return isActive;
 	}
 	
-	public void setActivePlayer() {
-		isActive = true;
-	}
 }

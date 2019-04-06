@@ -1,7 +1,6 @@
 //todo to be used in roll for persistence
-public enum SkunkEnum
+enum SkunkEnum
 {
-	Skunk,
 	SingleSkunk,
 	DoubleSkunk,
 	DeuceSkunk,

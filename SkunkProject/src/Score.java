@@ -1,5 +1,4 @@
-
-public class Score {
+class Score {
 	private int turnScore;
 	private int chipScore;
 	private int kittyScore;
@@ -11,19 +10,19 @@ public class Score {
 		this.kittyScore = 0;
 	}
 
-	public Score(int score)
+	Score(int score)
 	{
 		this.turnScore = score;
 	}
 	
-	public Score(int score, int chipCount, int kittyCount)
+	Score(int score, int chipCount, int kittyCount)
 	{
 		this.turnScore = score;
 		this.chipScore = chipCount;
 		this.kittyScore = kittyCount;
 	}
 	
-	public void setTurnScore(int score, int chipCount, int kittyCount)
+	void setTurnScore(int score, int chipCount, int kittyCount)
 	{
 		this.turnScore += score;
 		this.chipScore += chipCount;
@@ -44,9 +43,5 @@ public class Score {
 	{
 		return this.kittyScore;
 	}
-	
-	public void resetScore()
-	{
-		this.turnScore = 0;
-	}
+
 }

@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
-public class GameController {
+class GameController {
 	
-	Turn turn;
-	ArrayList<Player> players = null;
-	GameStatusEnum status = GameStatusEnum.INPROGRESS;
-	GameResult result;
+	private Turn turn;
+	private ArrayList<Player> players = null;
+	private GameStatusEnum status = GameStatusEnum.INPROGRESS;
+	private GameResult result;
 
 	GameController()
 	{
@@ -30,7 +30,7 @@ public class GameController {
 		return this.getPlayer().getPlayerName();
 	}
 	
-	public void startGame(String playerName)
+	void startGame(String playerName)
 	{
 		if (this.turn == null)
 		{

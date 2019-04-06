@@ -1,4 +1,4 @@
-public class Roll {
+class Roll {
 	private Dice dice;
 
 	public Roll()
