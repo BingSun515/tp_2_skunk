@@ -8,7 +8,7 @@ public class TestPlayer {
 	public void PlayerSetGetTest() 
 	{
 		Player p1 = new Player("Eric");
-		assertEquals("Eric",p1.getPlayerName());
+		assertEquals("Eric", p1.getPlayerName()); 
 	}
 	
 //	@Test
