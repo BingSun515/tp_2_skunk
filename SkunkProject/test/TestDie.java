@@ -72,7 +72,7 @@ public class TestDie
 	
 	@Test(expected=RuntimeException.class)
 	public void test_null_initial_int_array()
-	{
+	{ 
 		Die die = new Die(null);
 		die.roll();
 	}
