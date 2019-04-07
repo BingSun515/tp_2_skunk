@@ -11,7 +11,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {1});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(true, d1.isDiceLastRollDoubleSkunk(),true);
+		assertEquals(true, d1.isDiceLastRollDoubleSkunk());
 	}
 	
 	@Test
