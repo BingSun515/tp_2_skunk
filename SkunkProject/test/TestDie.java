@@ -27,16 +27,16 @@ public class TestDie
 		die.roll();
 		int value = die.getLastRoll();
 
-		assertEquals("first value not 3", 3, value);
+		assertEquals(value, 3);
 	}
 
 	@Test
 	public void test_roll_2_of_predictable_die()
 	{
 		die.roll();
-		assertEquals("first value not 3", 3, die.getLastRoll());
+		assertEquals(die.getLastRoll(), 3);
 		die.roll();
-		assertEquals("second value not 2", 2, die.getLastRoll());
+		assertEquals(die.getLastRoll(), 2);
 
 	}
 
