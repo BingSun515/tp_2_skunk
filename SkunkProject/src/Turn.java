@@ -9,7 +9,7 @@ class Turn {
 	private final int DEUCE_SKUNK_KITTY = 2;
 	
 	private final int SINGLE_SKUNK_CHIP = -1; 
-	private final int SINGLE_SKUNK_KITTY = 1;
+	private final int SINGLE_SKUNK_KITTY = 1; 
 
 	private ArrayList<Roll> rolls;
 	private ArrayList<Score> turnScores;

@@ -46,7 +46,7 @@ public class TestDie
 		die.roll();
 		die.roll();
 		die.roll();
-		assertEquals("third value not 1", 1, die.getLastRoll());
+		assertEquals(die.getLastRoll(), 1);
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class TestDie
 		die.roll();
 		die.roll();
 		die.roll();
-		assertEquals("fourth value not wrapping back to first value 3", 3, die.getLastRoll());
+		assertEquals(die.getLastRoll(), 3);
 	}
 	
 	@Test
@@ -67,7 +67,7 @@ public class TestDie
 		die.roll();
 		die.roll();
 		die.roll();
-		assertEquals("fourth value not wrapping back to first value 3", 2, die.getLastRoll());
+		assertEquals(die.getLastRoll(), 2);
 	}
 	
 	@Test(expected=RuntimeException.class)
