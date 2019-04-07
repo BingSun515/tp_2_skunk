@@ -27,16 +27,16 @@ public class TestDie
 		die.roll();
 		int value = die.getLastRoll();
 
-		assertEquals(3,value);
+		assertEquals(3, value);
 	}
 
 	@Test
 	public void test_roll_2_of_predictable_die()
 	{
 		die.roll();
-		assertEquals(3,die.getLastRoll());
+		assertEquals(3, die.getLastRoll());
 		die.roll();
-		assertEquals(2,die.getLastRoll());
+		assertEquals(2, die.getLastRoll());
 
 	}
 
@@ -46,7 +46,7 @@ public class TestDie
 		die.roll();
 		die.roll();
 		die.roll();
-		assertEquals(1,die.getLastRoll());
+		assertEquals(1, die.getLastRoll());
 	}
 
 	@Test
@@ -56,7 +56,7 @@ public class TestDie
 		die.roll();
 		die.roll();
 		die.roll();
-		assertEquals(3,die.getLastRoll());
+		assertEquals(3, die.getLastRoll());
 	}
 	
 	@Test
@@ -67,7 +67,7 @@ public class TestDie
 		die.roll();
 		die.roll();
 		die.roll();
-		assertEquals(2,die.getLastRoll());
+		assertEquals(2, die.getLastRoll());
 	}
 	
 	@Test(expected=RuntimeException.class)

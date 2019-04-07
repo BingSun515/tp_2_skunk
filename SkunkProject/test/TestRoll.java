@@ -11,7 +11,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {1});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollDoubleSkunk(),true);
+		assertEquals(true, d1.isDiceLastRollDoubleSkunk(),true);
 	}
 	
 	@Test
@@ -21,7 +21,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {1});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollDoubleSkunk(),false);
+		assertEquals(false, d1.isDiceLastRollDoubleSkunk());
 	}
 	
 	@Test
@@ -31,7 +31,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {1});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollDeuceSkunk(),true);
+		assertEquals(true, d1.isDiceLastRollDeuceSkunk());
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {2});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollDeuceSkunk(),false);
+		assertEquals(false, d1.isDiceLastRollDeuceSkunk());
 	}
 	
 	@Test
@@ -51,7 +51,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {3});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollSingleSkunk(),true);
+		assertEquals(true, d1.isDiceLastRollSingleSkunk());
 	}
 	
 	@Test
@@ -61,7 +61,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {2});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollSingleSkunk(),false);
+		assertEquals(false, d1.isDiceLastRollSingleSkunk());
 	}
 	
 	
@@ -72,7 +72,7 @@ public class TestRoll {
 		Die die2 = new Die(new int[] {1});
 		Dice d1 = new Dice(die1, die2);
 		d1.roll();
-		assertEquals(d1.isDiceLastRollSingleSkunk(),false);
+		assertEquals(false, d1.isDiceLastRollSingleSkunk());
 	}
 
 }
