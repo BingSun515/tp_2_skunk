@@ -11,11 +11,12 @@ public class TestPlayer {
 		assertEquals("Eric", p1.getPlayerName()); 
 	}
 	
-//	@Test
-//	public void PlayerActiveTest() 
-//	{
-//		Player p1 = new Player("Eric");
-//		assertEquals(p1.isPlayerActive(), true);
-//	}
+	@Test
+	public void PlayerActiveTest() 
+	{
+		Player p1 = new Player("Eric");
+		p1.setPlayerActive();
+		assertEquals(p1.isPlayerActive(), true);
+	}
 
 }

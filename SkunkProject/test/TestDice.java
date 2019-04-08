@@ -4,6 +4,13 @@ import static org.junit.Assert.assertEquals;
 public class TestDice {
 	
 	@Test
+	public void testDiceClass() {
+		Dice d1 = new Dice();
+		d1.roll();
+	}
+	
+	
+	@Test
 	public void Dice_roll_once_oneNumber_equals_lastRoll_total()
 	{
 		Die die1 = new Die(new int[] {3});
@@ -83,22 +90,22 @@ public class TestDice {
 		assertEquals("Dice with last roll: 3 => 1 + 2", dice.toString());
 	}
 	
-	@Test(expected=RuntimeException.class)
-	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
-	{
-		Die die1 = new Die(new int[] {3, 4});
-		Die die2 = new Die(new int[] {});
-		
-		Dice dice = new Dice(die1, die2);		
-		dice.roll();
-	}
-	
-	@Test(expected=RuntimeException.class)
-	public void Dice_roll_once_NullInitializer_throws_RuntimeException()
-	{	
-		Dice dice = new Dice(null, null);		
-		dice.roll();
-	}
+//	@Test(expected=RuntimeException.class)
+//	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
+//	{
+//		Die die1 = new Die(new int[] {3, 4});
+//		Die die2 = new Die(new int[] {});
+//		
+//		Dice dice = new Dice(die1, die2);		
+//		dice.roll();
+//	}
+//	
+//	@Test(expected=RuntimeException.class)
+//	public void Dice_roll_once_NullInitializer_throws_RuntimeException()
+//	{	
+//		Dice dice = new Dice(null, null);		
+//		dice.roll();
+//	}
 	
 	@Test
 	public void isSingleSkunk()
@@ -220,5 +227,43 @@ public class TestDice {
 		assertEquals(false, dice.isDiceLastRollDeuceSkunk());
 	}
 	
+	@Test
+	public void getSingleSkunkTest()
+	{
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {3});
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(SkunkEnum.SingleSkunk, dice.getSkunk());
+	}
 	
+	@Test
+	public void getDoubleSkunkTest()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {1});
+		Dice dice = new Dice(die1, die2);
+		dice.roll();
+		assertEquals(SkunkEnum.DoubleSkunk, dice.getSkunk());
+	}
+	
+	@Test
+	public void getDeuceSkunkTest()
+	{	
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {2});
+		Dice dice = new Dice(die1, die2);	
+		dice.roll();
+		assertEquals(SkunkEnum.DeuceSkunk, dice.getSkunk());
+	}
+	
+	@Test
+	public void getNoSkunkTest()
+	{	
+		Die die1 = new Die(new int[] {3});
+		Die die2 = new Die(new int[] {4});
+		Dice dice = new Dice(die1, die2);	
+		dice.roll();
+		assertEquals(SkunkEnum.NoSkunk, dice.getSkunk());
+	}
 }

@@ -20,6 +20,13 @@ public class TestDie
 	public void tearDown() throws Exception
 	{
 	}
+	//#############################################
+	@Test
+	public void DieTest() {
+		die = new Die();
+		die.roll();
+	}
+	//###############################################
 
 	@Test
 	public void test_initialization_of_predictable_die()
@@ -74,13 +81,16 @@ public class TestDie
 	public void test_null_initial_int_array()
 	{ 
 		Die die = new Die(null);
-		die.roll();
 	}
 	
 	@Test(expected=RuntimeException.class)
 	public void test_empty_initial_array()
 	{
 		Die die = new Die(new int[] {});
-		die.roll();
+	}
+	
+	@Test
+	public void toStringTest() {
+		assertEquals("Die: "+ 0, die.toString());
 	}
 }

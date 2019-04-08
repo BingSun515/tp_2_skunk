@@ -17,4 +17,11 @@ class Player {
 		return isActive;
 	}
 	
+	//TBD have some issue ####################################
+	public void setPlayerActive() {
+		isActive = true; 
+	}
+	
+	//########################################################
+	
 }
