@@ -266,4 +266,5 @@ public class TestDice {
 		dice.roll();
 		assertEquals(SkunkEnum.NoSkunk, dice.getSkunk());
 	}
+	
 }
