@@ -74,5 +74,4 @@ public class TestRoll {
 		d1.roll();
 		assertEquals(false, d1.isDiceLastRollSingleSkunk());
 	}
-
 }
