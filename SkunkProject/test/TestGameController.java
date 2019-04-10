@@ -22,5 +22,6 @@ public class TestGameController {
 	public void gcStartGame() {
 		GameController gc1 = new GameController();
 		gc1.startGame("Eric");
+		assertEquals("Eric", gc1.getPlayerName());
 	}
 }
