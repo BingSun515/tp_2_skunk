@@ -18,10 +18,10 @@ public class TestGameController {
 		assertEquals(null, gc1.getPlayerName());
 	}
 	
-	@Test
-	public void gcStartGame() {
-		GameController gc1 = new GameController();
-		gc1.startGame("Eric");
-		assertEquals("Eric", gc1.getPlayerName());
-	}
+//	@Test
+//	public void gcStartGame() {
+//		GameController gc1 = new GameController();
+//		gc1.startGame("Eric");
+//		assertEquals("Eric", gc1.getPlayerName());
+//	}
 }
