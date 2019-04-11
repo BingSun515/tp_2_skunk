@@ -267,4 +267,14 @@ public class TestDice {
 		assertEquals(SkunkEnum.NoSkunk, dice.getSkunk());
 	}
 	
+	@Test
+	public void testSetDie()
+	{
+		Die die1 = new Die(new int[] {2});
+		Die die2 = new Die(new int[] {2});
+		Roll r1 = new Roll();
+		r1.setDice(die1, die2);
+		assertEquals(SkunkEnum.NoSkunk, r1.getSkunk());
+	}
+	
 }
