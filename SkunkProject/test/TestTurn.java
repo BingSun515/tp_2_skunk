@@ -28,6 +28,4 @@ public class TestTurn {
 		t1.rollAndSetScore();
 	}
 	
-
-
 }
