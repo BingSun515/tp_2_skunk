@@ -116,6 +116,16 @@ public class TestRoll {
 	}
 	
 	@Test
+	public void testisDoubleSkunk2()
+	{
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {3});
+		Roll r1 = new Roll();
+		r1.setDice(die1, die2);
+		assertEquals(false, r1.isDoubleSkunk());
+	}
+	
+	@Test
 	public void testisDeuceSkunk()
 	{
 		Die die1 = new Die(new int[] {1});
@@ -123,6 +133,16 @@ public class TestRoll {
 		Roll r1 = new Roll();
 		r1.setDice(die1, die2);
 		assertEquals(true, r1.isDeuceSkunk());
+	}
+	
+	@Test
+	public void testisDeuceSkunk2()
+	{
+		Die die1 = new Die(new int[] {1});
+		Die die2 = new Die(new int[] {3});
+		Roll r1 = new Roll();
+		r1.setDice(die1, die2);
+		assertEquals(false, r1.isDeuceSkunk());	
 	}
 	
 	@Test
@@ -136,6 +156,16 @@ public class TestRoll {
 	}
 	
 	@Test
+	public void testisSingleSkunk2()
+	{
+		Die die1 = new Die(new int[] {2});
+		Die die2 = new Die(new int[] {3});
+		Roll r1 = new Roll();
+		r1.setDice(die1, die2);
+		assertEquals(false, r1.isSingleSkunk());
+	}
+	
+	@Test
 	public void testisSkunk()
 	{
 		Die die1 = new Die(new int[] {1});
@@ -144,15 +174,15 @@ public class TestRoll {
 		r1.setDice(die1, die2);
 		assertEquals(true, r1.isSkunk());
 	}
-//	
-//	@Test
-//	public void testisSkunk2()
-//	{
-//		Die die1 = new Die(new int[] {1});
-//		Die die2 = new Die(new int[] {2});
-//		Roll r1 = new Roll();
-//		r1.setDice(die1, die2);
-//		r1.getSkunk();
-//	}
+	
+	@Test
+	public void testisSkunk2()
+	{
+		Die die1 = new Die(new int[] {2});
+		Die die2 = new Die(new int[] {2});
+		Roll r1 = new Roll();
+		r1.setDice(die1, die2);
+		assertEquals(false, r1.isSkunk());
+	}
 	
 }
