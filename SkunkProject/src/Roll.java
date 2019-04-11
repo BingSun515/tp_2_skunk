@@ -5,7 +5,15 @@ class Roll {
 	{
 		this.dice = new Dice();
 	}
-	
+	//####################################
+	//testing method predictable dice
+	public void setDice(Die die1, Die die2)
+	{
+		this.dice.setDie1(die1);
+		this.dice.setDie2(die2);
+		this.dice.roll();
+	}
+	//####################################
 	public boolean isDoubleSkunk()
 	{
 		return this.getSkunk() == SkunkEnum.DoubleSkunk;

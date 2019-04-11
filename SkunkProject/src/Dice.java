@@ -40,6 +40,18 @@ public class Dice
 
 	// Instance methods can also be declared anywhere
 	// Convention: after constructors
+	
+	//######################################
+	public void setDie1(Die d)
+	{
+		this.die1 = d;
+	}
+
+	public void setDie2(Die d)
+	{
+		this.die2 = d;
+	}
+	//######################################
 
 	public int getLastRoll()
 	{
