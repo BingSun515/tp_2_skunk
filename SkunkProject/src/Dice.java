@@ -42,6 +42,7 @@ public class Dice
 	// Convention: after constructors
 	
 	//######################################
+	//PredictableDie
 	public void setDie1(Die d)
 	{
 		this.die1 = d;
