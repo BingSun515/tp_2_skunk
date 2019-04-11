@@ -184,5 +184,5 @@ public class TestRoll {
 		r1.setDice(die1, die2);
 		assertEquals(false, r1.isSkunk());
 	}
-	
+
 }
