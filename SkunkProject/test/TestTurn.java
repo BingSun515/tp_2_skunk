@@ -7,11 +7,17 @@ import org.junit.Test;
 
 public class TestTurn {	
 	
+	private ArrayList<Roll> rolls;
+	private ArrayList<Score> turnScores;
+	
 	@Before
 	public void setUp() {
-		ArrayList<Roll> rolls;
-		ArrayList<Score> turnScores;
+		rolls = new ArrayList<>();
+		turnScores = new ArrayList<>();
+		rolls.add(new Roll());
+		turnScores.add(new Score());
 	}
+	
 	
 	@Test
 	public void testSetGet() {
