@@ -20,10 +20,10 @@ class Turn {
 		this.turnScores = new ArrayList<Score>();
 	}
 	
-	public void setLastRoll(Roll lastRoll)
-	{
-		this.rolls.add(lastRoll);
-	}
+//	public void setLastRoll(Roll lastRoll)
+//	{
+//		this.rolls.add(lastRoll);
+//	}
 	
 	public Roll getLastRoll()
 	{

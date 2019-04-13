@@ -19,12 +19,12 @@ public class TestTurn {
 	}
 	
 	
-	@Test
-	public void testSetGet() {
-		Turn t1 = new Turn();
-		t1.setLastRoll(null);
-		assertEquals(null, t1.getLastRoll());
-	}
+//	@Test
+//	public void testSetGet() {
+//		Turn t1 = new Turn();
+//		t1.rollAndSetScore();
+//		
+//	}
 	
 
 }
