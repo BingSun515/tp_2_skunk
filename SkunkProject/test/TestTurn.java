@@ -2,30 +2,23 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestTurn {	
 	
-	@Test
-	public void setLastRoll() {
-		Turn t1 = new Turn();
-		Roll lastRoll = null;
-		t1.setLastRoll(lastRoll);
+	@Before
+	public void setUp() {
+		ArrayList<Roll> rolls;
+		ArrayList<Score> turnScores;
 	}
 	
 	@Test
-	public void getLastRoll() {
+	public void testSetGet() {
 		Turn t1 = new Turn();
-		Roll lastRoll = null;
-		t1.setLastRoll(lastRoll);
-		t1.getLastRoll();
+		t1.setLastRoll(null);
+		assertEquals(null, t1.getLastRoll());
 	}
+	
 
-	@Test
-	public void rollAndSetScore() {
-		Turn t1 = new Turn();
-		t1.rollAndSetScore();
-	}
-	
 }
