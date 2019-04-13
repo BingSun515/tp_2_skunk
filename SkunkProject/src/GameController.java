@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
 
 class GameController {
 	
@@ -6,9 +8,13 @@ class GameController {
 	private ArrayList<Player> players = null;
 	private GameStatusEnum status = GameStatusEnum.INPROGRESS;
 	private GameResult result;
+	private int playerCount = 0;
+	
+	private static Hashtable<String, String> uiMessages;
 
 	GameController()
 	{
+		this.loadUiMessages();
 	}
 	
 	public void setPlayer(String playerName)
@@ -30,15 +36,39 @@ class GameController {
 		return this.getPlayer().getPlayerName();
 	}
 	
-	void startGame(String playerName)
+	void startGame()
 	{
-		if (this.turn == null)
-		{
-			this.turn = new Turn();
-		}
-		this.setPlayer(playerName);
-		this.startTurn();
+		this.getPlayersCountInput();
+		this.initializePlayers();
+		this.startTurns();
 		this.displayGameSummary();
+	}
+	
+//	
+//	void setPlayerTurn()
+//	{
+//		if (this.turn == null)
+//		{
+//			this.turn = new Turn();
+//		}
+//	}
+	
+	private void initializePlayers()
+	{
+		for(int i = 0; i < this.playerCount - 1; i++)
+		{
+			String playerName = SkunkAppUi.getPlayerNameFromInput(String.valueOf(i));
+			this.setPlayer(playerName); // TODO: PERFORM VALIDATE PLAYER NAME
+		}
+	}
+	
+	private void startTurns()
+	{
+		Iterator<Player> player = this.players.iterator();
+		while(player.hasNext())
+		{
+			this.startTurn();
+		}
 	}
 
 	private void startTurn()
@@ -74,5 +104,28 @@ class GameController {
 		Score score = this.turn.getTurnScore();
 		String message = this.result.getGameSummary(score);
 		SkunkAppUi.displayResults(message);
+	}
+	
+	private void getPlayersCountInput()
+	{
+		String inputMessage =  GameController.getUiMessage("playerInput");
+		this.playerCount = SkunkAppUi.getPlayerNumericInput(inputMessage);
+	}
+
+// STATIC METHODS	
+	private void loadUiMessages()
+	{
+		GameController.addMessage("playerInput", "Enter the # of players : ");
+	}
+	
+	private static void addMessage(String key, String value)
+	{
+		GameController.uiMessages.put(key, value);
+		//(new SimpleEntry<String, String>("playerInput", "Enter the number of players"))
+	}
+
+	private static String getUiMessage(String key)
+	{
+		return GameController.uiMessages.get(key);
 	}
 }

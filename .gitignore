@@ -1,2 +1,5 @@
 /.metadata/
 /SkunkProject/bin/*.*
+/SkunkProject/.metadata/*.*
+/SkunkProject/.gitignore
+.ucdetector_reports/*.*
