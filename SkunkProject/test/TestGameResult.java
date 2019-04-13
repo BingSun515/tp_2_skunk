@@ -10,7 +10,9 @@ public class TestGameResult {
 	
 //	@Test
 //	public void testGameResult() {
-//		GameResult GR = new GameResult(null, null);
+//		Die die1 = new Die(new int[] {1});
+//		Die die2 = new Die(new int[] {2});
+//		GameResult GR = new GameResult(new Player("Eric"), new Roll(Die die1, Die die2));
 //		assertEquals("123",GR.getRollScore());
 //	}
 }

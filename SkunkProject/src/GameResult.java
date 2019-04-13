@@ -6,6 +6,7 @@ class GameResult {
 	private Roll lastRoll;
 	private GameStatusEnum gameStatus;
 
+
 	GameResult(Player player, Roll roll)
 	{
 		this.activePlayer = player;

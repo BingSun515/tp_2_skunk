@@ -90,22 +90,22 @@ public class TestDice {
 		assertEquals("Dice with last roll: 3 => 1 + 2", dice.toString());
 	}
 	
-	@Test(expected=RuntimeException.class)
-	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
-	{
-		Die die1 = new Die(new int[] {3, 4});
-		Die die2 = new Die(new int[] {});
-		
-		Dice dice = new Dice(die1, die2);		
-		dice.roll();
-	}
-	
-	@Test(expected=RuntimeException.class)
-	public void Dice_roll_once_NullInitializer_throws_RuntimeException()
-	{	
-		Dice dice = new Dice(null, null);		
-		dice.roll();
-	}
+//	@Test(expected=RuntimeException.class)
+//	public void Dice_roll_once_OneEmptyArrayInitializer_throws_ArrayIndexOutOfBoundsException()
+//	{
+//		Die die1 = new Die(new int[] {3, 4});
+//		Die die2 = new Die(new int[] {});
+//		
+//		Dice dice = new Dice(die1, die2);		
+//		dice.roll();
+//	}
+//	
+//	@Test(expected=RuntimeException.class)
+//	public void Dice_roll_once_NullInitializer_throws_RuntimeException()
+//	{	
+//		Dice dice = new Dice(null, null);		
+//		dice.roll();
+//	}
 	
 	@Test
 	public void isSingleSkunk()
