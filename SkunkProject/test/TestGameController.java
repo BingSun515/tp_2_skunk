@@ -18,11 +18,11 @@ public class TestGameController {
 		assertEquals(null, gc1.getPlayerName());
 	}
 	
-//	@Test
-//	public void testStartGame() {
-//		GameController gc1 = new GameController();
-//		gc1.startGame(null);
-//		assertEquals("Eric", gc1.getPlayer());
-//	}
+	@Test
+	public void testStartGame() {
+		GameController gc1 = new GameController();
+		gc1.startGame("Eric");
+		assertEquals("Eric", gc1.getPlayer());
+	}
 		
 }
