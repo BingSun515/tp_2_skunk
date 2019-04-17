@@ -1,7 +1,7 @@
 
 enum GameStatusEnum
 {
+	LAST_CHANCE,
 	TURN_COMPLETED,
-	GAME_COMPLETED,
 	INPROGRESS
 }

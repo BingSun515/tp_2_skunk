@@ -1,17 +1,18 @@
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.Iterator;
+import org.apache.commons.text.TextStringBuilder;
 
 class GameController {
 	
 	private Turn turn;
 	private ArrayList<Player> players = null;
+	private Player activePlayer;
+	private Player winner;
+
 	private GameStatusEnum status = GameStatusEnum.INPROGRESS;
 	private GameResult result;
 	private int playerCount = 0;
 	
-	private static Hashtable<String, String> uiMessages;
-
 	GameController()
 	{
 		this.loadUiMessages();
@@ -26,38 +27,27 @@ class GameController {
 		this.players.add(new Player(playerName));
 	}
 
-	public Player getPlayer()
-	{
-		return this.players.get(0);
-	}
-	
-	public String getPlayerName()
-	{
-		return this.getPlayer().getPlayerName();
-	}
-	
 	void startGame()
 	{
+		this.initializeNewGame();
 		this.getPlayersCountInput();
 		this.initializePlayers();
 		this.startTurns();
 		this.displayGameSummary();
 	}
 	
-//	
-//	void setPlayerTurn()
-//	{
-//		if (this.turn == null)
-//		{
-//			this.turn = new Turn();
-//		}
-//	}
+	private void initializeNewGame()
+	{
+		this.players = null;
+		this.activePlayer = null;
+		this.winner = null;
+	}
 	
 	private void initializePlayers()
 	{
-		for(int i = 0; i < this.playerCount - 1; i++)
+		for(int i = 0; i < this.playerCount ; i++)
 		{
-			String playerName = SkunkAppUi.getPlayerNameFromInput(String.valueOf(i));
+			String playerName = SkunkAppUi.getPlayerNameFromInput(String.valueOf(i + 1));
 			this.setPlayer(playerName); // TODO: PERFORM VALIDATE PLAYER NAME
 		}
 	}
@@ -67,65 +57,131 @@ class GameController {
 		Iterator<Player> player = this.players.iterator();
 		while(player.hasNext())
 		{
-			this.startTurn();
+			this.activePlayer = player.next();
+			this.displayNextPlayer();
+			if (this.status == GameStatusEnum.LAST_CHANCE)
+			{
+				this.continueTurn();
+			}
+			else
+			{
+				this.status = GameStatusEnum.INPROGRESS; 
+				this.startTurn();	
+			}
+			//only one turn needed
+			this.activePlayer.addRound(new Round(this.turn));
 		}
 	}
 
 	private void startTurn()
 	{
-		while(this.status != GameStatusEnum.GAME_COMPLETED)
-		{
-			switch(this.status)
-			{
-				case INPROGRESS:
-					this.turn.rollAndSetScore();
-					this.result = new GameResult(this.getPlayer(), this.turn.getLastRoll());
-					SkunkAppUi.displayResults(this.result.getRollScore());
-					this.status = this.result.getGameStatus();
-					break; 
-
-				case TURN_COMPLETED:
-					this.status = GameStatusEnum.GAME_COMPLETED;
-					break;
-				default:
-						break;
-			}
-			
-			if (this.status == GameStatusEnum.INPROGRESS && !SkunkAppUi.getPlayerRollChoice())
-			{
-				//DECLINED_TO_ROLL
-				this.status = GameStatusEnum.TURN_COMPLETED;
-			}
+		this.turn = new Turn();
+		
+		while(this.status != GameStatusEnum.TURN_COMPLETED)
+		{	
+			this.continueTurn();
+			this.setGameStatus();
+			this.askPlayerRollChoice();
 		}
+	}
+	
+	private void continueTurn()
+	{
+		this.turn.rollAndSetScore();
+		this.result = new GameResult(this.turn);
+		SkunkAppUi.displayResults(this.result.getRollScore());
+	}
+	
+	private void setGameStatus()
+	{
+		if (this.turn.getLastRoll().isSkunk())
+		{
+			this.status = GameStatusEnum.TURN_COMPLETED;
+		}
+		else if (this.turn.isTurnScoreHigherThanWinningScore() && this.winner != null)
+		{
+			this.winner = this.activePlayer;
+			this.status = GameStatusEnum.TURN_COMPLETED;
+		}
+		else if (this.turn.isTurnScoreHigherThanWinningScore())
+		{
+			this.status = GameStatusEnum.TURN_COMPLETED;
+		}
+		else if (this.winner != null)
+		{
+			this.status = GameStatusEnum.LAST_CHANCE;
+		}
+		else
+		{
+			this.status =  GameStatusEnum.INPROGRESS;	
+		}
+	}
+	
+	private void askPlayerRollChoice()
+	{
+		if (this.status == GameStatusEnum.INPROGRESS && !SkunkAppUi.getPlayerRollChoice())
+		{
+			//DECLINED_TO_ROLL
+			this.status = GameStatusEnum.TURN_COMPLETED;
+		}		
 	}
 	
 	private void displayGameSummary()
 	{
-		Score score = this.turn.getTurnScore();
-		String message = this.result.getGameSummary(score);
-		SkunkAppUi.displayResults(message);
+		TextStringBuilder tb = new TextStringBuilder()
+				.appendln(Constants.getUiMessage("aDoubleLine"))
+				.appendln(Constants.getUiMessage("gameSummary"));
+
+		SkunkAppUi.displayResults(tb.toString());
+		this.displayRoundSummary();
+		tb = null;
+	}
+	
+	private void displayRoundSummary()
+	{
+		Iterator<Player> player = this.players.iterator();
+		Player nextPlayer;
+		TextStringBuilder tb;
+		while(player.hasNext())
+		{
+			nextPlayer = player.next();
+			Score score = nextPlayer.getRoundScore();
+			String message = this.result.getGameSummary(score);
+			tb = new TextStringBuilder()
+					.appendln(Constants.getUiMessage("aLine"))
+					.appendln(Constants.getUiMessage("playerName") + nextPlayer.getName())
+					.appendln(message);
+			
+			SkunkAppUi.displayResults(tb.toString());
+		}
+	}
+	
+	private void displayNextPlayer()
+	{
+		TextStringBuilder tb = new TextStringBuilder()
+					.appendln(Constants.getUiMessage("aLine"))
+					.appendln(Constants.getUiMessage("currentPlayer") + this.activePlayer.getName());
+		SkunkAppUi.displayResults(tb.toString());
+		tb = null;
 	}
 	
 	private void getPlayersCountInput()
 	{
-		String inputMessage =  GameController.getUiMessage("playerInput");
+		String inputMessage =  Constants.getUiMessage("playerInput");
 		this.playerCount = SkunkAppUi.getPlayerNumericInput(inputMessage);
 	}
 
 // STATIC METHODS	
+	//TODO: PHASE 2
+	// MOVE ALL UI CONSTANTS TO CONSTANTS CLASS
 	private void loadUiMessages()
 	{
-		GameController.addMessage("playerInput", "Enter the # of players : ");
-	}
-	
-	private static void addMessage(String key, String value)
-	{
-		GameController.uiMessages.put(key, value);
-		//(new SimpleEntry<String, String>("playerInput", "Enter the number of players"))
-	}
-
-	private static String getUiMessage(String key)
-	{
-		return GameController.uiMessages.get(key);
+		Constants.addUiMessage("playerInput", "Enter the # of players : ");
+		Constants.addUiMessage("aLine", "--------------------------------------------");
+		Constants.addUiMessage("aDoubleLine", "===========================================");
+		Constants.addUiMessage("currentPlayer", " :: Current PLAYER :: ");
+		Constants.addUiMessage("playerName", "   PLAYER NAME:: ");
+		Constants.addUiMessage("gameSummary", " @@@@@@@@@@@@@ GAME SUMMARY @@@@@@@@@@@@@ ");
 	}
 }
+

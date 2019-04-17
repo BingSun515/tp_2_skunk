@@ -1,3 +1,5 @@
+import edu.princeton.cs.introcs.StdOut;
+
 class Roll {
 	private Dice dice;
 

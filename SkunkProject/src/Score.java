@@ -2,6 +2,8 @@ class Score {
 	private int turnScore;
 	private int chipScore;
 	private int kittyScore;
+	
+	private final int WINNING_SCORE = 100;
 
 	public Score()
 	{
@@ -44,4 +46,8 @@ class Score {
 		return this.kittyScore;
 	}
 
+	public int getWinningScore()
+	{
+		return this.WINNING_SCORE;
+	}
 }

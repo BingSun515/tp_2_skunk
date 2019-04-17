@@ -2,22 +2,22 @@ import org.apache.commons.text.TextStringBuilder;
 
 class GameResult {
 
-	private Player activePlayer;
+//	private Player activePlayer;
 	private Roll lastRoll;
-	private GameStatusEnum gameStatus;
+//	private Turn turn;
 
-
-	GameResult(Player player, Roll roll)
+	GameResult(Turn turn)
 	{
-		this.activePlayer = player;
-		this.lastRoll = roll;
+//		this.activePlayer = player;
+//		this.turn = turn;
+		this.lastRoll = turn.getLastRoll();
 	}
 	
 	public String getRollScore()
 	{
 		TextStringBuilder tb = new TextStringBuilder();
 		tb.appendln(this.lastRoll.getDiceDisplay());
-		tb.appendln("-----------");
+		tb.appendln(Constants.getUiMessage("aLine"));
 		if (this.lastRoll.isSkunk())
 		{
 			this.getSkunkRollMessage(tb);
@@ -28,17 +28,12 @@ class GameResult {
 	String getGameSummary(Score score)
 	{
 		TextStringBuilder tb = new TextStringBuilder().appendln("");
-		tb.appendln("********** GAME SUMMARY **********");
+		tb.appendln("********** ROUND SUMMARY **********");
 		tb.appendln("turn score :: " + score.getTurnScore());
 		tb.appendln("chip change :: " + score.getChipChangeScore());
 		tb.appendln("kitty change :: " + score.getKittyChangeScore());
 		
 		return tb.toString();
-	}
-	
-	public GameStatusEnum getGameStatus()
-	{
-		return this.gameStatus = this.lastRoll.isSkunk() ? GameStatusEnum.TURN_COMPLETED : GameStatusEnum.INPROGRESS;
 	}
 	
 	private void getSkunkRollMessage(TextStringBuilder tb)
@@ -56,4 +51,5 @@ class GameResult {
 			tb.appendln("Last roll was a Deuce skunk");
 		}
 	}
+
 }

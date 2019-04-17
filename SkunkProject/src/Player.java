@@ -1,27 +1,29 @@
+import java.util.ArrayList;
+
 class Player {
 	
-	private Boolean isActive;
 	private String playerName;
+	private ArrayList<Round> rounds;
 	
 	Player(String name)
 	{
 		this.playerName = name;
+		this.rounds = new ArrayList<Round>();
 	}
 	
-	public String getPlayerName()
+	String getName()
 	{
 		return this.playerName;
 	}
 	
-	public boolean isPlayerActive() {
-		return isActive;
+	
+	void addRound(Round round)
+	{
+		this.rounds.add(round);
 	}
 	
-	//TBD have some issue ####################################
-	public void setPlayerActive() {
-		isActive = true; 
+	Score getRoundScore()
+	{
+		return this.rounds.get(0).getScore();
 	}
-	
-	//########################################################
-	
 }

@@ -1,11 +1,9 @@
-import org.apache.commons.text.TextStringBuilder;
 import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
 class SkunkAppUi {
 
 	private GameController controller = new GameController();
-	private String playerName = "";
 
 	SkunkAppUi() {
 	}
@@ -57,13 +55,14 @@ class SkunkAppUi {
 	 * or more Turns and ending when one (or more) players reach 100.
 	 * 
 	 * 
-	 * TODO: THIS IS THE WORK NEEDED FOR 1P 1.3 + unit tests 1. ADD No. of player
-	 * "input" When you start your app, read the number of players 2. loop through
-	 * player count to get user name following by the names of each. 3. Initialize
-	 * the attributes of each player, 4. then offer the user an option to view the
-	 * complete rules for your game and display them on request. 5. Now start a new
-	 * Round of Skunk, 6. consisting of a sequence of multiple Turns taken by
-	 * players, one after another. 7. Each Round ends with one or more players
+	 * TODO: THIS IS THE WORK NEEDED FOR 1P 1.3 + unit tests
+	 * 1. DONE: ADD No. of player "input" When you start your app, read the number of players
+	 * 2. DONE: loop through player count to get user name following by the names of each.
+	 * 3. Initialize the attributes of each player,
+	 * 4. then offer the user an option to view the complete rules for your game and display them on request.
+	 * 5. DONE: Now start a new Round of Skunk,
+	 * 6. DONE: consisting of a sequence of multiple Turns taken by players, one after another. 
+	 * 7. Each Round ends with one or more players
 	 * scoring >= 100, 8. followed by a final set of Turns giving all non-100
 	 * players 9. a final chance to increase their score. 10. After this, do the
 	 * final accounting 11. that updates each player's chip count according to the

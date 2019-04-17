@@ -19,17 +19,12 @@ class Turn {
 		this.rolls = new ArrayList<Roll>();
 		this.turnScores = new ArrayList<Score>();
 	}
-	
-//	public void setLastRoll(Roll lastRoll)
-//	{
-//		this.rolls.add(lastRoll);
-//	}
-	
+
 	public Roll getLastRoll()
 	{
-		if (this.rolls.size() -1 > -1)
+		if (this.rolls.size() > -1)
 		{
-			return this.rolls.get(this.rolls.size() -1 );
+			return this.rolls.get(this.rolls.size() - 1);
 		}
 		else
 		{
@@ -66,7 +61,7 @@ class Turn {
 		turnScores.add(score);
 	}
 	
-	public Score getTurnScore()
+	public Score getFinalTurnScore()
 	{
 		Score score = new Score();
 		Score nextScore;
@@ -77,6 +72,13 @@ class Turn {
 			score.setTurnScore(nextScore.getTurnScore(), nextScore.getChipChangeScore(), nextScore.getKittyChangeScore());
 		}
 		return score;
+	}
+	
+	//TODO: BETTER METHOD NAME :: 
+	public boolean isTurnScoreHigherThanWinningScore()
+	{
+		Score score = this.getFinalTurnScore();
+		return score.getTurnScore() >= score.getWinningScore(); 
 	}
 
 	private void setSkunkScore()
