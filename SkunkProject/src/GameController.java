@@ -59,6 +59,7 @@ class GameController {
 		{
 			this.activePlayer = player.next();
 			this.displayNextPlayer();
+			this.turn = new Turn();
 			if (this.status == GameStatusEnum.LAST_CHANCE)
 			{
 				this.continueTurn();
@@ -74,15 +75,20 @@ class GameController {
 	}
 
 	private void startTurn()
-	{
-		this.turn = new Turn();
-		
-		while(this.status != GameStatusEnum.TURN_COMPLETED)
+	{	
+		while(this.turnCanContinue())
 		{	
 			this.continueTurn();
 			this.setGameStatus();
 			this.askPlayerRollChoice();
 		}
+	}
+	
+	private boolean turnCanContinue()
+	{
+		return (
+				(this.status != GameStatusEnum.TURN_COMPLETED) &&
+				(this.status != GameStatusEnum.LAST_CHANCE));
 	}
 	
 	private void continueTurn()
@@ -101,11 +107,11 @@ class GameController {
 		else if (this.turn.isTurnScoreHigherThanWinningScore() && this.winner != null)
 		{
 			this.winner = this.activePlayer;
-			this.status = GameStatusEnum.TURN_COMPLETED;
+			this.status = GameStatusEnum.LAST_CHANCE;
 		}
 		else if (this.turn.isTurnScoreHigherThanWinningScore())
 		{
-			this.status = GameStatusEnum.TURN_COMPLETED;
+			this.status = GameStatusEnum.LAST_CHANCE;
 		}
 		else if (this.winner != null)
 		{
@@ -134,6 +140,7 @@ class GameController {
 
 		SkunkAppUi.displayResults(tb.toString());
 		this.displayRoundSummary();
+		this.displayWinner();
 		tb = null;
 	}
 	
@@ -154,6 +161,16 @@ class GameController {
 			
 			SkunkAppUi.displayResults(tb.toString());
 		}
+	}
+	
+	private void displayWinner()
+	{
+		TextStringBuilder tb = new TextStringBuilder("")
+				.appendln(Constants.getUiMessage("aLine"))
+				.appendln(Constants.getUiMessage("aLine"))
+				.appendln(Constants.getUiMessage("winner") + this.activePlayer.getName());
+		
+		SkunkAppUi.displayResults(tb.toString());
 	}
 	
 	private void displayNextPlayer()
@@ -181,7 +198,8 @@ class GameController {
 		Constants.addUiMessage("aDoubleLine", "===========================================");
 		Constants.addUiMessage("currentPlayer", " :: Current PLAYER :: ");
 		Constants.addUiMessage("playerName", "   PLAYER NAME:: ");
-		Constants.addUiMessage("gameSummary", " @@@@@@@@@@@@@ GAME SUMMARY @@@@@@@@@@@@@ ");
+		Constants.addUiMessage("gameSummary", "               GAME SUMMARY               ");
+		Constants.addUiMessage("winner", " Winner is player, ");
 	}
 }
 
