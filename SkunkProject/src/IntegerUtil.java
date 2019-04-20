@@ -1,6 +1,6 @@
-public class IntegerUtil
+class IntegerUtil
 {
-	public static int getParsedValue(String number)
+	static int getParsedValue(String number)
 	{
 		int parsedInt = 0;
 		try {

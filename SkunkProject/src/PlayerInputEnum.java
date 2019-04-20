@@ -1,5 +1,5 @@
 
-public enum PlayerInputEnum {
+enum PlayerInputEnum {
 	HELP,
 	N,
 	Y

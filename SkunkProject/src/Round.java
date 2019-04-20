@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Round
+class Round
 {	
 	private ArrayList<Turn> turns;
 
@@ -10,18 +10,7 @@ public class Round
 		this.turns = new ArrayList<Turn>();
 		this.turns.add(turn);
 	}
-	
-//	Score getTurnScore()
-//	{
-//		Score turnScore;
-//		Iterator<Turn> turn = this.turns.iterator();
-//		while(turn.hasNext())
-//		{
-//			Turn nextTurn = turn.next();
-//			roundScore = roundScore + nextTurn.getFinalTurnScore();
-//		}
-//	}
-	
+
 	Score getScore()
 	{
 		Iterator<Turn> turn = this.turns.iterator();

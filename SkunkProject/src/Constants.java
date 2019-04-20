@@ -1,6 +1,6 @@
 import java.util.Hashtable;
 
-public class Constants {
+class Constants {
 	private static Hashtable<String, String> uiMessages =
 			new Hashtable<String, String>();
 	

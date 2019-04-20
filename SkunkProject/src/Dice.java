@@ -1,5 +1,3 @@
-import edu.princeton.cs.introcs.StdOut;
-
 /**
  * Dice represents a single pair of rollable Die objects, randomly generating
  * sums of their two values
@@ -32,7 +30,7 @@ public class Dice
 		this.roll();
 	}
 
-	public Dice(Die die1, Die die2) // overloaded constructor
+	Dice(Die die1, Die die2) // overloaded constructor
 	{
 		this.die1 = die1;
 		this.die2 = die2;
@@ -112,6 +110,6 @@ public class Dice
 				(this.die2.getLastRoll() == 1 ) && (this.die1.getLastRoll() == 2 );
 	}
 
-	public static final int NUM_TRIALS = 360;
+//	public static final int NUM_TRIALS = 360;
 
 }

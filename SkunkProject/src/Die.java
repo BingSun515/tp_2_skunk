@@ -1,5 +1,5 @@
 
-public class Die
+class Die
 {
 	private int lastRoll;
 	private boolean predictable = false;
@@ -11,7 +11,7 @@ public class Die
 		this.roll();
 	}
 
-	public Die(int[] predictable_rolls)
+	Die(int[] predictable_rolls)
 	{
 		if(predictable_rolls == null || predictable_rolls.length == 0)
 		{
@@ -29,7 +29,7 @@ public class Die
 		return this.lastRoll;
 	}
 
-	public void roll() // note how this changes Die's state, but doesn't return
+	void roll() // note how this changes Die's state, but doesn't return
 						// anything
 	{
 		if (!predictable)
