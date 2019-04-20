@@ -70,12 +70,6 @@ public class Dice
 
 	}
 
-	// the following method converts the internals of
-	// this Dice object, and returns a descriptive String:
-	//
-	// Roll of 7 => 4 + 3
-	//
-
 	public String toString()
 	{
 		return "Dice with last roll: " + getLastRoll() + " => " + die1.getLastRoll() + " + " + die2.getLastRoll();
@@ -117,27 +111,7 @@ public class Dice
 		return (this.die1.getLastRoll() == 1) && (this.die2.getLastRoll() == 2 ) ||
 				(this.die2.getLastRoll() == 1 ) && (this.die1.getLastRoll() == 2 );
 	}
-	
-
-	// static methods can go anywhere - but at end is standard
 
 	public static final int NUM_TRIALS = 360;
 
-//	public static void main(String[] args)
-//	{
-//		Dice dice1 = new Dice();
-//		int doubleSkunkCount = 0;
-//
-//		for (int i = 0; i < NUM_TRIALS; i++)
-//		{
-//			dice1.roll();
-//			StdOut.println(dice1);
-//			
-//			if (dice1.getLastRoll() == 2)
-//				doubleSkunkCount++;
-//		}
-//
-//		StdOut.println("Actual count: " + doubleSkunkCount);
-//		StdOut.println("Expected count: " + (NUM_TRIALS / 36.0));
-//	}
 }

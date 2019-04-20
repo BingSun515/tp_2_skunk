@@ -2,14 +2,10 @@ import org.apache.commons.text.TextStringBuilder;
 
 class GameResult {
 
-//	private Player activePlayer;
 	private Roll lastRoll;
-//	private Turn turn;
 
 	GameResult(Turn turn)
 	{
-//		this.activePlayer = player;
-//		this.turn = turn;
 		this.lastRoll = turn.getLastRoll();
 	}
 	

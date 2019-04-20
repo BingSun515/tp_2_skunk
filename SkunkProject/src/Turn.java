@@ -38,29 +38,6 @@ class Turn {
 		this.setScore();
 	}
 
-	private void newRoll()
-	{
-		this.rolls.add(new Roll());
-	}
-	
-	private void setScore()
-	{
-		if (this.getLastRoll().isSkunk())
-		{
-			this.setSkunkScore();
-		}
-		else
-		{
-			this.setTurnScore();
-		}
-	}
-
-	private void setTurnScore()
-	{
-		Score score = new Score(this.getLastRoll().getDiceLastRoll());
-		turnScores.add(score);
-	}
-	
 	public Score getFinalTurnScore()
 	{
 		Score score = new Score();
@@ -73,30 +50,40 @@ class Turn {
 		}
 		return score;
 	}
-	
-	//TODO: BETTER METHOD NAME :: 
+	 
 	public boolean isTurnScoreHigherThanWinningScore()
 	{
 		Score score = this.getFinalTurnScore();
 		return score.getTurnScore() >= score.getWinningScore(); 
 	}
 
-	private void setSkunkScore()
+	private void newRoll()
+	{
+		this.rolls.add(new Roll());
+	}
+	
+	private void setScore()
 	{
 		Score score = null;
-		if (this.getLastRoll().isDoubleSkunk())
+		Roll roll = this.getLastRoll(); 
+		
+		if (roll.isDoubleSkunk())
 		{
 			score = new Score(0, this.DOUBLE_SKUNK_CHIP, this.DOUBLE_SKUNK_KITTY);
 		}
-		else if (this.getLastRoll().isDeuceSkunk())
+		else if (roll.isDeuceSkunk())
 		{
 			score = new Score(0, this.DEUCE_SKUNK_CHIP, this.DEUCE_SKUNK_KITTY);
 		}
-		else if (this.getLastRoll().isSingleSkunk())
+		else if (roll.isSingleSkunk())
 		{
 			score = new Score(0, this.SINGLE_SKUNK_CHIP, this.SINGLE_SKUNK_KITTY);
 		}
+		else
+		{
+			score = new Score(roll.getDiceLastRoll(), 0, 0);
+		}
 		turnScores.add(score);
 	}
-
+	
 }
