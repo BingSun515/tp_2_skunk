@@ -1,3 +1,5 @@
+import edu.skunkApp.common.SkunkEnum;
+
 /**
  * Dice represents a single pair of rollable Die objects, randomly generating
  * sums of their two values

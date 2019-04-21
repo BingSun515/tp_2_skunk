@@ -1,3 +1,5 @@
+import edu.skunkApp.common.SkunkEnum;
+
 class Roll {
 	private Dice dice;
 
