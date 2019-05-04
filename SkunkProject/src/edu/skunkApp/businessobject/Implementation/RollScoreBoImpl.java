@@ -9,24 +9,22 @@ import edu.skunkApp.domainModels.RollScoreDm;
 public class RollScoreBoImpl implements IRollScoreBo {
 	
 	private final IRollScoreDa _rollScoreDa;
-	
+	@Inject Roll _roll;
+
 	@Inject
 	public RollScoreBoImpl(IRollScoreDa rollScoreDa)
 	{
 		_rollScoreDa = rollScoreDa;
 	}
-	
-	public void RollOnce()
-	{
-		
+
+	@Inject 
+	public void createRollScore(RollScoreDm rollScoreDm) {
+		rollScoreDm.roll = _roll.getRoll();
+		_rollScoreDa.createRollScore(rollScoreDm);
 	}
 	
-	public void setRollScore(RollScoreDm rollScore) {
+	private void setGameScore() {
 		
-	}
-	
-	public void RollAndSetScore() {
-//		_rollScoreDa.add(); TODO
 	}
 
 }

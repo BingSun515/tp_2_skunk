@@ -14,5 +14,4 @@ public class RollScoreDaModule {
 	@Provides IRollScoreDa provideRollScore() {
 		return new RollScoreDaImpl();
 	}
-	
 }
