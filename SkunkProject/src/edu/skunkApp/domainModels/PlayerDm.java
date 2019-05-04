@@ -1,7 +1,9 @@
 package edu.skunkApp.domainModels;
 
+import java.util.UUID;
+
 public class PlayerDm {
-	int id;
+	UUID id;
 	String name;
 	boolean isWinner;
 }
