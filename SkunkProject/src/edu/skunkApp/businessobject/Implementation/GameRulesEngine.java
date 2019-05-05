@@ -1,7 +1,11 @@
 package edu.skunkApp.businessobject.Implementation;
 
+import java.util.ArrayList;
+import java.util.stream.*;
+
 import edu.skunkApp.businessobject.IGameRulesEngine;
 import edu.skunkApp.common.SkunkEnum;
+import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 /**
@@ -14,13 +18,36 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * 5 for 1 on red chips and 10 for 1 on the blue chips.The first player to accumulate a 
  * total of 100 or more points can continue to score as many points over 100 as he believes 
  * is needed to win. When he decides to stop, his total score is the “goal.” 
+ * 
  * Each succeeding player receives one more chance to better the goal and end the game.
+ * 
+ * DONE: moveChips
  * The winner of each game collects all chips in "kitty" and in addition five chips from 
  * each losing player or 10 chips from any player without a score.
  * **/
 public class GameRulesEngine implements IGameRulesEngine {
+	private final int WINNING_SCORE = 100;
+		
+	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers)
+	{
+		losers.stream()
+				.forEach(loser -> {
+					if (loser.Score == 0)
+					{
+						loser.chipCount -= 10;
+						rollScoreDm.chipChange += 10;
+					}
+					else 
+					{
+						loser.chipCount -= 5;
+						rollScoreDm.chipChange += 5;
+					}
+				});
+	}
 	
-	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm) {
+	//START: SKUNK
+	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm)
+	{
 		//TODO: how to set game status
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
 		if (this.isRollSingleSkunk(rollScoreDm.roll))
