@@ -6,6 +6,5 @@ import java.util.UUID;
  * */
 //TODO: remove UUID after calculation and testing
 public class Kitty {
-	UUID RoundId;
 	int chipCount;
 }

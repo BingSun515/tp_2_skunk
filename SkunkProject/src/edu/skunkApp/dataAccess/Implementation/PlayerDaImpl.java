@@ -7,10 +7,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import edu.skunkApp.data.Player;
 import edu.skunkApp.dataAccess.IPlayerDa;
 
+@Singleton
 public class PlayerDaImpl implements IPlayerDa {
 
 	@Inject private ArrayList<Player> _players;	
