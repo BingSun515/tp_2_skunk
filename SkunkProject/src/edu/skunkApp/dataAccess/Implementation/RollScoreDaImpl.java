@@ -1,10 +1,11 @@
-package edu.skunkApp.dataAccess;
+package edu.skunkApp.dataAccess.Implementation;
 
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.UUID;
 
 import edu.skunkApp.data.RollScore;
+import edu.skunkApp.dataAccess.IRollScoreDa;
 import edu.skunkApp.domainModels.RollScoreDm;
 import edu.skunkApp.modelMapper.RollScoreMapper;
 
@@ -13,7 +14,7 @@ public class RollScoreDaImpl implements IRollScoreDa {
 	private ArrayList<RollScore> rollScores = new ArrayList<RollScore>();
 
 	//Insert
-	public void createRollScore(RollScoreDm rollScoreDm)
+	public void create(RollScoreDm rollScoreDm)
 	{
 		this.rollScores.add(RollScoreMapper.MAPPER.toRollScore(rollScoreDm));
 	}
@@ -35,15 +36,12 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		return score;
 	}
 
-	public void resetRoundScore(UUID roundId)
+	public void resetPlayerScore(UUID playerId)
 	{
-		Optional<RollScore> lastRoundScore =  this.getLastRollScoreForRound(roundId);
-		if (lastRoundScore.isPresent())
-		{
-			lastRoundScore.map(score -> score.roundTotal = 0);	
-		} else {
-			throw new Error("Invalid roundId : " + roundId.toString());
-		}
+		//TODO: check if the update works
+		this.rollScores.stream()
+				.filter(score -> score.playerId == playerId)
+				.map(score -> score.roundTotal = 0);
 	}
 
 	/**
@@ -55,4 +53,10 @@ public class RollScoreDaImpl implements IRollScoreDa {
 				.max((score1, score2) -> score2.id.compareTo(score1.id));
 	}
 
+	private Optional<RollScore> getRollScore(int id)
+	{
+		return this.rollScores.stream()
+						.filter(score -> score.id == id)
+						.findFirst();
+	}
 }

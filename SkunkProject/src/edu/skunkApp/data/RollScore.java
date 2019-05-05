@@ -8,7 +8,7 @@ import edu.skunkApp.common.SkunkEnum;
  * */
 public class RollScore {
 	public Integer id;
-	UUID playerId;
+	public UUID playerId;
 	public UUID roundId;
 	UUID turnId;
 	UUID rollId;
@@ -16,8 +16,6 @@ public class RollScore {
 	int die2;
 	int diceTotal;
 	SkunkEnum rollStatus;
-	int turnTotal;  //insert a NEW row
-	public int roundTotal;  //insert a NEW row
-	int kittyChange; // TODO : TO WORK ON THIS
-	int chipChange; // TODO : TO WORK ON THIS
+	int turnTotal;  //TODO: CALCULATION
+	public int roundTotal;  //TODO: CALCULATION
 }
