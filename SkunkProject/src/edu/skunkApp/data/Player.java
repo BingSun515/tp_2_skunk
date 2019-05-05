@@ -6,7 +6,8 @@ import java.util.UUID;
  * in-memory table
  * */
 public class Player {
-	UUID playerId;
-	String name;
-	int chipCount; //TODO: should the chipCount be tracked here?
+	public UUID playerId;
+	public String name;
+	public boolean isWinner;
+	public int chipCount; //TODO: should the chipCount be tracked here?
 }

@@ -3,14 +3,18 @@ package edu.skunkApp.dataAccess.Implementation;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import edu.skunkApp.data.RollScore;
 import edu.skunkApp.dataAccess.IRollScoreDa;
 import edu.skunkApp.domainModels.RollScoreDm;
 import edu.skunkApp.modelMapper.RollScoreMapper;
 
+@Singleton
 public class RollScoreDaImpl implements IRollScoreDa {
 	
-	private ArrayList<RollScore> rollScores = new ArrayList<RollScore>();
+	@Inject private ArrayList<RollScore> rollScores;
 
 	//Insert
 	public void create(RollScoreDm rollScoreDm)
