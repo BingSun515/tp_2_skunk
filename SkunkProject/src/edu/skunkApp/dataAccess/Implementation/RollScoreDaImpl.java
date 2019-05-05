@@ -18,23 +18,6 @@ public class RollScoreDaImpl implements IRollScoreDa {
 	{
 		this.rollScores.add(RollScoreMapper.MAPPER.toRollScore(rollScoreDm));
 	}
-
-	public ArrayList<RollScoreDm> get()
-	{
-		return RollScoreMapper.MAPPER.toRollScoreDmList(this.rollScores);
-	}
-	
-	public int getLastRoundScore(UUID roundId) {
-		int score = 0;
-		Optional<RollScore> lastRoundScore =  this.getLastRollScoreForRound(roundId);
-		if (lastRoundScore.isPresent())
-		{
-			score = lastRoundScore.get().roundTotal;
-		} else {
-			throw new Error("Invalid roundId : " + roundId.toString());
-		}
-		return score;
-	}
 	
 	public RollScoreDm getLastTurnScore(UUID playerId, UUID turnId) {
 		RollScore turnScore = 
@@ -43,6 +26,7 @@ public class RollScoreDaImpl implements IRollScoreDa {
 						.max((score1, score2) -> score2.id.compareTo(score1.id)).get();
 		return RollScoreMapper.MAPPER.toRollScoreDm(turnScore);
 	}
+
 
 	public void resetPlayerScore(UUID playerId)
 	{
@@ -58,22 +42,6 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		this.rollScores.stream()
 				.filter(score -> score.playerId == playerId && score.turnId == turnId)
 				.map(score -> score.turnTotal = 0);
-	}
-
-	/**
-	 * Use max to get the last inserted score
-	 * */
-	private Optional<RollScore> getLastRollScoreForRound(UUID roundId) {
-		return this.rollScores.stream()
-				.filter(rollScore -> rollScore.roundId == roundId)
-				.max((score1, score2) -> score2.id.compareTo(score1.id));
-	}
-	
-	private Optional<RollScore> getRollScore(int id)
-	{
-		return this.rollScores.stream()
-						.filter(score -> score.id == id)
-						.findFirst();
 	}
 
 
