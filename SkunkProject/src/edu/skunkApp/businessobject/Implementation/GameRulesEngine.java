@@ -20,7 +20,7 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * **/
 public class GameRulesEngine implements IGameRulesEngine {
 	
-	public void setSkunkAndScore(RollScoreDm rollScoreDm) {
+	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm) {
 		//TODO: how to set game status
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
 		if (this.isRollSingleSkunk(rollScoreDm.roll))
@@ -47,7 +47,8 @@ public class GameRulesEngine implements IGameRulesEngine {
 		else
 		{
 			rollScoreDm.rollStatus = SkunkEnum.NoSkunk;
-			rollScoreDm.turnTotal = 0;
+			rollScoreDm.turnTotal = previousScoreDm.turnTotal + rollScoreDm.roll.diceTotal;
+			rollScoreDm.roundTotal = previousScoreDm.roundTotal + rollScoreDm.roll.diceTotal;
 		}
 	}
 	
@@ -65,4 +66,5 @@ public class GameRulesEngine implements IGameRulesEngine {
 	{
 		return (roll.die1 == 1) && (roll.die2 == 2 ) || (roll.die2 == 1 ) && (roll.die1 == 2 );
 	}
+
 }

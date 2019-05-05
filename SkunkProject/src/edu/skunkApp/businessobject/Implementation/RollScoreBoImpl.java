@@ -15,12 +15,14 @@ public class RollScoreBoImpl implements IRollScoreBo {
 	@Inject Roll _roll;
 
 	public void createRollScore(RollScoreDm rollScoreDm) {
+		RollScoreDm previousScore = _rollScoreDa.getLastTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 		rollScoreDm.roll = _roll.getRoll();
-		_gameRulesEngine.setSkunkAndScore(rollScoreDm);
+		_gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore);
 		_rollScoreDa.create(rollScoreDm);
+		this.resetRollScoreForSkunk(rollScoreDm);
 	}
-	
-	public void updateRollScore(RollScoreDm rollScoreDm) {
+ 
+	public void resetRollScoreForSkunk(RollScoreDm rollScoreDm) {
 		if (rollScoreDm.rollStatus == SkunkEnum.DoubleSkunk)
 		{
 			_rollScoreDa.resetPlayerScore(rollScoreDm.playerId);
@@ -30,12 +32,5 @@ public class RollScoreBoImpl implements IRollScoreBo {
 		{
 			_rollScoreDa.resetPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 		}
-		else
-		{
-			RollScoreDm previousScore = _rollScoreDa.getLastTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
-			rollScoreDm.turnTotal = previousScore.turnTotal + rollScoreDm.roll.diceTotal;
-			rollScoreDm.roundTotal = previousScore.roundTotal + rollScoreDm.roll.diceTotal;
-		}
 	}
-
 }

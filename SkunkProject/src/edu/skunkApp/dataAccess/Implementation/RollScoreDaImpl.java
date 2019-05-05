@@ -1,7 +1,6 @@
 package edu.skunkApp.dataAccess.Implementation;
 
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.UUID;
 
 import edu.skunkApp.data.RollScore;
