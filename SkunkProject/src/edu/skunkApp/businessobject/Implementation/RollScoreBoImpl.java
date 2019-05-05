@@ -14,17 +14,28 @@ public class RollScoreBoImpl implements IRollScoreBo {
 	@Inject IGameRulesEngine _gameRulesEngine;
 	@Inject Roll _roll;
 
-//	@Inject
-//	public RollScoreBoImpl(IRollScoreDa rollScoreDa)
-//	{
-////		_rollScoreDa = rollScoreDa;
-//	}
-
-	@Inject 
 	public void createRollScore(RollScoreDm rollScoreDm) {
 		rollScoreDm.roll = _roll.getRoll();
-		_gameRulesEngine.validateScore(rollScoreDm);
+		_gameRulesEngine.setSkunkAndScore(rollScoreDm);
 		_rollScoreDa.create(rollScoreDm);
+	}
+	
+	public void updateRollScore(RollScoreDm rollScoreDm) {
+		if (rollScoreDm.rollStatus == SkunkEnum.DoubleSkunk)
+		{
+			_rollScoreDa.resetPlayerScore(rollScoreDm.playerId);
+		}
+		else if (rollScoreDm.rollStatus == SkunkEnum.SingleSkunk ||
+				rollScoreDm.rollStatus == SkunkEnum.DeuceSkunk)
+		{
+			_rollScoreDa.resetPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
+		}
+		else
+		{
+			RollScoreDm previousScore = _rollScoreDa.getLastTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
+			rollScoreDm.turnTotal = previousScore.turnTotal + rollScoreDm.roll.diceTotal;
+			rollScoreDm.roundTotal = previousScore.roundTotal + rollScoreDm.roll.diceTotal;
+		}
 	}
 
 }

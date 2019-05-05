@@ -1,10 +1,6 @@
 package edu.skunkApp.businessobject.Implementation;
 
-import org.apache.commons.lang3.NotImplementedException;
-import java.util.ArrayList;
-
 import edu.skunkApp.businessobject.IGameRulesEngine;
-import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.domainModels.RollDm;
 import edu.skunkApp.domainModels.RollScoreDm;
@@ -24,16 +20,6 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * **/
 public class GameRulesEngine implements IGameRulesEngine {
 	
-	public void validateScore(RollScoreDm rollScoreDm) {
-		this.updateSkunkScores(rollScoreDm);
-		throw new NotImplementedException("validateScore not implemented");
-	}
-	
-	
-	public void updateSkunkScores(RollScoreDm rollScoreDm) {
-//		if (rollScoreDm.)
-	}
-
 	public void setSkunkAndScore(RollScoreDm rollScoreDm) {
 		//TODO: how to set game status
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
@@ -42,26 +28,26 @@ public class GameRulesEngine implements IGameRulesEngine {
 			rollScoreDm.rollStatus = SkunkEnum.SingleSkunk;
 			rollScoreDm.chipChange = -1;
 			rollScoreDm.kittyChange = 1;
-			rollScoreDm.TurnTotal = 0;
+			rollScoreDm.turnTotal = 0;
 		}
 		else if (this.isRollDoubleSkunk(rollScoreDm.roll))
 		{
 			rollScoreDm.rollStatus = SkunkEnum.DoubleSkunk;
 			rollScoreDm.chipChange = -4;
 			rollScoreDm.kittyChange = 4;
-			rollScoreDm.TurnTotal = 0;
+			rollScoreDm.turnTotal = 0;
 		}
 		else if (this.isRollDeuceSkunk(rollScoreDm.roll))
 		{
 			rollScoreDm.rollStatus = SkunkEnum.DeuceSkunk;
 			rollScoreDm.chipChange = -2;
 			rollScoreDm.kittyChange = 2;
-			rollScoreDm.TurnTotal = 0;
+			rollScoreDm.turnTotal = 0;
 		}
 		else
 		{
 			rollScoreDm.rollStatus = SkunkEnum.NoSkunk;
-			rollScoreDm.TurnTotal = 0;
+			rollScoreDm.turnTotal = 0;
 		}
 	}
 	

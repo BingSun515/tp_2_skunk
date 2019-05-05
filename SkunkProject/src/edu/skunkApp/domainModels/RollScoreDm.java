@@ -14,7 +14,8 @@ public class RollScoreDm {
 	public UUID rollId;
 	public RollDm roll;
 	public SkunkEnum rollStatus;
-	public int TurnTotal;  //insert a calculated row
+	public int turnTotal;
+	public int roundTotal;
 	public int kittyChange;
 	public int chipChange;
 	public GameStatusEnum gameStatus;
