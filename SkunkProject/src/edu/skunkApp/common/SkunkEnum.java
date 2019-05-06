@@ -2,8 +2,8 @@ package edu.skunkApp.common;
 
 public enum SkunkEnum
 {
-	SingleSkunk,
-	DoubleSkunk,
-	DeuceSkunk,
-	NoSkunk
+	SINGLESKUNK,
+	DOUBLESKUNK,
+	DEUCESKUNK,
+	NOSKUNK
 }

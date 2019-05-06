@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.*;
 
 import edu.skunkApp.businessobject.IGameRulesEngine;
+import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
@@ -27,22 +28,26 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * **/
 public class GameRulesEngine implements IGameRulesEngine {
 	private final int WINNING_SCORE = 100;
-		
-	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers)
+	
+	public boolean getGameStatus(int roundTotal)
 	{
-		losers.stream()
-				.forEach(loser -> {
-					if (loser.Score == 0)
-					{
-						loser.chipCount -= 10;
-						rollScoreDm.chipChange += 10;
-					}
-					else 
-					{
-						loser.chipCount -= 5;
-						rollScoreDm.chipChange += 5;
-					}
-				});
+		return roundTotal == this.WINNING_SCORE;
+	}
+	
+	public void moveChips(RollScoreDm rollScoreDm, Stream<PlayerDm> losers)
+	{
+		losers.forEach(loser -> {
+				if (loser.Score == 0)
+				{
+					loser.chipCount -= 10;
+					rollScoreDm.chipChange += 10;
+				}
+				else 
+				{
+					loser.chipCount -= 5;
+					rollScoreDm.chipChange += 5;
+				}
+			});
 	}
 	
 	//START: SKUNK
@@ -52,30 +57,37 @@ public class GameRulesEngine implements IGameRulesEngine {
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
 		if (this.isRollSingleSkunk(rollScoreDm.roll))
 		{
-			rollScoreDm.rollStatus = SkunkEnum.SingleSkunk;
+			rollScoreDm.rollStatus = SkunkEnum.SINGLESKUNK;
+			rollScoreDm.gameStatus = GameStatusEnum.TURN_COMPLETED;
 			rollScoreDm.chipChange = -1;
 			rollScoreDm.kittyChange = 1;
 			rollScoreDm.turnTotal = 0;
 		}
 		else if (this.isRollDoubleSkunk(rollScoreDm.roll))
 		{
-			rollScoreDm.rollStatus = SkunkEnum.DoubleSkunk;
+			rollScoreDm.rollStatus = SkunkEnum.DOUBLESKUNK;
+			rollScoreDm.gameStatus = GameStatusEnum.ROUND_COMPLETED;
 			rollScoreDm.chipChange = -4;
 			rollScoreDm.kittyChange = 4;
 			rollScoreDm.turnTotal = 0;
 		}
 		else if (this.isRollDeuceSkunk(rollScoreDm.roll))
 		{
-			rollScoreDm.rollStatus = SkunkEnum.DeuceSkunk;
+			rollScoreDm.rollStatus = SkunkEnum.DEUCESKUNK;
+			rollScoreDm.gameStatus = GameStatusEnum.TURN_COMPLETED;
 			rollScoreDm.chipChange = -2;
 			rollScoreDm.kittyChange = 2;
 			rollScoreDm.turnTotal = 0;
 		}
 		else
 		{
-			rollScoreDm.rollStatus = SkunkEnum.NoSkunk;
+			rollScoreDm.rollStatus = SkunkEnum.NOSKUNK;
 			rollScoreDm.turnTotal = previousScoreDm.turnTotal + rollScoreDm.roll.diceTotal;
 			rollScoreDm.roundTotal = previousScoreDm.roundTotal + rollScoreDm.roll.diceTotal;
+			rollScoreDm.gameStatus = this.getGameStatus(rollScoreDm.roundTotal) ?
+											GameStatusEnum.WINNER : GameStatusEnum.CONTINUE_ROLL;
+			
+			
 		}
 	}
 	

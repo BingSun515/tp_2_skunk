@@ -80,19 +80,19 @@ public class Dice
 	{
 		if (this.isDiceLastRollSingleSkunk())
 		{
-			return SkunkEnum.SingleSkunk;
+			return SkunkEnum.SINGLESKUNK;
 		}
 		else if (this.isDiceLastRollDoubleSkunk())
 		{
-			return SkunkEnum.DoubleSkunk;
+			return SkunkEnum.DOUBLESKUNK;
 		}
 		else if (this.isDiceLastRollDeuceSkunk())
 		{
-			return SkunkEnum.DeuceSkunk;
+			return SkunkEnum.DEUCESKUNK;
 		}
 		else
 		{
-			return SkunkEnum.NoSkunk;
+			return SkunkEnum.NOSKUNK;
 		}
 	}
 	

@@ -20,22 +20,22 @@ class Roll {
 	//####################################
 	public boolean isDoubleSkunk()
 	{
-		return this.getSkunk() == SkunkEnum.DoubleSkunk;
+		return this.getSkunk() == SkunkEnum.DOUBLESKUNK;
 	}
 	
 	public boolean isDeuceSkunk()
 	{
-		return this.getSkunk() == SkunkEnum.DeuceSkunk;
+		return this.getSkunk() == SkunkEnum.DEUCESKUNK;
 	}
 
 	public boolean isSingleSkunk()
 	{
-		return this.getSkunk() == SkunkEnum.SingleSkunk;
+		return this.getSkunk() == SkunkEnum.SINGLESKUNK;
 	}
 	
 	public boolean isSkunk()
 	{
-		return this.getSkunk() != SkunkEnum.NoSkunk;
+		return this.getSkunk() != SkunkEnum.NOSKUNK;
 	}
 
 	public int getDiceLastRoll()

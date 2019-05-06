@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import edu.skunkApp.data.Player;
+import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.dataAccess.IPlayerDa;
 
 @Singleton
@@ -42,10 +44,9 @@ public class PlayerDaImpl implements IPlayerDa {
 				.map(player -> player.isWinner = true);
 	}
 	
-	public List<Player> getLosers() {
+	public Stream<PlayerDm> getLosers() {
 		return this._players.stream()
-					.filter(player -> player.isWinner != true)
-					.collect(Collectors.toList());
+					.filter(player -> player.isWinner != true);
 
 	}
 	
