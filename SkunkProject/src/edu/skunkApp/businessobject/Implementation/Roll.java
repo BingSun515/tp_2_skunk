@@ -1,12 +1,11 @@
 package edu.skunkApp.businessobject.Implementation;
 
-import javax.inject.Inject;
-
 import edu.skunkApp.businessobject.IRoll;
 import edu.skunkApp.domainModels.RollDm;
+
 public class Roll implements IRoll {
 	
-	@Inject RollDm roll;
+	RollDm roll = new RollDm();
 	
 	//make it static
 	private static int getNewRoll()
