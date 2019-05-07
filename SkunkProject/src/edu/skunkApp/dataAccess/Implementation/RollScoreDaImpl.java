@@ -30,7 +30,6 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		return RollScoreMapper.MAPPER.toRollScoreDm(turnScore);
 	}
 
-
 	public void resetPlayerScore(UUID playerId)
 	{
 		//TODO: check if the update works

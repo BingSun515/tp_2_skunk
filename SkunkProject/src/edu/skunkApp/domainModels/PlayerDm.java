@@ -3,7 +3,7 @@ package edu.skunkApp.domainModels;
 import java.util.UUID;
 
 public class PlayerDm {
-	public UUID id;
+	public UUID playerId;
 	public String name;
 	public boolean isWinner;
 	public int Score;

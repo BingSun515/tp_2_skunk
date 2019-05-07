@@ -1,7 +1,6 @@
 package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
-import java.util.stream.*;
 
 import edu.skunkApp.businessobject.IGameRulesEngine;
 import edu.skunkApp.common.GameStatusEnum;
@@ -16,11 +15,18 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * The suggested number of chips to start is 50.
  * There are sufficient chips in the box to allow 8 players to 
  * start with 50 chips by placing a par value of "one" on white chips, 
- * 5 for 1 on red chips and 10 for 1 on the blue chips.The first player to accumulate a 
- * total of 100 or more points can continue to score as many points over 100 as he believes 
- * is needed to win. When he decides to stop, his total score is the “goal.” 
+ * 5 for 1 on red chips and 10 for 1 on the blue chips.
  * 
- * Each succeeding player receives one more chance to better the goal and end the game.
+ * The first player to accumulate a total of 100 or more points can continue 
+ * to score as many points over 100 as he believes 
+ * is needed to win. 
+ * 
+ * When he decides to stop, his total score is the “goal.” 
+ *  
+ * DO CONTROLLER LAYER 
+ * -------------------
+ * Each succeeding player receives one more chance to better the 
+ * goal and end the game.
  * 
  * DONE: moveChips
  * The winner of each game collects all chips in "kitty" and in addition five chips from 
@@ -31,10 +37,10 @@ public class GameRulesEngine implements IGameRulesEngine {
 	
 	public boolean getGameStatus(int roundTotal)
 	{
-		return roundTotal == this.WINNING_SCORE;
+		return roundTotal >= this.WINNING_SCORE;
 	}
 	
-	public void moveChips(RollScoreDm rollScoreDm, Stream<PlayerDm> losers)
+	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers)
 	{
 		losers.forEach(loser -> {
 				if (loser.Score == 0)
@@ -51,7 +57,7 @@ public class GameRulesEngine implements IGameRulesEngine {
 	}
 	
 	//START: SKUNK
-	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm)
+	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm, boolean hasWinner)
 	{
 		//TODO: how to set game status
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
@@ -84,10 +90,16 @@ public class GameRulesEngine implements IGameRulesEngine {
 			rollScoreDm.rollStatus = SkunkEnum.NOSKUNK;
 			rollScoreDm.turnTotal = previousScoreDm.turnTotal + rollScoreDm.roll.diceTotal;
 			rollScoreDm.roundTotal = previousScoreDm.roundTotal + rollScoreDm.roll.diceTotal;
-			rollScoreDm.gameStatus = this.getGameStatus(rollScoreDm.roundTotal) ?
+
+			if(hasWinner)
+			{
+				rollScoreDm.gameStatus = GameStatusEnum.CONTINUE_ROLL;
+			}
+			else
+			{
+				rollScoreDm.gameStatus = this.getGameStatus(rollScoreDm.roundTotal) ?
 											GameStatusEnum.WINNER : GameStatusEnum.CONTINUE_ROLL;
-			
-			
+			}
 		}
 	}
 	

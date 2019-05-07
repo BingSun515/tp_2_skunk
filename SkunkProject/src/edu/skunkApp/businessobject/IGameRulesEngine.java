@@ -1,6 +1,6 @@
 package edu.skunkApp.businessobject;
 
-import java.util.stream.Stream;
+import java.util.ArrayList;
 
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
@@ -9,9 +9,9 @@ import edu.skunkApp.domainModels.RollScoreDm;
 public interface IGameRulesEngine {
 	
 	public boolean getGameStatus(int roundTotal);
-	public void moveChips(RollScoreDm rollScoreDm, Stream<PlayerDm> losers);
+	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers);
 
-	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm);
+	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm, boolean hasWinner);
 	public boolean isRollSingleSkunk(RollDm roll);
 	public boolean isRollDoubleSkunk(RollDm roll);
 	public boolean isRollDeuceSkunk(RollDm roll);

@@ -1,17 +1,17 @@
 package edu.skunkApp.dataAccess.Implementation;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import java.util.ArrayList;
 
 import edu.skunkApp.data.Player;
 import edu.skunkApp.domainModels.PlayerDm;
+import edu.skunkApp.modelMapper.PlayerMapper;
 import edu.skunkApp.dataAccess.IPlayerDa;
 
 @Singleton
@@ -44,10 +44,24 @@ public class PlayerDaImpl implements IPlayerDa {
 				.map(player -> player.isWinner = true);
 	}
 	
-	public Stream<PlayerDm> getLosers() {
+	public ArrayList<PlayerDm> getLosers() {
+		if (!this.hasWinner())
+		{
+			return null;
+		}
+		
+		List<Player> losers = this._players.stream()
+								.filter(player -> player.isWinner != true)
+								.collect(Collectors.toList());
+	
+		return PlayerMapper.MAPPER.toPlayerDmList(new ArrayList<Player>(losers));
+	}
+	
+	public boolean hasWinner() {
+		
 		return this._players.stream()
-					.filter(player -> player.isWinner != true);
-
+					.filter(player -> player.isWinner == true)
+					.count() == 1 ;
 	}
 	
 }
