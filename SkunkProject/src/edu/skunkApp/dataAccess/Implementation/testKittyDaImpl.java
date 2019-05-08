@@ -22,5 +22,5 @@ public class testKittyDaImpl {
 	System.out.println(_chips);
 		System.out.println(_chips.stream().mapToInt(chip -> chip.intValue()).sum());
 		assertEquals(3,_chips.stream().mapToInt(chip -> chip.intValue()).sum());
-	  }
+	  } 
 }
