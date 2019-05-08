@@ -18,7 +18,6 @@ public class testKittyDaImpl {
 		_chips.add(2);
 //		Kd1.setChipCount(2);
 //		Kd1.setChipCount(2);
-		
 	System.out.println(_chips);
 		System.out.println(_chips.stream().mapToInt(chip -> chip.intValue()).sum());
 		assertEquals(3,_chips.stream().mapToInt(chip -> chip.intValue()).sum());
