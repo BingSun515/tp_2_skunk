@@ -12,11 +12,15 @@ public class testKittyDaImpl {
 	
 	@Test (expected=NullPointerException.class)
 	  public void testKittyDaImpl() {
+		KittyDaImpl Kd1 = new KittyDaImpl();
 		_chips = new ArrayList<Integer>();
 		_chips.add(1);
 		_chips.add(2);
-		_chips.add(3);
-		System.out.println(_chips);
-		KittyDaImpl KD1 = new KittyDaImpl();
+//		Kd1.setChipCount(2);
+//		Kd1.setChipCount(2);
+		
+	System.out.println(_chips);
+		System.out.println(_chips.stream().mapToInt(chip -> chip.intValue()).sum());
+		assertEquals(3,_chips.stream().mapToInt(chip -> chip.intValue()).sum());
 	  }
 }
