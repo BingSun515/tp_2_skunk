@@ -11,7 +11,7 @@ import edu.skunkApp.dataAccess.IKittyDa;
 public class KittyDaImpl implements IKittyDa {
 
 	@Inject
-	private ArrayList<Integer> _chips;
+	private ArrayList<Integer> _chips = new ArrayList<>();
 
 	public int getChipCount() {
 		return this._chips.stream()
