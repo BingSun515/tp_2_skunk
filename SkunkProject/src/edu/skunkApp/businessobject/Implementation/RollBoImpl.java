@@ -1,9 +1,9 @@
 package edu.skunkApp.businessobject.Implementation;
 
-import edu.skunkApp.businessobject.IRoll;
+import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.domainModels.RollDm;
 
-public class Roll implements IRoll {
+public class RollBoImpl implements IRollBo {
 	
 	RollDm roll = new RollDm();
 	
@@ -15,8 +15,8 @@ public class Roll implements IRoll {
 	
 	public RollDm getRoll()
 	{
-		this.roll.die1 = Roll.getNewRoll();
-		this.roll.die2 = Roll.getNewRoll();
+		this.roll.die1 = RollBoImpl.getNewRoll();
+		this.roll.die2 = RollBoImpl.getNewRoll();
 //		this.roll.diceTotal
 		return this.roll;
 	}

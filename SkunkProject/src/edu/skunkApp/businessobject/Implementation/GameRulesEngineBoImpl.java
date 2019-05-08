@@ -2,7 +2,7 @@ package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
 
-import edu.skunkApp.businessobject.IGameRulesEngine;
+import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.domainModels.PlayerDm;
@@ -32,7 +32,7 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * The winner of each game collects all chips in "kitty" and in addition five chips from 
  * each losing player or 10 chips from any player without a score.
  * **/
-public class GameRulesEngine implements IGameRulesEngine {
+public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 	private final int WINNING_SCORE = 100;
 	
 	public boolean getGameStatus(int roundTotal)

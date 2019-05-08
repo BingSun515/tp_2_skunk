@@ -2,10 +2,10 @@ package edu.skunkApp.di;
 
 import dagger.Provides;
 import dagger.Module;
-import edu.skunkApp.businessobject.IGameRulesEngine;
-import edu.skunkApp.businessobject.IRoll;
-import edu.skunkApp.businessobject.Implementation.GameRulesEngine;
-import edu.skunkApp.businessobject.Implementation.Roll;
+import edu.skunkApp.businessobject.IGameRulesEngineBo;
+import edu.skunkApp.businessobject.IRollBo;
+import edu.skunkApp.businessobject.Implementation.GameRulesEngineBoImpl;
+import edu.skunkApp.businessobject.Implementation.RollBoImpl;
 import edu.skunkApp.dataAccess.IKittyDa;
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.dataAccess.IRollScoreDa;
@@ -31,11 +31,11 @@ public class RollScoreDaModule {
 		return new KittyDaImpl();
 	}
 	
-	@Provides IGameRulesEngine provideGameRulesEngine() {
-		return new GameRulesEngine();
+	@Provides IGameRulesEngineBo provideGameRulesEngine() {
+		return new GameRulesEngineBoImpl();
 	}
 	
-	@Provides IRoll provideRoll() {
-		return new Roll();
+	@Provides IRollBo provideRoll() {
+		return new RollBoImpl();
 	}
 }

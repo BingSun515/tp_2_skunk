@@ -6,7 +6,7 @@ import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
-public interface IGameRulesEngine {
+public interface IGameRulesEngineBo {
 	
 	public boolean getGameStatus(int roundTotal);
 	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers);
