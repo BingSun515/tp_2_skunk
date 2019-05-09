@@ -17,4 +17,9 @@ public class PlayerBoImpl implements IPlayerBo {
 	{
 		return _playerDa.create(PlayerMapper.MAPPER.toPlayerList(players));
 	}
+	
+	public ArrayList<PlayerDm> get()
+	{
+		return _playerDa.getPlayers();
+	}
 }

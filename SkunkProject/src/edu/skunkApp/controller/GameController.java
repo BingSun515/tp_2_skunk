@@ -1,18 +1,23 @@
 package edu.skunkApp.controller;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
 import edu.skunkApp.businessobject.IPlayerBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
+import edu.skunkApp.businessobject.Implementation.RollBoImpl;
 import edu.skunkApp.domainModels.PlayerDm;
+import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameController {
 
-	@Inject private IRollScoreBo _rollScoreBo;
-	@Inject private AppUIController _UIController;
-	@Inject private IPlayerBo _playerBo;
+	@Inject IRollScoreBo _rollScoreBo;
+	@Inject AppUIController _UIController;
+	@Inject IPlayerBo _playerBo;
+	@Inject RollScoreDm _rollScoreDm;
+	@Inject RollBoImpl _roll;
 		
 	void StartGame()
 	{
@@ -23,7 +28,7 @@ public class GameController {
 	private void initializeNewGame()
 	{
 		this.initPlayers();
-//		this.startRound();
+		this.startRound();
 	}
 	
 	private void initPlayers()
@@ -34,6 +39,20 @@ public class GameController {
 		// UI will forward collected users to player bo to save in player data
 		ArrayList<PlayerDm> players = AppUIController.getPlayers();
 		_playerBo.create(players);
+	}
+	
+	private void startRound()
+	{
+		ArrayList<PlayerDm> players = _playerBo.get();
+		players.forEach(player -> this.nextPlayer(player.playerId));
+	}
+	
+	private void nextPlayer(UUID playerId)
+	{
+		_rollScoreDm.playerId = playerId;
+		_rollScoreDm.roll = _roll.getRoll();
+		_rollScoreBo.create(_rollScoreDm);
+		_rollScoreDm = null;
 	}
 
 	private void displayGameSummary()

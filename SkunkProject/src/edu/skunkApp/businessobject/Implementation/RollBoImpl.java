@@ -5,7 +5,7 @@ import edu.skunkApp.domainModels.RollDm;
 
 public class RollBoImpl implements IRollBo {
 	
-	RollDm roll = new RollDm();
+	private RollDm roll = new RollDm();
 	
 	//make it static
 	private static int getNewRoll()

@@ -1,7 +1,6 @@
 package edu.skunkApp.dataAccess.Implementation;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -39,14 +38,16 @@ public class PlayerDaImpl implements IPlayerDa {
 		return success;
 	}
 
-	public ArrayList<Player> getPlayers() {
-		return this._players;
+	public ArrayList<PlayerDm> getPlayers() {
+		return PlayerMapper.MAPPER.toPlayerDmList(this._players);
 	}
 	
-	public Optional<Player> getWinner() {
-		return this._players.stream()
-				.filter(player -> player.isWinner == true)
-				.findFirst();
+	public PlayerDm getWinner() {
+		Player winner = this._players.stream()
+										.filter(player -> player.isWinner == true)
+										.findFirst()
+										.orElse(null);
+		return winner != null ? PlayerMapper.MAPPER.toPlayerDm(winner) : null;
 	}
 	
 	public void setWinner(UUID playerId) {

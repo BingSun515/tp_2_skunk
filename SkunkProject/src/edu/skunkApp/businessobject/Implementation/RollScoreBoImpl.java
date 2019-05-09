@@ -19,10 +19,9 @@ public class RollScoreBoImpl implements IRollScoreBo
 	@Inject IGameRulesEngineBo _gameRulesEngine;
 	@Inject RollBoImpl _roll;
 
-	public void createRollScore(RollScoreDm rollScoreDm)
+	public void create(RollScoreDm rollScoreDm)
 	{
 		RollScoreDm previousScore = _rollScoreDa.getLastTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
-		rollScoreDm.roll = _roll.getRoll();
 		boolean hasWinner = this._playerDa.hasWinner();
 		this._gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore, hasWinner);
 		this._rollScoreDa.create(rollScoreDm);
