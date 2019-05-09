@@ -9,7 +9,7 @@ import edu.skunkApp.domainModels.PlayerDm;
 
 public interface IPlayerDa {
 	public void setChipCount(UUID playerId, int chipCount);
-	public void create(Player player);
+	public boolean create(ArrayList<Player> players);
 	public ArrayList<Player> getPlayers();
 	public Optional<Player> getWinner();
 	public void setWinner(UUID playerId);

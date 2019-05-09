@@ -17,7 +17,7 @@ import edu.skunkApp.dataAccess.IPlayerDa;
 @Singleton
 public class PlayerDaImpl implements IPlayerDa {
 
-	@Inject private ArrayList<Player> _players;	
+	@Inject ArrayList<Player> _players;	
 
 	public void setChipCount(UUID playerId, int chipCount) {
 		this._players.stream()
@@ -25,8 +25,18 @@ public class PlayerDaImpl implements IPlayerDa {
 					.map(player -> player.chipCount += chipCount);
 	}
 
-	public void create(Player player) {
-		this._players.add(player);
+	public boolean create(ArrayList<Player> players) {
+		boolean success = false;
+		try {
+			this._players = players;
+			success = true;
+		}
+		catch(Exception e)
+		{
+			System.out.print(e.toString());
+			return success;
+		}
+		return success;
 	}
 
 	public ArrayList<Player> getPlayers() {

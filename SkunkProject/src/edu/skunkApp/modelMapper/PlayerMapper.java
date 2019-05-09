@@ -20,5 +20,6 @@ public interface PlayerMapper {
 
 	PlayerDm toPlayerDm(Player player);
 
-	ArrayList<PlayerDm> toPlayerDmList(ArrayList<Player> players);	 
+	ArrayList<PlayerDm> toPlayerDmList(ArrayList<Player> players);
+	ArrayList<Player> toPlayerList(ArrayList<PlayerDm> players);	 
 }
