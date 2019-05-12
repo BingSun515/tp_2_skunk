@@ -34,17 +34,55 @@ public class GameRulesEngineBoImplTest {
 		
 	}
 	
+	
+	
 	@Test
 	public void testisRollSingleSkunk2() {
 		
 		GameRulesEngineBoImpl grebi2 = new GameRulesEngineBoImpl();
 		RollDm rd2 = new RollDm();
-		rd2.die1 = 3;
-		rd2.die2 = 1;
+		rd2.die1 = 2;
+		rd2.die2 = 2;
 		rd2.diceTotal = 4;
-		assertEquals(true, grebi2.isRollSingleSkunk(rd2));
+		assertEquals(false, grebi2.isRollSingleSkunk(rd2));
 		
 	}
+	
+	@Test
+	public void testisRollSingleSkunk3() {
+		
+		GameRulesEngineBoImpl grebi2 = new GameRulesEngineBoImpl();
+		RollDm rd2 = new RollDm();
+		rd2.die1 = 1;
+		rd2.die2 = 2;
+		rd2.diceTotal = 4;
+		assertEquals(false, grebi2.isRollSingleSkunk(rd2));
+		
+	}
+	
+	@Test
+	public void testisRollSingleSkunk4() {
+		
+		GameRulesEngineBoImpl grebi2 = new GameRulesEngineBoImpl();
+		RollDm rd2 = new RollDm();
+		rd2.die1 = 2;
+		rd2.die2 = 2;
+		rd2.diceTotal = 4;
+		assertEquals(false, grebi2.isRollSingleSkunk(rd2));
+		
+	}
+	
+//	@Test
+//	public void testisRollSingleSkunk5() {
+//		
+//		GameRulesEngineBoImpl grebi2 = new GameRulesEngineBoImpl();
+//		RollDm rd2 = new RollDm();
+//		rd2.die1 = 2;
+//		rd2.die2 = 0;
+//		rd2.diceTotal = 2;
+//		assertEquals(false, grebi2.isRollSingleSkunk(rd2));
+//		
+//	}
 	
 	@Test
 	public void testisRollDoubleSkunk() {
