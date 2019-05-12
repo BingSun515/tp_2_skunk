@@ -15,5 +15,7 @@
 	<classpathentry kind="lib" path="libs/javax.inject-1.jar"/>
 	<classpathentry kind="lib" path="libs/mapstruct-1.3.0.Final.jar"/>
 	<classpathentry kind="lib" path="libs/mapstruct-processor-1.3.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/text-io-3.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/text-io-web-3.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
