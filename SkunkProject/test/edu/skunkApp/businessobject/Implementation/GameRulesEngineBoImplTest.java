@@ -72,17 +72,6 @@ public class GameRulesEngineBoImplTest {
 		
 	}
 	
-//	@Test
-//	public void testisRollSingleSkunk5() {
-//		
-//		GameRulesEngineBoImpl grebi2 = new GameRulesEngineBoImpl();
-//		RollDm rd2 = new RollDm();
-//		rd2.die1 = 2;
-//		rd2.die2 = 0;
-//		rd2.diceTotal = 2;
-//		assertEquals(false, grebi2.isRollSingleSkunk(rd2));
-//		
-//	}
 	
 	@Test
 	public void testisRollDoubleSkunk() {
