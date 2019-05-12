@@ -51,6 +51,28 @@ public class GameRulesEngineBoImplTest {
 	}
 	
 	@Test
+	public void testisRollSingleSkunk4() {
+		
+		GameRulesEngineBoImpl grebi3 = new GameRulesEngineBoImpl();
+		RollDm rd3 = new RollDm();
+		rd3.die1 = 1;
+		rd3.die2 = 2;
+		assertEquals(false, grebi3.isRollSingleSkunk(rd3));
+		
+	}
+	
+	@Test
+	public void testisRollSingleSkunk5() {
+		
+		GameRulesEngineBoImpl grebi3 = new GameRulesEngineBoImpl();
+		RollDm rd3 = new RollDm();
+		rd3.die1 = 2;
+		rd3.die2 = 1;
+		assertEquals(false, grebi3.isRollSingleSkunk(rd3));
+		
+	}
+	
+	@Test
 	public void testisRollDoubleSkunk1() {
 		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
