@@ -14,7 +14,6 @@ public class GameRulesEngineBoImplTest {
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		
 		assertEquals(false, grebi1.getGameStatus(87));
-		
 		assertEquals(true, grebi1.getGameStatus(101));
 		
 	}
