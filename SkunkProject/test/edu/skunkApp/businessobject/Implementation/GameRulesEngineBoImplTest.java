@@ -4,8 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.dataAccess.Implementation.KittyDaImpl;
 import edu.skunkApp.domainModels.RollDm;
+import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameRulesEngineBoImplTest {
 	
@@ -21,16 +23,41 @@ public class GameRulesEngineBoImplTest {
 	}
 	
 	@Test
-	public void testisRollSingleSkunk() {
+	public void testisRollSingleSkunk1() {
 		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
-		
-		
-		assertEquals(false, grebi1.isRollSingleSkunk(null));
-		
-		assertEquals(true, grebi1.getGameStatus(101));
+		RollDm rd1 = new RollDm();
+		rd1.die1 = 1;
+		rd1.die2 = 3;
+		rd1.diceTotal = 4;
+		assertEquals(true, grebi1.isRollSingleSkunk(rd1));
 		
 	}
+	
+	@Test
+	public void testisRollSingleSkunk2() {
+		
+		GameRulesEngineBoImpl grebi2 = new GameRulesEngineBoImpl();
+		RollDm rd2 = new RollDm();
+		rd2.die1 = 3;
+		rd2.die2 = 1;
+		rd2.diceTotal = 4;
+		assertEquals(true, grebi2.isRollSingleSkunk(rd2));
+		
+	}
+	
+	@Test
+	public void testisRollDoubleSkunk() {
+		
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		RollDm rd1 = new RollDm();
+		rd1.die1 = 1;
+		rd1.die2 = 1;
+		rd1.diceTotal = 2;
+		assertEquals(true, grebi1.isRollDoubleSkunk(rd1));
+		
+	}
+	
 	
 	
 
