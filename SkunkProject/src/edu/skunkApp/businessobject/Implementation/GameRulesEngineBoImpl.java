@@ -21,7 +21,7 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * to score as many points over 100 as he believes 
  * is needed to win. 
  * 
- * When he decides to stop, his total score is the “goal.” 
+ * When he decides to stop, his total score is the ¡°goal.¡± 
  *  
  * DO CONTROLLER LAYER 
  * -------------------
