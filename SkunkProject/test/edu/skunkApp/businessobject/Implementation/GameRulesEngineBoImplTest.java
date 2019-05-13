@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 import edu.skunkApp.domainModels.RollDm;
+import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameRulesEngineBoImplTest {
 	
@@ -14,6 +15,14 @@ public class GameRulesEngineBoImplTest {
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		assertEquals(false, grebi1.getGameStatus(87));
 		assertEquals(true, grebi1.getGameStatus(101));
+		
+	}
+	
+	//keeping implementation
+	@Test
+	public void testsetSkunkAndScore() {
+		
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		
 	}
 	
