@@ -21,7 +21,7 @@ public class RollScoreBoImpl implements IRollScoreBo
 
 	public void create(RollScoreDm rollScoreDm)
 	{
-		RollScoreDm previousScore = _rollScoreDa.getLastTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
+		RollScoreDm previousScore = _rollScoreDa.getPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 		boolean hasWinner = this._playerDa.hasWinner();
 		this._gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore, hasWinner);
 		this._rollScoreDa.create(rollScoreDm);
@@ -63,5 +63,4 @@ public class RollScoreBoImpl implements IRollScoreBo
 			_rollScoreDa.resetPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 		}
 	}
-
 }

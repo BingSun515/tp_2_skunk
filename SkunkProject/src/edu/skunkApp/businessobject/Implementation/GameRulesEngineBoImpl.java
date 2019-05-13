@@ -2,9 +2,13 @@ package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
+import edu.skunkApp.dataAccess.Implementation.RollScoreDaImpl;
+import edu.skunkApp.dataAccess.Implementation.RoundDaImpl;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 import edu.skunkApp.domainModels.RollScoreDm;
@@ -33,8 +37,9 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * each losing player or 10 chips from any player without a score.
  * **/
 public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
+	@Inject RollScoreDaImpl _rollScoreDa;
 	private final int WINNING_SCORE = 100;
-	
+		
 	public boolean getGameStatus(int roundTotal)
 	{
 		return roundTotal >= this.WINNING_SCORE;
@@ -118,4 +123,13 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		return (roll.die1 == 1) && (roll.die2 == 2 ) || (roll.die2 == 1 ) && (roll.die1 == 2 );
 	}
 
+	public GameStatusEnum getGameStatus()
+	{
+		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();
+		if (lastTurnScore == null)
+		{
+			return GameStatusEnum.CONTINUE_ROLL;
+		}
+		return lastTurnScore.gameStatus;
+	}
 }

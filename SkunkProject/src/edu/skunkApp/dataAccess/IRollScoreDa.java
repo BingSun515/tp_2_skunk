@@ -5,7 +5,8 @@ import edu.skunkApp.domainModels.RollScoreDm;
 
 public interface IRollScoreDa {
 	public void create(RollScoreDm score);
-	public RollScoreDm getLastTurnScore(UUID playerId, UUID turnId);
+	public RollScoreDm getPlayerTurnScore(UUID playerId, UUID turnId);
+	public RollScoreDm getLastRollScore();
 
 	public void resetPlayerScore(UUID playerId);
 	public void resetPlayerTurnScore(UUID playerId, UUID turnId);

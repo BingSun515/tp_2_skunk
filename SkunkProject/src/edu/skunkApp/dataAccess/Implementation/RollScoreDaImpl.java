@@ -22,11 +22,21 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		this.rollScores.add(RollScoreMapper.MAPPER.toRollScore(rollScoreDm));
 	}
 	
-	public RollScoreDm getLastTurnScore(UUID playerId, UUID turnId) {
+	public RollScoreDm getPlayerTurnScore(UUID playerId, UUID turnId) {
 		RollScore turnScore = 
 				this.rollScores.stream()
 						.filter(rollScore -> rollScore.playerId == playerId && rollScore.turnId == turnId)
 						.max((score1, score2) -> score2.id.compareTo(score1.id)).get();
+		return RollScoreMapper.MAPPER.toRollScoreDm(turnScore);
+	}
+
+	public RollScoreDm getLastRollScore()
+	{
+		if (this.rollScores.isEmpty())
+		{
+			return null;
+		}
+		RollScore turnScore = this.rollScores.get(this.rollScores.size() - 1);
 		return RollScoreMapper.MAPPER.toRollScoreDm(turnScore);
 	}
 
@@ -45,6 +55,5 @@ public class RollScoreDaImpl implements IRollScoreDa {
 				.filter(score -> score.playerId == playerId && score.turnId == turnId)
 				.map(score -> score.turnTotal = 0);
 	}
-
 
 }

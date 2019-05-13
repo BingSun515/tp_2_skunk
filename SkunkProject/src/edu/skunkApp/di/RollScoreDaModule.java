@@ -6,6 +6,7 @@ import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.businessobject.Implementation.GameRulesEngineBoImpl;
 import edu.skunkApp.businessobject.Implementation.RollBoImpl;
+import edu.skunkApp.businessobject.Implementation.RoundBoImpl;
 import edu.skunkApp.dataAccess.IKittyDa;
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.dataAccess.IRollScoreDa;
@@ -37,5 +38,10 @@ public class RollScoreDaModule {
 	
 	@Provides IRollBo provideRoll() {
 		return new RollBoImpl();
+	}
+	
+	@Provides IRoundBo provideRound()
+	{
+		return new RoundBoImpl();
 	}
 }

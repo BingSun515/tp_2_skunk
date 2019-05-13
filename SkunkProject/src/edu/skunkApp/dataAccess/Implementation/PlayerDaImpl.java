@@ -14,17 +14,20 @@ import edu.skunkApp.modelMapper.PlayerMapper;
 import edu.skunkApp.dataAccess.IPlayerDa;
 
 @Singleton
-public class PlayerDaImpl implements IPlayerDa {
+public class PlayerDaImpl implements IPlayerDa
+{
 
 	@Inject ArrayList<Player> _players;	
 
-	public void setChipCount(UUID playerId, int chipCount) {
+	public void setChipCount(UUID playerId, int chipCount)
+	{
 		this._players.stream()
 					.filter(player -> player.playerId == playerId)
 					.map(player -> player.chipCount += chipCount);
 	}
 
-	public boolean create(ArrayList<Player> players) {
+	public boolean create(ArrayList<Player> players)
+	{
 		boolean success = false;
 		try {
 			this._players = players;
@@ -38,7 +41,8 @@ public class PlayerDaImpl implements IPlayerDa {
 		return success;
 	}
 
-	public ArrayList<PlayerDm> getPlayers() {
+	public ArrayList<PlayerDm> getPlayers()
+	{
 		return PlayerMapper.MAPPER.toPlayerDmList(this._players);
 	}
 	
