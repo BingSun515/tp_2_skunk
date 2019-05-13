@@ -12,8 +12,9 @@ public class RollBoImplTest {
 	public void testgetRoll() {
 		
 		RollBoImpl rbi1 = new RollBoImpl();
-		RollDm rd1 = new RollDm();
 		
+		assertEquals(3, rbi1.getRoll().diceTotal = 3);
+
 	}
 
 }
