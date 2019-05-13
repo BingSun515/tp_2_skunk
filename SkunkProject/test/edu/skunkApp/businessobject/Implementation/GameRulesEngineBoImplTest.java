@@ -137,5 +137,25 @@ public class GameRulesEngineBoImplTest {
 		assertEquals(false, grebi3.isRollDeuceSkunk(rd3));
 		
 	}
+	@Test
+	public void testisRollDeuceSkunk4() {
+		
+		GameRulesEngineBoImpl grebi3 = new GameRulesEngineBoImpl();
+		RollDm rd3 = new RollDm();
+		rd3.die1 = 1;
+		rd3.die2 = 4;
+		assertEquals(false, grebi3.isRollDeuceSkunk(rd3));
+		
+	}
+	@Test
+	public void testisRollDeuceSkunk5() {
+		
+		GameRulesEngineBoImpl grebi3 = new GameRulesEngineBoImpl();
+		RollDm rd3 = new RollDm();
+		rd3.die1 = 3;
+		rd3.die2 = 1;
+		assertEquals(false, grebi3.isRollDeuceSkunk(rd3));
+		
+	}
 	
 } 
