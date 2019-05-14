@@ -34,6 +34,7 @@ public class PlayerBoImplTest {
 		player.name = "Eric";
 		ar1.add(player);
 		PlayerBoImpl pb1 = new PlayerBoImpl();
+		
 	}
 	
 }
