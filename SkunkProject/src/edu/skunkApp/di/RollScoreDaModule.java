@@ -4,6 +4,7 @@ import dagger.Provides;
 import dagger.Module;
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRollBo;
+import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.businessobject.Implementation.GameRulesEngineBoImpl;
 import edu.skunkApp.businessobject.Implementation.RollBoImpl;
 import edu.skunkApp.businessobject.Implementation.RoundBoImpl;

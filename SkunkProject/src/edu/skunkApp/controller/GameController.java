@@ -9,6 +9,7 @@ import edu.skunkApp.businessobject.IPlayerBo;
 import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
 import edu.skunkApp.businessobject.IRoundBo;
+import edu.skunkApp.common.PlayerInputEnum;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
@@ -72,15 +73,53 @@ public class GameController {
 	
 	private void playerPlayTillDone(UUID playerId)
 	{
+		do
 		{
 			this.nextPlayer(playerId);
 		}
-		while(this._playerBo.canContinuePlay());
+		while(this.getPlayerChoice());
 	}
 	
-	private boolean pl()
+	//TODO:
+	private boolean getPlayerChoice()
 	{
-		return false;
+		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
+		if (this._playerBo.canContinuePlay())
+		{
+			do
+			{
+				playerChoice = this.getPlayerInputChoice(""); //TODO: this is incomplete.
+				if (playerChoice == PlayerInputEnum.HELP)
+				{
+					this.displayHelp();
+				}
+			}  while (playerChoice == PlayerInputEnum.HELP);	
+		}
+		return playerChoice == PlayerInputEnum.Y;
+	}
+
+	//TODO:
+	private void displayHelp()
+	{
+		 //TODO: this is incomplete.
+	}
+	
+	private PlayerInputEnum getPlayerInputChoice(String choice)
+	{
+		if (choice != null && !choice.trim().isEmpty()) {
+			try {
+				return PlayerInputEnum.valueOf(choice.toUpperCase());
+			} catch (Exception e) {
+				// if player entered a choice other than y / n / help, return N
+				return PlayerInputEnum.N;
+			}
+		}
+		return PlayerInputEnum.N;
+	}
+
+	private void displayUIHelp()
+	{
+		//TODO call UI Help
 	}
 	
 	private void nextPlayer(UUID playerId)
