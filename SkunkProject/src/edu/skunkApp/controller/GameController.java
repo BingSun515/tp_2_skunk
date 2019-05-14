@@ -24,7 +24,7 @@ public class GameController {
 	void StartGame()
 	{
 		this.initializeNewGame();
-		this.displayGameSummary();
+//		this.displayGameSummary();
 	}
 	
 	private void initializeNewGame()
@@ -72,9 +72,15 @@ public class GameController {
 	
 	private void playerPlayTillDone(UUID playerId)
 	{
-	//START HERE. Player can ontinue
-		
-		this.nextPlayer(playerId);
+		{
+			this.nextPlayer(playerId);
+		}
+		while(this._playerBo.canContinuePlay());
+	}
+	
+	private boolean pl()
+	{
+		return false;
 	}
 	
 	private void nextPlayer(UUID playerId)
@@ -84,17 +90,17 @@ public class GameController {
 		_rollScoreDm.roll = _roll.getRoll();
 		_rollScoreBo.create(_rollScoreDm);
 		//get user input if he wants to proceed?
-		this.displayRollSummary();
+//		this.displayRollSummary();
 		_rollScoreDm = null;
 	}
 	
-	private void displayRollSummary()
-	{
-		
-	}
-
-	private void displayGameSummary()
-	{
-		
-	}
+//	private void displayRollSummary()
+//	{
+//		
+//	}
+//
+//	private void displayGameSummary()
+//	{
+//		
+//	}
 }

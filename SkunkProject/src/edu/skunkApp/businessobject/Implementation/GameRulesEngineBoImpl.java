@@ -36,7 +36,8 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * The winner of each game collects all chips in "kitty" and in addition five chips from 
  * each losing player or 10 chips from any player without a score.
  * **/
-public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
+public class GameRulesEngineBoImpl implements IGameRulesEngineBo
+{
 	@Inject RollScoreDaImpl _rollScoreDa;
 	private final int WINNING_SCORE = 100;
 		
@@ -131,5 +132,15 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 			return GameStatusEnum.CONTINUE_ROLL;
 		}
 		return lastTurnScore.gameStatus;
+	}
+
+	public boolean canContinueTurn()
+	{
+		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();
+		if (lastTurnScore == null)
+		{
+			return true;
+		}
+		return lastTurnScore.rollStatus == SkunkEnum.NOSKUNK;
 	}
 }

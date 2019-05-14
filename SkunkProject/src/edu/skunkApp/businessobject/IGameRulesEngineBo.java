@@ -18,5 +18,5 @@ public interface IGameRulesEngineBo {
 	public boolean isRollDeuceSkunk(RollDm roll);
 	
 	public GameStatusEnum getGameStatus();
-
+	public boolean canContinueTurn();
 }
