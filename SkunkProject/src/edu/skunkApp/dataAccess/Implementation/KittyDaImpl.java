@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import org.junit.Test;
-
 import edu.skunkApp.dataAccess.IKittyDa;
 
 public class KittyDaImpl implements IKittyDa {

@@ -1,7 +1,7 @@
 package edu.skunkApp.UI;
 
-//import org.beryx.textio.TextIO;
-//import org.beryx.textio.TextIoFactory;
+import org.beryx.textio.TextIO;
+import org.beryx.textio.TextIoFactory;
 
 public class SkunkAppUI {
 
@@ -14,15 +14,15 @@ public class SkunkAppUI {
 //		gameUi.startGame();
 		
 //		SkunkAppUI ui = new SkunkAppUI();
-//		ui.getUserInput();
+		SkunkAppUI.getUserInput();
 	}
-//	public void getUserInput()
-//	{
-//		TextIO textIO = TextIoFactory.getTextIO();
-//		String user = textIO.newStringInputReader()
-//		        .withDefaultValue("admin")
-//		        .read("Username");
-//		
-//		System.out.println(user);
-//	}
+	public static void getUserInput()
+	{
+		TextIO textIO = TextIoFactory.getTextIO();
+		String user = textIO.newStringInputReader()
+		        .withDefaultValue("admin")
+		        .read("Username");
+		
+		System.out.println(user);
+	}
 }
