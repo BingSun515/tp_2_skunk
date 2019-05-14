@@ -19,21 +19,12 @@ public class PlayerBoImplTest {
 		pd1.name = "Bing";
 		ArrayList<PlayerDm> ap1 = new ArrayList<PlayerDm>() ;
    
-		assertequal(ap1,pb1.get());
+		assertEquals(false,pb1.create(ap1));
+		
+		
 		
 	}
 
-	private void assertequal(ArrayList<PlayerDm> ap1, ArrayList<PlayerDm> arrayList) {
-		// TODO Auto-generated method stub
-		
-	}
 
-
-
-	
-	
-	
-	
-	
 	
 }
