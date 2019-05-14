@@ -1,7 +1,7 @@
-
-enum GameStatusEnum
-{
-	LAST_CHANCE,
-	TURN_COMPLETED,
-	INPROGRESS
-}
+//
+//enum GameStatusEnum
+//{
+//	LAST_CHANCE,
+//	TURN_COMPLETED,
+//	INPROGRESS
+//}
