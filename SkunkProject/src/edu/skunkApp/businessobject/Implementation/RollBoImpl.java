@@ -20,4 +20,5 @@ public class RollBoImpl implements IRollBo {
 //		this.roll.diceTotal
 		return this.roll;
 	}
+	
 }

@@ -2,9 +2,14 @@ package edu.skunkApp.businessobject.Implementation;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import edu.skunkApp.dataAccess.Implementation.RollScoreDaImpl;
+import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
+import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameRulesEngineBoImplTest {
 	
@@ -16,6 +21,35 @@ public class GameRulesEngineBoImplTest {
 		assertEquals(true, grebi1.getGameStatus(101));
 		
 	}
+	
+	//keeping implementation########################################
+	@Test
+	public void testmoveChips() {
+		RollScoreDm rsd1 = new RollScoreDm();
+		PlayerDm pd1 = new PlayerDm();
+		pd1.name = "Eric";
+		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		ar1.add(pd1);
+		
+	}
+	
+	
+	@Test
+	public void testsetSkunkAndScore() {
+		
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		
+	}
+	
+	@Test
+	public void testgetGameStatus() {
+		
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		RollScoreDaImpl rsdi1 = new RollScoreDaImpl();
+
+	}
+	//##############################################################
 	
 	@Test
 	public void testisRollSingleSkunk1() {
@@ -134,6 +168,26 @@ public class GameRulesEngineBoImplTest {
 		RollDm rd3 = new RollDm();
 		rd3.die1 = 3;
 		rd3.die2 = 4;
+		assertEquals(false, grebi3.isRollDeuceSkunk(rd3));
+		
+	}
+	@Test
+	public void testisRollDeuceSkunk4() {
+		
+		GameRulesEngineBoImpl grebi3 = new GameRulesEngineBoImpl();
+		RollDm rd3 = new RollDm();
+		rd3.die1 = 1;
+		rd3.die2 = 4;
+		assertEquals(false, grebi3.isRollDeuceSkunk(rd3));
+		
+	}
+	@Test
+	public void testisRollDeuceSkunk5() {
+		
+		GameRulesEngineBoImpl grebi3 = new GameRulesEngineBoImpl();
+		RollDm rd3 = new RollDm();
+		rd3.die1 = 3;
+		rd3.die2 = 1;
 		assertEquals(false, grebi3.isRollDeuceSkunk(rd3));
 		
 	}
