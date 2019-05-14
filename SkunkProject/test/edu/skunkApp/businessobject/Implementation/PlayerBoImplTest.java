@@ -5,6 +5,7 @@ import static org.junit.Assert.assertThat;
 import java.util.ArrayList;
 
 import org.junit.Test;
+import org.mockito.Mock;
 
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.domainModels.PlayerDm;
@@ -37,4 +38,21 @@ public class PlayerBoImplTest {
 		
 	}
 	
-}
+	
+	//#########################Mockito Test#######################
+	@Test
+	public void testcreate() {
+		PlayerBoImpl pbi1 = new PlayerBoImpl();
+		PlayerDm pd1 = new PlayerDm();
+		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
+		pd1.isWinner = true;
+		ar1.add(pd1);
+	}
+	
+	
+	
+	}
+	
+	//#########################Mockito Test#######################
+
+	
