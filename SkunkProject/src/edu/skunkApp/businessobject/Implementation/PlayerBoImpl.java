@@ -21,5 +21,5 @@ public class PlayerBoImpl implements IPlayerBo {
 	public ArrayList<PlayerDm> get()
 	{
 		return _playerDa.getPlayers();
-	}
+	} 
 }
