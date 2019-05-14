@@ -32,8 +32,22 @@ public class GameRulesEngineBoImplTest {
 		ar1.add(pd1);
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		grebi1.moveChips(rsd1, ar1);
-		assertEquals("Eric", pd1.name);
-		
+		assertEquals(-10, ar1.get(0).chipCount);
+		assertEquals(10, rsd1.chipChange);	
+	}
+	
+	@Test
+	public void testmoveChips2() {
+		RollScoreDm rsd1 = new RollScoreDm();
+		PlayerDm pd1 = new PlayerDm();
+		pd1.name = "Eric";
+		pd1.Score = 20;
+		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
+		ar1.add(pd1);
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		grebi1.moveChips(rsd1, ar1);
+		assertEquals(-5, ar1.get(0).chipCount);
+		assertEquals(5, rsd1.chipChange);	
 	}
 	
 	
