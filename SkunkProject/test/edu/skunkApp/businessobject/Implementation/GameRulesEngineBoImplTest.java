@@ -29,8 +29,10 @@ public class GameRulesEngineBoImplTest {
 		PlayerDm pd1 = new PlayerDm();
 		pd1.name = "Eric";
 		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
-		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		ar1.add(pd1);
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		grebi1.moveChips(rsd1, ar1);
+		assertEquals("Eric", pd1.name);
 		
 	}
 	
@@ -39,6 +41,7 @@ public class GameRulesEngineBoImplTest {
 	public void testsetSkunkAndScore() {
 		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		
 		
 	}
 	

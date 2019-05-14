@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 
@@ -26,5 +27,13 @@ public class PlayerBoImplTest {
 	}
 
 
+	@Test
+	public void testgetplayer() {
+		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
+		PlayerDm player = new PlayerDm();
+		player.name = "Eric";
+		ar1.add(player);
+		PlayerBoImpl pb1 = new PlayerBoImpl();
+	}
 	
 }
