@@ -15,6 +15,7 @@ import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.common.Constants;
 import edu.skunkApp.common.IntegerUtil;
 import edu.skunkApp.common.PlayerInputEnum;
+import edu.skunkApp.common.String;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
@@ -104,7 +105,7 @@ public class GameController {
 	//TODO:
 	private void displayHelp()
 	{
-		 return Constants.Game_RULES //TODO: this is incomplete.
+		 return Constants.GAME_RULE;//TODO: this is incomplete.
 	}
 	
 	private PlayerInputEnum getPlayerInputChoice(String choice)
@@ -137,6 +138,8 @@ public class GameController {
 				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1 , score.roll.die2 , score.roll.diceTotal))
 				.appendln(Constants.LINE);
 		
+	}
+	
 	}
 //
 //	private void displayGameSummary()
