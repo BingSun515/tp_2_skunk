@@ -61,9 +61,7 @@
 					</pluginExecution>
 					<pluginExecution>
 						<pluginExecutionFilter>
-							<groupId>
-								org.apache.maven.plugins
-							</groupId>
+							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>
 								maven-install-plugin
 							</artifactId>
@@ -84,7 +82,7 @@
 			</lifecycleMappingMetadata>
 		</configuration>
       </plugin>
-		<plugin>
+      <plugin>
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-install-plugin</artifactId>
 		    <version>2.5</version>
@@ -118,6 +116,33 @@
 		        	</configuration>
 		        </execution>
 		    </executions>
+		</plugin>
+		<plugin>
+		    <groupId>org.jacoco</groupId>
+		    <artifactId>jacoco-maven-plugin</artifactId>
+		    <version>0.7.1.201405082137</version>
+		    <executions>
+		        <execution>
+		            <goals>
+		                <goal>prepare-agent</goal>
+		            </goals>
+		            <configuration>
+			   			<destFile>${buildDirectory}/coverage-reports/jacoco-unit.exec</destFile>
+			   			<propertyName>surefireArgLine</propertyName>
+					</configuration>
+		        </execution>
+		        <execution>
+		            <id>report</id>
+		            <phase>prepare-package</phase>
+		            <goals>
+		                <goal>test</goal>
+		            </goals>
+		            <configuration>
+			   			<dataFile>${buildDirectory}/coverage-reports/jacoco-unit.exec</dataFile>
+			   			<propertyName>surefireArgLine</propertyName>
+					</configuration>
+		        </execution>
+    		</executions>
 		</plugin>
     </plugins>
   	</pluginManagement>
