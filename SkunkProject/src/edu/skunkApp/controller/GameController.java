@@ -104,7 +104,7 @@ public class GameController {
 	//TODO:
 	private void displayHelp()
 	{
-		 //TODO: this is incomplete.
+		 return Constants.Game_RULES //TODO: this is incomplete.
 	}
 	
 	private PlayerInputEnum getPlayerInputChoice(String choice)

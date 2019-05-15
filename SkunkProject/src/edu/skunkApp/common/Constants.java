@@ -1,4 +1,5 @@
-The user does not specify which rule to choose to seepackage edu.skunkApp.common;
+
+
 
 
 public class Constants
@@ -22,6 +23,8 @@ public class Constants
 	public static final String GAME_SUMMARY = "               GAME SUMMARY               ";
 
 	public static final String GAME_RULES = "               GAME RULES               ";
+	
+	public static final String GAME_RULE = GAME_RULE1 + GAME_RULE2+ GAME_RULE3+ GAME_RULE4+ GAME_RULE5+ GAME_RULE6+ GAME_RULE7+ GAME_RULE8 ;
 	
 	public static final String GAME_RULE1 = "1:Each letter of skunk represents a different round of the game; Total 5 rounds per Game.";
 	
