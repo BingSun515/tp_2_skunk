@@ -8,7 +8,7 @@ public class SkunkAppMain {
 	{
 		GameController gameController = new GameController();
 		gameController.StartGame();
-//		System.out.println("Hello world !!!");
+		System.out.println("Hello world !!!");
 //		StdOut.println("Hello World");
 //		gameUi.startGame();
 		

@@ -16,13 +16,13 @@ import edu.skunkApp.domainModels.RollScoreDm;
 public class GameController {
 
 	@Inject IRollScoreBo _rollScoreBo;
-	@Inject AppUIController _UIController;
+//	@Inject AppUIController _appUIController;
 	@Inject IPlayerBo _playerBo;
 	@Inject IRollBo _roll;
 	@Inject IRoundBo _roundBo;	
 
 	@Inject RollScoreDm _rollScoreDm;
-	void StartGame()
+	public void StartGame()
 	{
 		this.initializeNewGame();
 //		this.displayGameSummary();
@@ -30,8 +30,9 @@ public class GameController {
 	
 	private void initializeNewGame()
 	{
-		this.initPlayers();
-		this.startNextRound();
+		AppUIController.displayWelcome();
+//		this.initPlayers();
+//		this.startNextRound();
 	}
 	
 	private void initPlayers()
