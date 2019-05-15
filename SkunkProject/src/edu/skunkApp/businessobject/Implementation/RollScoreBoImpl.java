@@ -51,6 +51,11 @@ public class RollScoreBoImpl implements IRollScoreBo
 //		}
 	}
  
+	public RollScoreDm getLastRollScore()
+	{
+		return this._rollScoreDa.getLastRollScore();
+	}
+	
 	public void resetRollScoreForSkunk(RollScoreDm rollScoreDm)
 	{
 		if (rollScoreDm.rollStatus == SkunkEnum.DOUBLESKUNK)

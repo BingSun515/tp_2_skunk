@@ -5,6 +5,9 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 
+import org.apache.commons.text.TextStringBuilder;
+
+import edu.skunkApp.GameUI;
 import edu.skunkApp.businessobject.IPlayerBo;
 import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
@@ -40,7 +43,7 @@ public class GameController {
 		
 	private void createPlayers()
 	{
-		ArrayList<PlayerDm> players = PlayerInitController.getNewPlayers();
+		ArrayList<PlayerDm> players = PlayerController.getNewPlayers();
 		boolean result = _playerBo.create(players);
 		
 		if (result == false)
@@ -76,12 +79,11 @@ public class GameController {
 	{
 		do
 		{
-			this.nextPlayer(playerId);
+			this.nextPlayerPlays(playerId);
 		}
 		while(this.getPlayerChoice());
 	}
 	
-	//TODO:
 	private boolean getPlayerChoice()
 	{
 		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
@@ -89,7 +91,7 @@ public class GameController {
 		{
 			do
 			{
-				playerChoice = this.getPlayerInputChoice(""); //TODO: this is incomplete.
+				playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
 				if (playerChoice == PlayerInputEnum.HELP)
 				{
 					this.displayHelp();
@@ -107,7 +109,7 @@ public class GameController {
 	
 	private PlayerInputEnum getPlayerInputChoice(String choice)
 	{
-		if (choice != null && !choice.trim().isEmpty()) {
+		if (!choice.isBlank()) {
 			try {
 				return PlayerInputEnum.valueOf(choice.toUpperCase());
 			} catch (Exception e) {
@@ -123,19 +125,22 @@ public class GameController {
 		//TODO call UI Help
 	}
 	
-	private void nextPlayer(UUID playerId)
+	private void nextPlayerPlays(UUID playerId)
 	{
-		//How many rounds player will play?
 		_rollScoreDm.playerId = playerId;
 		_rollScoreDm.roll = _roll.getRoll();
 		_rollScoreBo.create(_rollScoreDm);
-		//get user input if he wants to proceed?
+
 		this.displayRollSummary();
 		_rollScoreDm = null;
 	}
 	
 	private void displayRollSummary()
 	{
+		RollScoreDm score = this._rollScoreBo.getLastRollScore();
+		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
+				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1 , score.roll.die2 , score.roll.diceTotal))
+				.appendln(Constants.LINE);
 		
 	}
 //

@@ -2,11 +2,12 @@ package edu.skunkApp.controller;
 
 import java.util.ArrayList;
 
+import edu.skunkApp.GameUI;
 import edu.skunkApp.common.Constants;
 import edu.skunkApp.common.IntegerUtil;
 import edu.skunkApp.domainModels.PlayerDm;
 
-public class PlayerInitController {
+public class PlayerController {
 
 	public static ArrayList<PlayerDm> getNewPlayers()
 	{		
@@ -14,7 +15,7 @@ public class PlayerInitController {
 		int playerCount = 0;
 		do
 		{
-			String playerCountInput = AppUIController.getPlayerCount();
+			String playerCountInput = PlayerController.getPlayerCount();
 			playerCount = IntegerUtil.getParsedValue(playerCountInput);
 			
 			if (playerCount < 2)
@@ -34,7 +35,7 @@ public class PlayerInitController {
 		ArrayList<PlayerDm> players = new ArrayList<PlayerDm>();
 		do
 		{
-			playerName = AppUIController.getPlayerName(""+userPlayerInputCount);
+			playerName = PlayerController.getPlayerName(""+userPlayerInputCount);
 			if (validatePlayerName(playerName))
 			{
 				PlayerDm player = new PlayerDm();
@@ -57,5 +58,15 @@ public class PlayerInitController {
 		return true;
 	}
 
+	//TODO: move this to PlayerInitController.java ?
+	public static String getPlayerName(String nthPlayer)
+	{
+		return GameUI.getPlayerInput(String.format(Constants.ENTER_PLAYER_NAME, nthPlayer));
+	}
 
+	public static String getPlayerCount()
+	{
+		return GameUI.getPlayerInput(Constants.PLAYER_INPUT);
+	}
+	
 }
