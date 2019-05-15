@@ -64,6 +64,7 @@ public class GameRulesEngineBoImplTest {
 		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		RollScoreDaImpl rsdi1 = new RollScoreDaImpl();
+		
 
 	}
 	//##############################################################

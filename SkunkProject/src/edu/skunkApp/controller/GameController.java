@@ -15,21 +15,17 @@ import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.common.Constants;
 import edu.skunkApp.common.IntegerUtil;
 import edu.skunkApp.common.PlayerInputEnum;
+import edu.skunkApp.common.String;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameController {
 
-	@Inject
-	IRollScoreBo _rollScoreBo;
-	@Inject
-	IPlayerBo _playerBo;
-	@Inject
-	IRollBo _roll;
-	@Inject
-	IRoundBo _roundBo;
-	@Inject
-	RollScoreDm _rollScoreDm;
+	@Inject IRollScoreBo _rollScoreBo;
+	@Inject IPlayerBo _playerBo;
+	@Inject IRollBo _roll;
+	@Inject IRoundBo _roundBo;	
+	@Inject RollScoreDm _rollScoreDm;
 
 	private static final String newline = "\n";
 
@@ -88,9 +84,10 @@ public class GameController {
 		return playerChoice == PlayerInputEnum.Y;
 	}
 
-	// TODO:
-	private void displayHelp() {
-		// TODO: this is incomplete.
+	//TODO:
+	private void displayHelp()
+	{
+		 return Constants.GAME_RULE;//TODO: this is incomplete.
 	}
 
 	private PlayerInputEnum getPlayerInputChoice(String choice) {
