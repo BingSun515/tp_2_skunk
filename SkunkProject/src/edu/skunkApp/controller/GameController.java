@@ -9,6 +9,8 @@ import edu.skunkApp.businessobject.IPlayerBo;
 import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
 import edu.skunkApp.businessobject.IRoundBo;
+import edu.skunkApp.common.Constants;
+import edu.skunkApp.common.IntegerUtil;
 import edu.skunkApp.common.PlayerInputEnum;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
@@ -20,8 +22,10 @@ public class GameController {
 	@Inject IPlayerBo _playerBo;
 	@Inject IRollBo _roll;
 	@Inject IRoundBo _roundBo;	
-
 	@Inject RollScoreDm _rollScoreDm;
+
+	private static final String newline ="\n";
+
 	public void StartGame()
 	{
 		this.initializeNewGame();
@@ -31,17 +35,13 @@ public class GameController {
 	private void initializeNewGame()
 	{
 		AppUIController.displayWelcome();
-//		this.initPlayers();
+		this.createPlayers();
 //		this.startNextRound();
 	}
-	
-	private void initPlayers()
-	{		
-		//UI will ask for how many players
-		// ---+ validation
-		//UI will prompt user for N number of players
-		// UI will forward collected users to player bo to save in player data
-		ArrayList<PlayerDm> players = AppUIController.getPlayers();
+		
+	private void createPlayers()
+	{
+		ArrayList<PlayerDm> players = PlayerInitController.getNewPlayers();
 		boolean result = _playerBo.create(players);
 		
 		if (result == false)
@@ -49,7 +49,6 @@ public class GameController {
 			throw new Error("Error creating players");
 		}
 	}
-
 	private void startNextRound()
 	{
 		if (this._roundBo.canProceedToNext())

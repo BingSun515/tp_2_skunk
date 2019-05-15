@@ -1,5 +1,6 @@
 package edu.skunkApp;
 
+import edu.princeton.cs.introcs.StdIn;
 import edu.princeton.cs.introcs.StdOut;
 
 public class GameUI {
@@ -9,26 +10,15 @@ public class GameUI {
 		GameUI.displayMessage(message);
 	}
 	
-	public static String display(String message, boolean getUserInput)
+	public static String getPlayerInput(String message)
 	{
-		GameUI.displayMessage(message);
-		
-		if (getUserInput)
-		{
-			return GameUI.getPlayerInput();
-		}
-		return null;
+		GameUI.displayMessage("\n"+message);
+		return StdIn.readString().trim();
 	}
 	
 	public static void displayMessage(String message)
 	{
 		StdOut.print(message);
 	}
-	
-	public static String getPlayerInput()
-	{
-		String playerInput = "";
-//		playerInput = System.in.read();
-		return playerInput.trim();
-	}
+
 }

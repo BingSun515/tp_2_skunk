@@ -1,6 +1,7 @@
-class IntegerUtil
+package edu.skunkApp.common;
+public class IntegerUtil
 {
-	static int getParsedValue(String number)
+	public static int getParsedValue(String number)
 	{
 		int parsedInt = 0;
 		try {

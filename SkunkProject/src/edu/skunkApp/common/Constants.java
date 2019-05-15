@@ -8,8 +8,11 @@ public class Constants
 
 	public static final String PLAYER_INPUT = "Enter the # of players : ";
 	public static final String CURRENT_PLAYER = " :: Current PLAYER :: ";
-	public static final String PLAYE_RNAME = "   PLAYER NAME:: ";
+	public static final String PLAYER_NAME = "   PLAYER NAME:: ";
 	public static final String WINNER = " Winner is player, ";
+	public static final String MINIMUM_PLAYERS = " Two players needed to play this game ";
+	public static final String ENTER_PLAYER_NAME = " Enter player name for, player %s : ";
+	public static final String INVALID_PLAYER_NAME = " Invalid player name. ";
 
 	public static final String GAME_SUMMARY = "               GAME SUMMARY               ";
 	public static final String GAME_RULES = "               GAME RULES               ";

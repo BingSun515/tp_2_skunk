@@ -16,6 +16,11 @@ public class AppUIController {
 		return new ArrayList<PlayerDm>();
 	}
 	
+	public static String getPlayerName(String nthPlayer)
+	{
+		return GameUI.getPlayerInput(String.format(Constants.ENTER_PLAYER_NAME, nthPlayer));
+	}
+	
 	public static void displayWelcome()
 	{
 		TextStringBuilder tb = new TextStringBuilder()
@@ -25,11 +30,18 @@ public class AppUIController {
 		GameUI.display(tb.toString());
 	}
 
-//	public static void displayWel()
-//	{
-//		ArrayList<String> tb = new ArrayList<String>();
-//		tb.appendln(Constants.DOUBLE_LINE)
-//		.appendln(Constants.WELCOME_MESSAGE)
-//		.appendln(Constants.DOUBLE_LINE);
-//	}
+	public static String getPlayerCount()
+	{
+		return GameUI.getPlayerInput(Constants.PLAYER_INPUT);
+	}
+	
+	public static void displayNewLineMessage(String message)
+	{
+		GameUI.display("\n"+message);
+	}
+	
+	public static void displayMessage(String message)
+	{
+		GameUI.display(message);
+	}
 }
