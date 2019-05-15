@@ -1,10 +1,7 @@
 package edu.skunkApp.businessobject.Implementation;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import edu.skunkApp.domainModels.RollDm;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RollBoImplTest {
 	
