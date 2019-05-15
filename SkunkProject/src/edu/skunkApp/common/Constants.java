@@ -41,7 +41,6 @@ public class Constants
 	public static final String GAME_RULE8 = "8:TWO skunks void the ENTIRE accumulated score and draws a penalty of 4 chips placed in the \"kitty,\" and loss of dice. Player must again start to score from scratch.";
 	
 	
-	
 //	TextStringBuilder tb = new TextStringBuilder().appendln(Constants.getUiMessage("aLine"))
 //			.appendln(Constants.getUiMessage("gameRules")).appendln(Constants.getUiMessage("aLine"))
 //			.appendln("1:Each letter of skunk represents a different round of the game; Total 5 rounds per Game.")
