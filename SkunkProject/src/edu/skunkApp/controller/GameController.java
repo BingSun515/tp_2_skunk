@@ -119,11 +119,6 @@ public class GameController {
 		}
 		return PlayerInputEnum.N;
 	}
-
-	private void displayUIHelp()
-	{
-		//TODO call UI Help
-	}
 	
 	private void nextPlayerPlays(UUID playerId)
 	{
