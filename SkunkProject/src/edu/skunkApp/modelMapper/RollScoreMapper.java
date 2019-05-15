@@ -12,9 +12,6 @@ import edu.skunkApp.domainModels.RollScoreDm;
 @Mapper
 public interface RollScoreMapper {
 
-//	RollScoreDm rollScoreDmToRollScore(RollScore domainModel);
-//	RollScore rollScoreToRollScoreDm(RollScoreDm entity);
-	
 	RollScoreMapper MAPPER = Mappers.getMapper(RollScoreMapper.class);
 
 	@Mapping(target = "id", defaultExpression = "java(edu.skunkApp.common.AutoInteger.nextId())")
