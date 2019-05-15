@@ -18,7 +18,6 @@ import edu.skunkApp.domainModels.RollScoreDm;
 public class GameController {
 
 	@Inject IRollScoreBo _rollScoreBo;
-//	@Inject AppUIController _appUIController;
 	@Inject IPlayerBo _playerBo;
 	@Inject IRollBo _roll;
 	@Inject IRoundBo _roundBo;	
@@ -36,7 +35,7 @@ public class GameController {
 	{
 		AppUIController.displayWelcome();
 		this.createPlayers();
-//		this.startNextRound();
+		this.startNextRound();
 	}
 		
 	private void createPlayers()
@@ -49,12 +48,14 @@ public class GameController {
 			throw new Error("Error creating players");
 		}
 	}
+	
 	private void startNextRound()
 	{
-		if (this._roundBo.canProceedToNext())
+		do 
 		{
 			this.startRound();
 		}
+		while (this._roundBo.canProceedToNext());
 	}
 
 	private void startRound()
@@ -129,14 +130,14 @@ public class GameController {
 		_rollScoreDm.roll = _roll.getRoll();
 		_rollScoreBo.create(_rollScoreDm);
 		//get user input if he wants to proceed?
-//		this.displayRollSummary();
+		this.displayRollSummary();
 		_rollScoreDm = null;
 	}
 	
-//	private void displayRollSummary()
-//	{
-//		
-//	}
+	private void displayRollSummary()
+	{
+		
+	}
 //
 //	private void displayGameSummary()
 //	{

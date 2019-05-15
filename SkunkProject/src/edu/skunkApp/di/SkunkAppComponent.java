@@ -3,7 +3,7 @@ package edu.skunkApp.di;
 import dagger.Component;
 import edu.skunkApp.dataAccess.IRollScoreDa;
 
-@Component(modules = {RollScoreDaModule.class})
-interface RollScoreDaComponent {
+@Component(modules = {SkunkAppModule.class})
+public interface SkunkAppComponent {
 	IRollScoreDa rollScoreDa();
 }

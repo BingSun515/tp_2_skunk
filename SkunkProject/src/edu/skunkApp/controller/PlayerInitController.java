@@ -22,23 +22,25 @@ public class PlayerInitController {
 				AppUIController.displayNewLineMessage(Constants.MINIMUM_PLAYERS);
 			}
 			
-		} while(playerCount > 1);
-		
+		} while(playerCount < 2);
+
 		return getNewPlayerNames(playerCount);
 	}
 	
 	public static ArrayList<PlayerDm> getNewPlayerNames(int playerCount)
 	{
 		String playerName;
+		int userPlayerInputCount = 1;
 		ArrayList<PlayerDm> players = new ArrayList<PlayerDm>();
 		do
 		{
-			playerName = AppUIController.getPlayerName(""+playerCount);
+			playerName = AppUIController.getPlayerName(""+userPlayerInputCount);
 			if (validatePlayerName(playerName))
 			{
 				PlayerDm player = new PlayerDm();
 				player.name = playerName;
 				players.add(player);
+				userPlayerInputCount = players.size() + 1;
 			}
 		} while(players.size() == playerCount);
 

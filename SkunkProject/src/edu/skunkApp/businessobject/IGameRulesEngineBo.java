@@ -19,4 +19,5 @@ public interface IGameRulesEngineBo {
 	
 	public GameStatusEnum getGameStatus();
 	public boolean canContinueTurn();
+	
 }
