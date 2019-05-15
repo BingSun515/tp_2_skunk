@@ -20,95 +20,80 @@ import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameController {
 
-	@Inject IRollScoreBo _rollScoreBo;
-	@Inject IPlayerBo _playerBo;
-	@Inject IRollBo _roll;
-	@Inject IRoundBo _roundBo;	
-	@Inject RollScoreDm _rollScoreDm;
+	@Inject
+	IRollScoreBo _rollScoreBo;
+	@Inject
+	IPlayerBo _playerBo;
+	@Inject
+	IRollBo _roll;
+	@Inject
+	IRoundBo _roundBo;
+	@Inject
+	RollScoreDm _rollScoreDm;
 
-	private static final String newline ="\n";
+	private static final String newline = "\n";
 
-	public void StartGame()
-	{
+	public void StartGame() {
 		this.initializeNewGame();
 //		this.displayGameSummary();
 	}
-	
-	private void initializeNewGame()
-	{
+
+	private void initializeNewGame() {
 		AppUIController.displayWelcome();
 		this.createPlayers();
 		this.startNextRound();
 	}
-		
-	private void createPlayers()
-	{
+
+	private void createPlayers() {
 		ArrayList<PlayerDm> players = PlayerController.getNewPlayers();
 		boolean result = _playerBo.create(players);
-		
-		if (result == false)
-		{
+
+		if (result == false) {
 			throw new Error("Error creating players");
 		}
 	}
-	
-	private void startNextRound()
-	{
-		do 
-		{
+
+	private void startNextRound() {
+		do {
 			this.startRound();
-		}
-		while (this._roundBo.canProceedToNext());
+		} while (this._roundBo.canProceedToNext());
 	}
 
-	private void startRound()
-	{
+	private void startRound() {
 		UUID roundId = _roundBo.create();
-		if (roundId != null)
-		{
+		if (roundId != null) {
 			ArrayList<PlayerDm> players = _playerBo.get();
 			players.forEach(player -> this.playerPlayTillDone(player.playerId));
-		}
-		else
-		{
-			throw new Error("Error creating round"); 
+		} else {
+			throw new Error("Error creating round");
 		}
 	}
-	
-	private void playerPlayTillDone(UUID playerId)
-	{
-		do
-		{
+
+	private void playerPlayTillDone(UUID playerId) {
+		do {
 			this.nextPlayerPlays(playerId);
-		}
-		while(this.getPlayerChoice());
+		} while (this.getPlayerChoice());
 	}
-	
-	private boolean getPlayerChoice()
-	{
+
+	private boolean getPlayerChoice() {
 		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
-		if (this._playerBo.canContinuePlay())
-		{
-			do
-			{
+		if (this._playerBo.canContinuePlay()) {
+			do {
 				playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
-				if (playerChoice == PlayerInputEnum.HELP)
-				{
+				if (playerChoice == PlayerInputEnum.HELP) {
 					this.displayHelp();
 				}
-			}  while (playerChoice == PlayerInputEnum.HELP);	
+			} while (playerChoice == PlayerInputEnum.HELP);
 		}
 		return playerChoice == PlayerInputEnum.Y;
 	}
 
-	//TODO:
-	private void displayHelp()
-	{
-		 //TODO: this is incomplete.
+	// TODO:
+	private void displayHelp() {
+		// TODO: this is incomplete.
 	}
-	
-	private PlayerInputEnum getPlayerInputChoice(String choice)
-	{
+
+	private PlayerInputEnum getPlayerInputChoice(String choice) {
 		if (!choice.isBlank()) {
 			try {
 				return PlayerInputEnum.valueOf(choice.toUpperCase());
@@ -119,26 +104,29 @@ public class GameController {
 		}
 		return PlayerInputEnum.N;
 	}
-	
-	private void nextPlayerPlays(UUID playerId)
-	{
+
+	private void nextPlayerPlays(UUID playerId) {
 		_rollScoreDm.playerId = playerId;
 		_rollScoreDm.roll = _roll.getRoll();
 		_rollScoreBo.create(_rollScoreDm);
 
-		this.displayRollSummary();
+		this.displayRollScoreSummary();
 		_rollScoreDm = null;
 	}
-	
-	private void displayRollSummary()
-	{
+
+	private void displayRollScoreSummary() {
 		RollScoreDm score = this._rollScoreBo.getLastRollScore();
 		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
-				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1 , score.roll.die2 , score.roll.diceTotal))
+				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
 				.appendln(Constants.LINE);
-		
+
 	}
-//
+
+	private void displayPlayerSummary() {
+
+	}
+
+	//
 //	private void displayGameSummary()
 //	{
 //		
