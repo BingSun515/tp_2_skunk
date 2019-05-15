@@ -4,3 +4,5 @@
 /SkunkProject/.gitignore
 .ucdetector_reports/*
 /SkunkProject/dist/*
+/.idea/*
+/SkunkProject/*.bat
