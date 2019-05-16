@@ -1,23 +1,19 @@
 package edu.skunkApp.dataAccess.Implementation;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-import java.util.ArrayList;
-
+import edu.skunkApp.common.mapper.PlayerMapper;
 import edu.skunkApp.data.Player;
-import edu.skunkApp.domainModels.PlayerDm;
-import edu.skunkApp.modelMapper.PlayerMapper;
+import edu.skunkApp.data.Store;
 import edu.skunkApp.dataAccess.IPlayerDa;
+import edu.skunkApp.domainModels.PlayerDm;
 
-@Singleton
 public class PlayerDaImpl implements IPlayerDa
 {
 
-	@Inject ArrayList<Player> _players;	
+	private final ArrayList<Player> _players = Store.getPlayer();	
 
 	public void setChipCount(UUID playerId, int chipCount)
 	{
@@ -30,7 +26,7 @@ public class PlayerDaImpl implements IPlayerDa
 	{
 		boolean success = false;
 		try {
-			this._players = players;
+			this._players.addAll(_players);
 			success = true;
 		}
 		catch(Exception e)
@@ -43,7 +39,7 @@ public class PlayerDaImpl implements IPlayerDa
 
 	public ArrayList<PlayerDm> getPlayers()
 	{
-		return PlayerMapper.MAPPER.toPlayerDmList(this._players);
+		return PlayerMapper.toPlayerDmList(this._players);
 	}
 	
 	public PlayerDm getWinner() {
@@ -51,7 +47,7 @@ public class PlayerDaImpl implements IPlayerDa
 										.filter(player -> player.isWinner == true)
 										.findFirst()
 										.orElse(null);
-		return winner != null ? PlayerMapper.MAPPER.toPlayerDm(winner) : null;
+		return winner != null ? PlayerMapper.toPlayerDm(winner) : null;
 	}
 	
 	public void setWinner(UUID playerId) {
@@ -65,11 +61,11 @@ public class PlayerDaImpl implements IPlayerDa
 			return null;
 		}
 		
-		List<Player> losers = this._players.stream()
+		ArrayList<Player> losers = (ArrayList<Player>) this._players.stream()
 								.filter(player -> player.isWinner != true)
 								.collect(Collectors.toList());
 	
-		return PlayerMapper.MAPPER.toPlayerDmList(new ArrayList<Player>(losers));
+		return PlayerMapper.toPlayerDmList(losers);
 	}
 	
 	public boolean hasWinner() {

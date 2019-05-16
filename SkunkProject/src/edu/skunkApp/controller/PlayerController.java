@@ -31,23 +31,24 @@ public class PlayerController {
 	public static ArrayList<PlayerDm> getNewPlayerNames(int playerCount)
 	{
 		String playerName;
-		int userPlayerInputCount = 1;
+
 		ArrayList<PlayerDm> players = new ArrayList<PlayerDm>();
-		do
+		
+		for (int i= 0; i < playerCount; i++)
 		{
-			playerName = PlayerController.getPlayerName(""+userPlayerInputCount);
-			if (validatePlayerName(playerName))
+			do
 			{
-				PlayerDm player = new PlayerDm();
-				player.name = playerName;
-				players.add(player);
-				userPlayerInputCount = players.size() + 1;
-			}
-		} while(players.size() == playerCount);
+				playerName = PlayerController.getPlayerName("" + players.size() + 1);
+			} while (!validatePlayerName(playerName));
+			
+			PlayerDm player = new PlayerDm();
+			player.name = playerName;
+			players.add(player);
+		}
 
 		return players;
 	}
-	
+		
 	public static boolean validatePlayerName(String playerName)
 	{
 		if (playerName.isBlank() || playerName.isEmpty())

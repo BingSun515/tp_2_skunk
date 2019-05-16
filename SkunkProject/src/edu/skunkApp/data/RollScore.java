@@ -11,11 +11,11 @@ public class RollScore {
 	public UUID playerId;
 	public UUID roundId;
 	public UUID turnId;
-	UUID rollId;
-	int die1;
-	int die2;
-	int diceTotal;
-	SkunkEnum rollStatus;
+	public UUID rollId;
+	public int die1;
+	public int die2;
+	public int diceTotal;
+	public SkunkEnum rollStatus;
 	public int turnTotal;
 	public int roundTotal;
 }

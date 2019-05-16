@@ -5,24 +5,21 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import edu.skunkApp.common.mapper.RollScoreMapper;
 import edu.skunkApp.data.RollScore;
+import edu.skunkApp.data.Store;
 import edu.skunkApp.dataAccess.IRollScoreDa;
 import edu.skunkApp.domainModels.RollScoreDm;
-import edu.skunkApp.modelMapper.RollScoreMapper;
 
-@Singleton
 public class RollScoreDaImpl implements IRollScoreDa {
 	
 	//TODO: inject
-	private ArrayList<RollScore> rollScores;
+	private final ArrayList<RollScore> rollScores = Store.getRollScore();
 
 	//Insert
 	public void create(RollScoreDm rollScoreDm)
 	{
-		this.rollScores.add(RollScoreMapper.MAPPER.toRollScore(rollScoreDm));
+		this.rollScores.add(RollScoreMapper.toRollScore(rollScoreDm));
 	}
 	
 	public ArrayList<RollScoreDm> baseQuery()
@@ -33,7 +30,7 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		}
 		else
 		{
-			return RollScoreMapper.MAPPER.toRollScoreDmList(this.rollScores);
+			return RollScoreMapper.toRollScoreDmList(this.rollScores);
 		}
 	}
 	

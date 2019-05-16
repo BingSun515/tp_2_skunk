@@ -2,31 +2,22 @@ package edu.skunkApp.businessobject.Implementation;
 
 import java.util.UUID;
 
-import javax.inject.Inject;
-
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.common.GameStatusEnum;
+import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.dataAccess.IRoundDa;
-import edu.skunkApp.dataAccess.Implementation.RoundDaImpl;
-import edu.skunkApp.domainModels.RoundDm;
-import edu.skunkApp.modelMapper.RoundMapper;
 
-public class RoundBoImpl implements IRoundBo
-{
-	@Inject IRoundDa _roundDa;
-	@Inject IGameRulesEngineBo _gameRulesEngineBo;
+public class RoundBoImpl implements IRoundBo {
 
-	public UUID create()
-	{
-		int roundCount = this._roundDa.getRounds().size() + 1;
-		RoundDm roundDm = new RoundDm();
-		roundDm.description = "Round - " + roundCount;
-		return _roundDa.create(RoundMapper.MAPPER.toRound(roundDm));
+	IRoundDa _roundDa = SkunkAppModule.provideRoundDa();
+	IGameRulesEngineBo _gameRulesEngineBo = SkunkAppModule.provideGameRulesEngineBo();
+
+	public UUID create() {
+		return _roundDa.create();
 	}
 
-	public boolean canProceedToNext()
-	{
-		return (_gameRulesEngineBo.getGameStatus() != GameStatusEnum.GAME_COMPLETED);
+	public boolean canProceedToNext() {
+		return (this._gameRulesEngineBo.getGameStatus() != GameStatusEnum.GAME_COMPLETED);
 	}
 }

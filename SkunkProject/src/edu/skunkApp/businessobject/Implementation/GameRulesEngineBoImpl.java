@@ -2,13 +2,11 @@ package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
-import edu.skunkApp.dataAccess.Implementation.RollScoreDaImpl;
-import edu.skunkApp.dataAccess.Implementation.RoundDaImpl;
+import edu.skunkApp.common.di.SkunkAppModule;
+import edu.skunkApp.dataAccess.IRollScoreDa;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 import edu.skunkApp.domainModels.RollScoreDm;
@@ -38,7 +36,7 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * **/
 public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 {
-	@Inject RollScoreDaImpl _rollScoreDa;
+	private final IRollScoreDa _rollScoreDa = SkunkAppModule.provideRollScoreDa();
 	private final int WINNING_SCORE = 100;
 		
 	public boolean getGameStatus(int roundTotal)

@@ -3,22 +3,22 @@ package edu.skunkApp.dataAccess.Implementation;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import edu.skunkApp.common.mapper.RoundMapper;
 import edu.skunkApp.data.Round;
+import edu.skunkApp.data.Store;
 import edu.skunkApp.dataAccess.IRoundDa;
 import edu.skunkApp.domainModels.RoundDm;
-import edu.skunkApp.modelMapper.RoundMapper;
 
-@Singleton
 public class RoundDaImpl implements IRoundDa {
 	
-	@Inject ArrayList<Round> _rounds;
+	ArrayList<Round> _rounds = Store.getRound();
 
-	public UUID create(Round round)
+	public UUID create()
 	{
 		try {
+			Round round = new Round();
+			round.id = UUID.randomUUID();
+			round.description = "Round - " + this._rounds.size() + 1;
 			this._rounds.add(round);
 			return round.id;
 		}
@@ -31,6 +31,6 @@ public class RoundDaImpl implements IRoundDa {
 
 	public ArrayList<RoundDm> getRounds()
 	{
-		return RoundMapper.MAPPER.toRoundDmList(this._rounds);
+		return RoundMapper.toRoundDmList(this._rounds);
 	}
 }

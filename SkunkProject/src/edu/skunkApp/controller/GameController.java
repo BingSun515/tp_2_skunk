@@ -3,8 +3,6 @@ package edu.skunkApp.controller;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import javax.inject.Inject;
-
 import org.apache.commons.text.TextStringBuilder;
 
 import edu.skunkApp.GameUI;
@@ -13,18 +11,17 @@ import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
 import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.common.Constants;
-import edu.skunkApp.common.IntegerUtil;
 import edu.skunkApp.common.PlayerInputEnum;
+import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
 public class GameController {
 
-	@Inject IRollScoreBo _rollScoreBo;
-	@Inject IPlayerBo _playerBo;
-	@Inject IRollBo _roll;
-	@Inject IRoundBo _roundBo;	
-	@Inject RollScoreDm _rollScoreDm;
+	IRollScoreBo _rollScoreBo = SkunkAppModule.provideRollScoreBo();
+	IPlayerBo _playerBo = SkunkAppModule.providePlayerBo();
+	IRollBo _roll = SkunkAppModule.provideRollBo();
+	IRoundBo _roundBo = SkunkAppModule.provideRoundBo();	
 
 	private static final String newline = "\n";
 
@@ -41,7 +38,8 @@ public class GameController {
 
 	private void createPlayers() {
 		ArrayList<PlayerDm> players = PlayerController.getNewPlayers();
-		boolean result = _playerBo.create(players);
+
+		boolean result = this._playerBo.create(players);
 
 		if (result == false) {
 			throw new Error("Error creating players");
@@ -103,12 +101,13 @@ public class GameController {
 	}
 
 	private void nextPlayerPlays(UUID playerId) {
-		_rollScoreDm.playerId = playerId;
-		_rollScoreDm.roll = _roll.getRoll();
-		_rollScoreBo.create(_rollScoreDm);
+		RollScoreDm rollScoreDm = new RollScoreDm();
+		rollScoreDm.playerId = playerId;
+		rollScoreDm.roll = _roll.getRoll();
+		_rollScoreBo.create(rollScoreDm);
 
 		this.displayRollScoreSummary();
-		_rollScoreDm = null;
+		rollScoreDm = null;
 	}
 
 	private void displayRollScoreSummary() {

@@ -1,10 +1,9 @@
 package edu.skunkApp.businessobject.Implementation;
 
-import javax.inject.Inject;
-
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
 import edu.skunkApp.common.SkunkEnum;
+import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.dataAccess.IKittyDa;
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.dataAccess.IRollScoreDa;
@@ -12,12 +11,10 @@ import edu.skunkApp.domainModels.RollScoreDm;
 
 public class RollScoreBoImpl implements IRollScoreBo
 {
-	
-	@Inject IRollScoreDa _rollScoreDa;
-	@Inject IPlayerDa _playerDa;
-	@Inject IKittyDa _kittyDa;
-	@Inject IGameRulesEngineBo _gameRulesEngine;
-	@Inject RollBoImpl _roll;
+	private final IRollScoreDa _rollScoreDa = SkunkAppModule.provideRollScoreDa();
+	private final IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
+	private final IKittyDa _kittyDa = SkunkAppModule.provideKittyDa();
+	private final IGameRulesEngineBo _gameRulesEngine = SkunkAppModule.provideGameRulesEngineBo();
 
 	public void create(RollScoreDm rollScoreDm)
 	{

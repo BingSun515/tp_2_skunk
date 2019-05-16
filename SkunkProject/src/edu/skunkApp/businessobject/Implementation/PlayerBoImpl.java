@@ -2,22 +2,21 @@ package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IPlayerBo;
+import edu.skunkApp.common.mapper.PlayerMapper;
 import edu.skunkApp.dataAccess.IPlayerDa;
+import edu.skunkApp.dataAccess.Implementation.PlayerDaImpl;
 import edu.skunkApp.domainModels.PlayerDm;
-import edu.skunkApp.modelMapper.PlayerMapper;
 
 public class PlayerBoImpl implements IPlayerBo {
 	
-	@Inject IPlayerDa _playerDa;
-	@Inject IGameRulesEngineBo _gameRulesEngineBoImpl;
+	private final IPlayerDa _playerDa = new PlayerDaImpl();
+	IGameRulesEngineBo _gameRulesEngineBoImpl;
 	
 	public boolean create(ArrayList<PlayerDm> players)
 	{
-		return _playerDa.create(PlayerMapper.MAPPER.toPlayerList(players));
+		return this._playerDa.create(PlayerMapper.toPlayerList(players));
 	}
 	
 	public ArrayList<PlayerDm> get()
