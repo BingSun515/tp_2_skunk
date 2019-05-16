@@ -29,9 +29,7 @@ public class RollScoreBoImpl implements IRollScoreBo
 	{
 		if (rollScoreDm.rollStatus != SkunkEnum.NOSKUNK)
 		{
-			this.resetRollScoreForSkunk(rollScoreDm);
-			this._kittyDa.setChipCount(rollScoreDm.chipChange);
-			this._playerDa.setChipCount(rollScoreDm.playerId, rollScoreDm.chipChange);
+			this._gameRulesEngine.resetRollScoreForSkunk(rollScoreDm);
 		}
 		
 		//SET THIS STATUS ONLY WHEN THE WINNER DECIDES SETS HIS GOAL
@@ -52,17 +50,8 @@ public class RollScoreBoImpl implements IRollScoreBo
 	{
 		return this._rollScoreDa.getLastRollScore();
 	}
-	
-	public void resetRollScoreForSkunk(RollScoreDm rollScoreDm)
-	{
-		if (rollScoreDm.rollStatus == SkunkEnum.DOUBLESKUNK)
-		{
-			_rollScoreDa.resetPlayerScore(rollScoreDm.playerId);
-		}
-		else if (rollScoreDm.rollStatus == SkunkEnum.SINGLESKUNK ||
-				rollScoreDm.rollStatus == SkunkEnum.DEUCESKUNK)
-		{
-			_rollScoreDa.resetPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
-		}
+
+	public void setWinnerForWinningScore(RollScoreDm rollScoreDm) {
+		
 	}
 }

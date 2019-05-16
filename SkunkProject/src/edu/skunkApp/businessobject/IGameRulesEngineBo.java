@@ -17,6 +17,8 @@ public interface IGameRulesEngineBo {
 	public boolean isRollDoubleSkunk(RollDm roll);
 	public boolean isRollDeuceSkunk(RollDm roll);
 	
+	public void resetRollScoreForSkunk(RollScoreDm rollScoreDm);
+	
 	public GameStatusEnum getGameStatus();
 	public boolean canContinueTurn();
 	

@@ -13,7 +13,7 @@ import edu.skunkApp.domainModels.PlayerDm;
 public class PlayerBoImpl implements IPlayerBo {
 	
 	private IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
-	IGameRulesEngineBo _gameRulesEngineBoImpl;
+	IGameRulesEngineBo _gameRulesEngineBoImpl = SkunkAppModule.provideGameRulesEngineBo();
 	
 	public boolean create(ArrayList<PlayerDm> players)
 	{
@@ -28,5 +28,9 @@ public class PlayerBoImpl implements IPlayerBo {
 	public boolean canContinuePlay()
 	{
 		return this._gameRulesEngineBoImpl.canContinueTurn();
+	}
+	
+	public PlayerDm getWinner() {
+		return this._playerDa.getWinner();
 	}
 }

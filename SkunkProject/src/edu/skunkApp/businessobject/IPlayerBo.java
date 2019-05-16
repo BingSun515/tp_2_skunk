@@ -8,4 +8,6 @@ public interface IPlayerBo {
 	public boolean create(ArrayList<PlayerDm> players);
 	public ArrayList<PlayerDm> get();
 	public boolean canContinuePlay();
+	
+	public PlayerDm getWinner();
 }

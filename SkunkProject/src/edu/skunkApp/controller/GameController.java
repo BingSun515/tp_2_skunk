@@ -11,6 +11,7 @@ import edu.skunkApp.businessobject.IRollBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
 import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.common.Constants;
+import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.PlayerInputEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.domainModels.PlayerDm;
@@ -21,7 +22,7 @@ public class GameController {
 	IRollScoreBo _rollScoreBo = SkunkAppModule.provideRollScoreBo();
 	IPlayerBo _playerBo = SkunkAppModule.providePlayerBo();
 	IRollBo _roll = SkunkAppModule.provideRollBo();
-	IRoundBo _roundBo = SkunkAppModule.provideRoundBo();	
+	IRoundBo _roundBo = SkunkAppModule.provideRoundBo();
 
 	private static final String newline = "\n";
 
@@ -56,11 +57,11 @@ public class GameController {
 		UUID roundId = _roundBo.create();
 		if (roundId != null) {
 			ArrayList<PlayerDm> players = _playerBo.get();
-			
-			for (PlayerDm player: players) {
+
+			for (PlayerDm player : players) {
 				this.playerPlayTillDone(player.playerId);
 			}
-			
+
 		} else {
 			throw new Error("Error creating round");
 		}
@@ -70,26 +71,6 @@ public class GameController {
 		do {
 			this.nextPlayerPlays(playerId);
 		} while (this.getPlayerChoice());
-	}
-
-	private boolean getPlayerChoice() {
-		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
-		if (this._playerBo.canContinuePlay()) {
-			do {
-				playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
-				if (playerChoice == PlayerInputEnum.HELP) {
-					this.displayHelp();
-				}
-			} while (playerChoice == PlayerInputEnum.HELP);
-		}
-		return playerChoice == PlayerInputEnum.Y;
-	}
-
-	//TODO:
-	private void displayHelp()
-	{
-//		 Constants.GAME_RULE;//TODO: this is incomplete.
-		//public static final String GAME_RULE = GAME_RULE1 + GAME_RULE2+ GAME_RULE3+ GAME_RULE4+ GAME_RULE5+ GAME_RULE6+ GAME_RULE7+ GAME_RULE8 ;
 	}
 
 	private PlayerInputEnum getPlayerInputChoice(String choice) {
@@ -110,17 +91,39 @@ public class GameController {
 		rollScoreDm.roll = _roll.getRoll();
 		_rollScoreBo.create(rollScoreDm);
 
-		this.displayRollScoreSummary();
+		this.displaySummaries();
 		rollScoreDm = null;
 	}
 
-	private void displayRollScoreSummary() {
+	private void displaySummaries() {
 		RollScoreDm score = this._rollScoreBo.getLastRollScore();
-		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
-				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
-				.appendln(Constants.LINE);
 
+		if (score.gameStatus == GameStatusEnum.WINNER) {
+			this.displaySummaryForWinner(score);
+		} else {
+			this.displayRollScoreSummary(score);
+		}
 	}
+
+	private void displayRollScoreSummary(RollScoreDm score) {
+		PlayerController.displayRollScoreSummary(score);
+	}
+
+	private void displaySummaryForWinner(RollScoreDm score) {
+		
+		// TODO
+		String winnerName = this._playerBo.getWinner().name;
+		PlayerController.displayWinnerAndChoices(winnerName);
+		boolean winnerContinues = this.getPlayerInputFromChoices() == PlayerInputEnum.Y;
+
+		_rollScoreBo.playLastChance(score);
+		// set game to continue
+		// set last turn score to no winner.
+		// player will always be a winner until he scores skunk
+		// skunkn should reset scores to zero
+		
+	}
+
 
 	private void displayPlayerSummary() {
 
@@ -130,5 +133,53 @@ public class GameController {
 //	private void displayGameSummary()
 //	{
 //		
-//	}
+//	}	
+
+	private boolean getPlayerChoice() {
+		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
+		if (this._playerBo.canContinuePlay()) {
+			playerChoice = this.getPlayerInputFromChoices();
+			
+		}
+		return playerChoice == PlayerInputEnum.Y;
+	}
+	
+	private PlayerInputEnum getPlayerInputFromChoices() {
+		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
+		do {
+			playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
+			
+			switch(playerChoice)
+			{
+				case HELP:
+					AppUIController.displayHelp();
+					break;
+				case R:
+					this.displayRoundSummary();
+					break;
+				case M:
+					this.displayMyScore();
+					break;
+			default:
+				playerChoice = PlayerInputEnum.Y;
+				break;
+			}
+
+		} while (playerChoice == PlayerInputEnum.HELP ||
+				 playerChoice == PlayerInputEnum.R ||
+				 playerChoice == PlayerInputEnum.M);
+		
+		return playerChoice;
+	}
+
+	public void displayRoundSummary()
+	{
+	//TODO
+		System.out.println("TODO: displayRoundSummary");
+	}
+	
+	public void displayMyScore()
+	{
+		System.out.println("TODO: displayMyScore");	
+	}
 }

@@ -41,8 +41,9 @@ public class PlayerMapper {
 		ArrayList<PlayerDm> _players = new ArrayList<PlayerDm>();
 
 		for (Player player: players) {
-			_players.add(toPlayerDm1(player));
+			_players.add(PlayerMapper.toPlayerDm1(player));
 		}
+		System.out.println("_players :: "  +_players.size());
 		return _players;
 	}
 

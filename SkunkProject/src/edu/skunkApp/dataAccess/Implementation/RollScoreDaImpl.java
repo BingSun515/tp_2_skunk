@@ -1,7 +1,9 @@
 package edu.skunkApp.dataAccess.Implementation;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -39,28 +41,34 @@ public class RollScoreDaImpl implements IRollScoreDa {
 												UUID turnId,
 												UUID roundId)
 	{
-		Stream<RollScoreDm> rollScoreDmStream = this.baseQuery().stream();
+		Supplier<Stream<RollScoreDm>> rollScoreDmSupplier = () -> this.baseQuery().stream();
 		if (playerId != null)
 		{
-			rollScoreDmStream.filter(rollScore -> rollScore.playerId == playerId);
+			rollScoreDmSupplier.get().filter(rollScore -> rollScore.playerId == playerId);
 		}
 		
 		if (turnId != null)
 		{
-			rollScoreDmStream.filter(rollScore -> rollScore.turnId == turnId);
+			rollScoreDmSupplier.get().filter(rollScore -> rollScore.turnId == turnId);
 		}
 		
 		if (roundId != null)
 		{
-			rollScoreDmStream.filter(rollScore -> rollScore.roundId == roundId);
+			rollScoreDmSupplier.get().filter(rollScore -> rollScore.roundId == roundId);
 		}
-		rollScoreDmStream.sorted((score1, score2) -> Integer.compare(score2.id, score1.id));
-		return (ArrayList<RollScoreDm>) rollScoreDmStream.collect(Collectors.toList());
+		rollScoreDmSupplier.get().sorted((score1, score2) -> Integer.compare(score2.id, score1.id));
+		System.out.println("getFilteredRollScore");
+		return (ArrayList<RollScoreDm>) rollScoreDmSupplier.get().collect(Collectors.toList());
 	}
 	
 	public RollScoreDm getPlayerTurnScore(UUID playerId, UUID turnId)
 	{
 		ArrayList<RollScoreDm> score = this.getFilteredRollScore(playerId, turnId, null);
+		System.out.println("getPlayerTurnScore");
+		if(score.isEmpty())
+		{
+			return (RollScoreDm) List.of();
+		}
 		return score.get(score.size());
 	}
 

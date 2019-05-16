@@ -26,7 +26,7 @@ public class PlayerDaImpl implements IPlayerDa
 	{
 		boolean success = false;
 		try {
-			this._players.addAll(_players);
+			this._players.addAll(players);
 			success = true;
 		}
 		catch(Exception e)
@@ -46,8 +46,8 @@ public class PlayerDaImpl implements IPlayerDa
 		Player winner = this._players.stream()
 										.filter(player -> player.isWinner == true)
 										.findFirst()
-										.orElse(null);
-		return winner != null ? PlayerMapper.toPlayerDm(winner) : null;
+										.get();
+		return PlayerMapper.toPlayerDm(winner);
 	}
 	
 	public void setWinner(UUID playerId) {

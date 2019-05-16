@@ -6,6 +6,8 @@ import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
+import edu.skunkApp.dataAccess.IKittyDa;
+import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.dataAccess.IRollScoreDa;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
@@ -38,12 +40,15 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 {
 	private final IRollScoreDa _rollScoreDa = SkunkAppModule.provideRollScoreDa();
 	private final int WINNING_SCORE = 100;
+	private final IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
+	private final IKittyDa _kittyDa = SkunkAppModule.provideKittyDa();
 		
 	public boolean getGameStatus(int roundTotal)
 	{
 		return roundTotal >= this.WINNING_SCORE;
 	}
 	
+	//TODO
 	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers)
 	{
 		for (PlayerDm loser: losers)
@@ -134,6 +139,22 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 		return lastTurnScore.gameStatus;
 	}
 
+	public void resetRollScoreForSkunk(RollScoreDm rollScoreDm)
+	{
+		if (rollScoreDm.rollStatus == SkunkEnum.DOUBLESKUNK)
+		{
+			_rollScoreDa.resetPlayerScore(rollScoreDm.playerId);
+		}
+		else if (rollScoreDm.rollStatus == SkunkEnum.SINGLESKUNK ||
+				rollScoreDm.rollStatus == SkunkEnum.DEUCESKUNK)
+		{
+			_rollScoreDa.resetPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
+		}
+		this._kittyDa.setChipCount(rollScoreDm.chipChange);
+		this._playerDa.setChipCount(rollScoreDm.playerId, rollScoreDm.chipChange);
+	}
+
+	
 	public boolean canContinueTurn()
 	{
 		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();

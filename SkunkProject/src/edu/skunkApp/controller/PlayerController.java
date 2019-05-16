@@ -2,10 +2,13 @@ package edu.skunkApp.controller;
 
 import java.util.ArrayList;
 
+import org.apache.commons.text.TextStringBuilder;
+
 import edu.skunkApp.GameUI;
 import edu.skunkApp.common.Constants;
 import edu.skunkApp.common.IntegerUtil;
 import edu.skunkApp.domainModels.PlayerDm;
+import edu.skunkApp.domainModels.RollScoreDm;
 
 public class PlayerController {
 
@@ -36,10 +39,7 @@ public class PlayerController {
 		
 		for (int i= 0; i < playerCount; i++)
 		{
-			do
-			{
-				playerName = PlayerController.getPlayerName("" + players.size() + 1);
-			} while (!validatePlayerName(playerName));
+			playerName = PlayerController.getPlayerName("" + (players.size() + 1));
 			
 			PlayerDm player = new PlayerDm();
 			player.name = playerName;
@@ -47,16 +47,6 @@ public class PlayerController {
 		}
 
 		return players;
-	}
-		
-	public static boolean validatePlayerName(String playerName)
-	{
-		if (playerName.isBlank() || playerName.isEmpty())
-		{
-			AppUIController.displayNewLineMessage(Constants.INVALID_PLAYER_NAME);
-			return false;
-		}
-		return true;
 	}
 
 	//TODO: move this to PlayerInitController.java ?
@@ -69,5 +59,22 @@ public class PlayerController {
 	{
 		return GameUI.getPlayerInput(Constants.PLAYER_INPUT);
 	}
+
+	public static void displayWinnerAndChoices(String playerName)
+	{
+		TextStringBuilder tb = new TextStringBuilder()
+				.appendln(Constants.DOUBLE_LINE)
+				.appendln(String.format(Constants.WINNER, playerName))
+				.appendln(Constants.DOUBLE_LINE)
+				.appendln(Constants.PLAYER_CONTINUE);
+		GameUI.display(tb.toString());
+	}
 	
+	public static void displayRollScoreSummary(RollScoreDm score) {
+
+		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
+				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
+				.appendln(Constants.LINE);
+	}
+
 }
