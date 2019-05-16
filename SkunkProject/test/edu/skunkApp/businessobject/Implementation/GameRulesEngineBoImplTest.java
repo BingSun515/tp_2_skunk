@@ -1,10 +1,14 @@
 package edu.skunkApp.businessobject.Implementation;
 
-import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+//import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import edu.skunkApp.dataAccess.Implementation.RollScoreDaImpl;
 import edu.skunkApp.domainModels.PlayerDm;

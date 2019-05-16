@@ -1,10 +1,14 @@
 package edu.skunkApp.businessobject.Implementation;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 
-import org.junit.Test;
+//import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.mockito.Mock;
 
 import edu.skunkApp.dataAccess.IPlayerDa;
