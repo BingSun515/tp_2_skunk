@@ -56,7 +56,11 @@ public class GameController {
 		UUID roundId = _roundBo.create();
 		if (roundId != null) {
 			ArrayList<PlayerDm> players = _playerBo.get();
-			players.forEach(player -> this.playerPlayTillDone(player.playerId));
+			
+			for (PlayerDm player: players) {
+				this.playerPlayTillDone(player.playerId);
+			}
+			
 		} else {
 			throw new Error("Error creating round");
 		}

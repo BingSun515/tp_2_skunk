@@ -46,18 +46,20 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 	
 	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers)
 	{
-		losers.forEach(loser -> {
-				if (loser.Score == 0)
-				{
-					loser.chipCount -= 10;
-					rollScoreDm.chipChange += 10;
-				}
-				else 
-				{
-					loser.chipCount -= 5;
-					rollScoreDm.chipChange += 5;
-				}
-			});
+		for (PlayerDm loser: losers)
+		{
+			if (loser.Score == 0)
+			{
+				loser.chipCount -= 10;
+				rollScoreDm.chipChange += 10;
+			}
+			else 
+			{
+				loser.chipCount -= 5;
+				rollScoreDm.chipChange += 5;
+			}
+		}
+
 	}
 	
 	//START: SKUNK

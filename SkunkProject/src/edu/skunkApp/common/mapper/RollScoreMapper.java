@@ -48,7 +48,11 @@ public class RollScoreMapper {
 	public static ArrayList<RollScoreDm> toRollScoreDmList(ArrayList<RollScore> rollScores)
 	{
 		ArrayList<RollScoreDm> scores = new ArrayList<RollScoreDm>();
-		rollScores.forEach(rollScore -> scores.add(toRollScoreDm(rollScore)));
+		
+		for (RollScore rollScore : rollScores)
+		{
+			scores.add(toRollScoreDm(rollScore));
+		}
 		return scores;
 	}
 }

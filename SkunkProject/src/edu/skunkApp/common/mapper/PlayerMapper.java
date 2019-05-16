@@ -18,6 +18,13 @@ public class PlayerMapper {
 		playerDm.isWinner = false;
 		return playerDm;
 	}
+	
+	public static PlayerDm toPlayerDm1(Player player)
+	{
+		PlayerDm playerDm = toPlayerDm(player);
+		playerDm.playerId = player.playerId;
+		return playerDm;
+	}
 
 	public static Player toPlayer(PlayerDm playerDm)
 	{
@@ -32,14 +39,21 @@ public class PlayerMapper {
 	public static ArrayList<PlayerDm> toPlayerDmList(ArrayList<Player> players)
 	{
 		ArrayList<PlayerDm> _players = new ArrayList<PlayerDm>();
-		players.forEach(player -> _players.add(toPlayerDm(player)));
+
+		for (Player player: players) {
+			_players.add(toPlayerDm1(player));
+		}
 		return _players;
 	}
 
 	public static ArrayList<Player> toPlayerList(ArrayList<PlayerDm> players)
 	{
 		ArrayList<Player> _players = new ArrayList<Player>();
-		players.forEach(player -> _players.add(toPlayer(player)));
+		
+		for (PlayerDm player: players) {
+			_players.add(toPlayer(player));
+		}
+		
 		return _players;
 	}
 }

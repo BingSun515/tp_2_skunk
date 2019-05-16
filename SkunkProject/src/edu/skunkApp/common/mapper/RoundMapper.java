@@ -18,7 +18,11 @@ public class RoundMapper {
 	public static ArrayList<RoundDm> toRoundDmList(ArrayList<Round> rounds)
 	{
 		ArrayList<RoundDm> list = new ArrayList<RoundDm>();
-		rounds.forEach(round -> toRoundDm(round));
+
+		for (Round round: rounds)
+		{
+			toRoundDm(round);
+		}
 		return list;
 	}
 }

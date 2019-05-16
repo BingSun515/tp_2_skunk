@@ -13,7 +13,7 @@ import edu.skunkApp.domainModels.PlayerDm;
 public class PlayerDaImpl implements IPlayerDa
 {
 
-	private final ArrayList<Player> _players = Store.getPlayer();	
+	ArrayList<Player> _players = Store.getPlayer();	
 
 	public void setChipCount(UUID playerId, int chipCount)
 	{

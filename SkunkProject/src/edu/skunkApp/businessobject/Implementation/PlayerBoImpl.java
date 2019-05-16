@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IPlayerBo;
+import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.common.mapper.PlayerMapper;
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.dataAccess.Implementation.PlayerDaImpl;
@@ -11,7 +12,7 @@ import edu.skunkApp.domainModels.PlayerDm;
 
 public class PlayerBoImpl implements IPlayerBo {
 	
-	private final IPlayerDa _playerDa = new PlayerDaImpl();
+	private IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
 	IGameRulesEngineBo _gameRulesEngineBoImpl;
 	
 	public boolean create(ArrayList<PlayerDm> players)
