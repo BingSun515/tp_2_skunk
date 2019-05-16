@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RollBoImplTest {
 	
+	
 	@Test
 	public void testgetRoll() {
 		

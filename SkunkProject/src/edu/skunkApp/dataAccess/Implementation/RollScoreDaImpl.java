@@ -16,7 +16,8 @@ import edu.skunkApp.modelMapper.RollScoreMapper;
 @Singleton
 public class RollScoreDaImpl implements IRollScoreDa {
 	
-	@Inject private ArrayList<RollScore> rollScores;
+	//TODO: inject
+	private ArrayList<RollScore> rollScores;
 
 	//Insert
 	public void create(RollScoreDm rollScoreDm)

@@ -1,14 +1,11 @@
 package edu.skunkApp.dataAccess.Implementation;
 
 import java.util.ArrayList;
-
-import javax.inject.Inject;
-
 import edu.skunkApp.dataAccess.IKittyDa;
 
 public class KittyDaImpl implements IKittyDa {
 
-	@Inject
+	//TODO: inject
 	private ArrayList<Integer> _chips = new ArrayList<>();
 
 	public int getChipCount() {

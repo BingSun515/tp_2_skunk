@@ -23,12 +23,15 @@ import edu.skunkApp.dataAccess.Implementation.RoundDaImpl;
 
 @Module
 public class SkunkAppModule {
+//	@provides for data files
+	//remove all @singleton in other areas?
 	
-	@Provides IRollScoreDa provideRollScore() {
+	//todo why static?
+	@Provides static IRollScoreDa provideRollScore() {
 		return new RollScoreDaImpl();
 	}
 	
-	@Provides IPlayerDa providePlayer() {
+	@Provides static IPlayerDa providePlayer() {
 		return new PlayerDaImpl();
 	}
 	
@@ -44,7 +47,7 @@ public class SkunkAppModule {
 		return new GameRulesEngineBoImpl();
 	}
 
-	@Provides IPlayerBo providePlayerBo()
+	@Provides static IPlayerBo providePlayerBo()
 	{
 		return new PlayerBoImpl();
 	}
@@ -58,7 +61,7 @@ public class SkunkAppModule {
 		return new RoundBoImpl();
 	}
 
-	@Provides IRollScoreBo providesRollScoreBo() {
+	@Provides static IRollScoreBo provideRollScoreBo() {
 		return new RollScoreBoImpl();
 	}
 }
