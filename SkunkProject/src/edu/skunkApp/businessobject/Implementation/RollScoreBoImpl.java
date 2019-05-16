@@ -2,6 +2,7 @@ package edu.skunkApp.businessobject.Implementation;
 
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
+import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.dataAccess.IKittyDa;
@@ -52,13 +53,17 @@ public class RollScoreBoImpl implements IRollScoreBo
 		return this._rollScoreDa.getLastRollScore();
 	}
 	
-	public void setScoreFromWinnerChoice(boolean winnerContinues) {
+	public void setScoreFromWinnerChoice(boolean winnerContinues, RollScoreDm lastRollScoreDm) {
 		if (winnerContinues) {
+			//winner continue roll
+			lastRollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;
 			
 		} else {
-			//Winner sets score as Goal
+			//tODO: is last chance set?
+			lastRollScoreDm.gameStatus = GameStatusEnum.WINNER;
 			int goal = this._gameRulesEngine.getGoalScore();
 			this._playerDa.setWinnerScore(goal);
 		}
+		this._rollScoreDa.setPlayerLastTurnGameStatus(lastRollScoreDm);
 	}
 }

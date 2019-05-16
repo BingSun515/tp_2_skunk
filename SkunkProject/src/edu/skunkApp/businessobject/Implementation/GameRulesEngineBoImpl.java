@@ -71,7 +71,6 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 	//START: SKUNK
 	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm)
 	{
-		//TODO: how to set game status
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
 		if (this.isRollSingleSkunk(rollScoreDm.roll))
 		{
@@ -132,6 +131,10 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 			rollScoreDm.gameStatus = GameStatusEnum.WINNER;
 		}
 		//There is a winner and winner is currently playing turn to increase score
+		else if(hasWinner)
+		{
+			rollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;
+		}
 		else if(hasWinner)
 		{
 			rollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;

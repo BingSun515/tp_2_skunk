@@ -12,6 +12,7 @@ public interface IRollScoreDa {
 	public RollScoreDm getPlayerTurnScore(UUID playerId, UUID turnId);
 	public RollScoreDm getLastRollScore();
 
+	public void setPlayerLastTurnGameStatus(RollScoreDm rollScoreDm);
 	public void resetPlayerScore(UUID playerId);
 	public void resetPlayerTurnScore(UUID playerId, UUID turnId);
 

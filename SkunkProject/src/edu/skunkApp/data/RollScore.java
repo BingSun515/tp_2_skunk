@@ -1,6 +1,8 @@
 package edu.skunkApp.data;
 
 import java.util.UUID;
+
+import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 
 /**
@@ -18,4 +20,5 @@ public class RollScore {
 	public SkunkEnum rollStatus;
 	public int turnTotal;
 	public int roundTotal;
+	public GameStatusEnum gameStatus;
 }

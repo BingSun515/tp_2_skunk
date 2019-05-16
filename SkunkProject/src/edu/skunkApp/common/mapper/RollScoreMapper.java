@@ -23,25 +23,30 @@ public class RollScoreMapper {
 		score.rollStatus =  rollScoreDm.rollStatus;
 		score.turnTotal =  rollScoreDm.turnTotal;
 		score.roundTotal =  rollScoreDm.roundTotal;
+		score.gameStatus = rollScoreDm.gameStatus;
 		return score;
 	}
 
 	public static RollScoreDm toRollScoreDm(RollScore rollScore)
 	{
 		RollDm roll = new RollDm();
+		RollScoreDm score = new RollScoreDm();
+
 		roll.die1 =  rollScore.die1;
 		roll.die2 =  rollScore.die2;
 		roll.diceTotal =  rollScore.diceTotal;
-		RollScoreDm score = new RollScoreDm();
+		
+		score.roll =  roll;
 		score.id =  AutoInteger.nextId();
 		score.playerId =  rollScore.playerId;
 		score.roundId =  rollScore.roundId;
 		score.turnId =  rollScore.turnId;
 		score.rollId =  rollScore.rollId; //TODO WHAT IS THIS?
-		score.roll =  roll;
+		
 		score.rollStatus =  rollScore.rollStatus;
 		score.turnTotal =  rollScore.turnTotal;
 		score.roundTotal =  rollScore.roundTotal;
+		score.gameStatus = rollScore.gameStatus;
 		return score;
 	}
 	

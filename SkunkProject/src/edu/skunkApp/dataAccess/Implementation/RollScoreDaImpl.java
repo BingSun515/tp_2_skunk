@@ -80,6 +80,12 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		}
 		return this.baseQuery().get(this.rollScores.size());
 	}
+
+	public void setPlayerLastTurnGameStatus(RollScoreDm lastRollScoreDm) {
+		this.rollScores.stream()
+					.filter(score -> score.id == lastRollScoreDm.id)
+					.map(score -> score.gameStatus = lastRollScoreDm.gameStatus);
+	}
 	
 	public void resetPlayerScore(UUID playerId)
 	{
