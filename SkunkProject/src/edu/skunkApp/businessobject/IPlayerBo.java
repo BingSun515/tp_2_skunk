@@ -10,4 +10,6 @@ public interface IPlayerBo {
 	public boolean canContinuePlay();
 	
 	public PlayerDm getWinner();
+	public ArrayList<PlayerDm> getLosers();
+
 }

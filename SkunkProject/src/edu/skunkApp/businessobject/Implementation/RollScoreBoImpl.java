@@ -1,5 +1,8 @@
 package edu.skunkApp.businessobject.Implementation;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
 import edu.skunkApp.common.GameStatusEnum;
@@ -8,6 +11,7 @@ import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.dataAccess.IKittyDa;
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.dataAccess.IRollScoreDa;
+import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
 public class RollScoreBoImpl implements IRollScoreBo
@@ -19,7 +23,6 @@ public class RollScoreBoImpl implements IRollScoreBo
 
 	public void create(RollScoreDm rollScoreDm)
 	{
-		//TODO: check to see if it errors .. if there are no previous score
 		RollScoreDm previousScore = _rollScoreDa.getPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 
 		this._gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore);
@@ -33,21 +36,23 @@ public class RollScoreBoImpl implements IRollScoreBo
 		{
 			this._gameRulesEngine.resetPlayerScoresForSkunk(previousScore);
 		}
-		
-		//SET THIS STATUS ONLY WHEN THE WINNER DECIDES SETS HIS GOAL
-//		rollScoreDm.gameStatus = GameStatusEnum.LAST_CHANCE;
-		//TODO: //SET THIS STATUS ONLY WHEN THE WINNER DECIDES SETS HIS GOAL
-		//
-//		if (rollScoreDm.gameStatus == GameStatusEnum.WINNER)
-//		{
-//			ArrayList<PlayerDm> losers = this._playerDa.getLosers();
-//			if (!losers.isEmpty())
-//			{
-//				this._gameRulesEngine.moveChips(rollScoreDm, losers);
-//			}
-//		}
 	}
- 
+	
+	public void createRollScoreForWinner(UUID playerId, ArrayList<PlayerDm> losers)
+	{
+		RollScoreDm rollScoreDm = new RollScoreDm();
+		rollScoreDm.playerId = playerId;
+		this._gameRulesEngine.moveChipsFromLosers(rollScoreDm, losers);
+		this.moveKittyChange(rollScoreDm);
+		this._rollScoreDa.create(rollScoreDm);
+	}
+	
+	public void moveKittyChange(RollScoreDm rollScoreDm)
+	{
+		rollScoreDm.kittyChange = this._kittyDa.getChipCount();
+		this._kittyDa.setChipCount(0);		
+	}
+
 	public RollScoreDm getLastRollScore()
 	{
 		return this._rollScoreDa.getLastRollScore();

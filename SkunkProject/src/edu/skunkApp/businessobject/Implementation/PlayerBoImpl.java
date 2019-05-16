@@ -27,10 +27,14 @@ public class PlayerBoImpl implements IPlayerBo {
 	
 	public boolean canContinuePlay()
 	{
-		return this._gameRulesEngineBoImpl.canContinueTurn();
+		return this._gameRulesEngineBoImpl.canContinueRoll();
 	}
 	
 	public PlayerDm getWinner() {
 		return this._playerDa.getWinner();
+	}
+	
+	public ArrayList<PlayerDm> getLosers() {
+		return this._playerDa.getLosers();
 	}
 }

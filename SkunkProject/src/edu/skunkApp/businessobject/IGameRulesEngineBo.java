@@ -11,7 +11,7 @@ import edu.skunkApp.domainModels.RollScoreDm;
 public interface IGameRulesEngineBo {
 	
 	public boolean getGameStatus(int roundTotal);
-	public void moveChips(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers);
+	public void moveChipsFromLosers(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers);
 
 	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm);
 	public boolean isRollSingleSkunk(RollDm roll);
@@ -21,6 +21,6 @@ public interface IGameRulesEngineBo {
 	public void resetPlayerScoresForSkunk(RollScoreDm rollScoreDm);
 	public void setGameStatus(RollScoreDm rollScoreDm);
 	public GameStatusEnum getGameStatus();
-	public boolean canContinueTurn();
+	public boolean canContinueRoll();
 	public int getGoalScore();
 }

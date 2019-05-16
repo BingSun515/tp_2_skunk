@@ -34,7 +34,7 @@ public class GameRulesEngineBoImplTest {
 		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
 		ar1.add(pd1);
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
-		grebi1.moveChips(rsd1, ar1);
+		grebi1.moveChipsFromLosers(rsd1, ar1);
 		assertEquals(-10, ar1.get(0).chipCount);
 		assertEquals(10, rsd1.chipChange);	
 	}
@@ -48,7 +48,7 @@ public class GameRulesEngineBoImplTest {
 		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
 		ar1.add(pd1);
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
-		grebi1.moveChips(rsd1, ar1);
+		grebi1.moveChipsFromLosers(rsd1, ar1);
 		assertEquals(-5, ar1.get(0).chipCount);
 		assertEquals(5, rsd1.chipChange);	
 	}

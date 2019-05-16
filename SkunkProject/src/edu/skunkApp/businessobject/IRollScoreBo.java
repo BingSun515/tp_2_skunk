@@ -1,10 +1,16 @@
 package edu.skunkApp.businessobject;
 
+import java.util.ArrayList;
+import java.util.UUID;
+
+import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
 public interface IRollScoreBo {
-	void create(RollScoreDm rollScoreDm);
+	public void create(RollScoreDm rollScoreDm);
 	public RollScoreDm getLastRollScore();
-	void resetPlayerScoresForSkunk(RollScoreDm rollScoreDm);
-	void setScoreFromWinnerChoice(boolean winnerContinues);
+	public void resetPlayerScoresForSkunk(RollScoreDm rollScoreDm);
+	public void setScoreFromWinnerChoice(boolean winnerContinues, RollScoreDm lastRollScoreDm);
+	public void createRollScoreForWinner(UUID playerId, ArrayList<PlayerDm> losers);
+	public void moveKittyChange(RollScoreDm rollScoreDm);
 }

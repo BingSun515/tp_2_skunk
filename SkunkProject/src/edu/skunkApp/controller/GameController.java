@@ -24,17 +24,15 @@ public class GameController {
 	IRollBo _roll = SkunkAppModule.provideRollBo();
 	IRoundBo _roundBo = SkunkAppModule.provideRoundBo();
 
-	private static final String newline = "\n";
-
 	public void StartGame() {
 		this.initializeNewGame();
-//		this.displayGameSummary();
+		this.displayGameSummary();
 	}
 
 	private void initializeNewGame() {
 		AppUIController.displayWelcome();
 		this.createPlayers();
-		this.startNextRound();
+		this.startRound();
 	}
 
 	private void createPlayers() {
@@ -47,29 +45,58 @@ public class GameController {
 		}
 	}
 
-	private void startNextRound() {
+	private void startRound() {
 		do {
-			this.startRound();
+			this.startNextRound();
+			this.displayRoundSummary();
 		} while (this._roundBo.canProceedToNextRound());
 	}
 
-	private void startRound() {
+	private void startNextRound() {
 		UUID roundId = _roundBo.create();
-		if (roundId != null) {
-			ArrayList<PlayerDm> players = _playerBo.get();
-
-			for (PlayerDm player : players) {
-				this.playerPlayTillDone(player.playerId);
-			}
-
+		//Winner is set from his rollChoices and after earning a score of 100
+		ArrayList<PlayerDm> losers = this.getLosers();
+		
+		if (losers.isEmpty()) {
+			this.playersPlay(roundId);
 		} else {
-			throw new Error("Error creating round");
+			this.losersPlay(roundId, losers);
+		}
+	}
+	
+	private void playersPlay(UUID roundId)
+	{
+		ArrayList<PlayerDm> players = _playerBo.get();
+
+		for (PlayerDm player : players) {
+			
+			if (!this.getLosers().isEmpty())
+			{
+				break;
+			}
+			this.playerPlayTillDone(roundId, player.playerId);
+		}		
+	}
+	
+	private ArrayList<PlayerDm> getLosers() {
+		return this._playerBo.getLosers();
+	}
+	
+	//TODO
+	private void losersPlay(UUID roundId, ArrayList<PlayerDm> losers)
+	{
+//		loser play once and provide roll summary
+
+		for (PlayerDm player : losers) {
+			this.playerRollsDice(roundId, player.playerId);
+			this.displaySummary();
 		}
 	}
 
-	private void playerPlayTillDone(UUID playerId) {
+	private void playerPlayTillDone(UUID roundId, UUID playerId) {
 		do {
-			this.nextPlayerPlays(playerId);
+			this.playerRollsDice(roundId, playerId);
+			this.displaySummary();
 		} while (this.getPlayerChoice());
 	}
 
@@ -85,67 +112,80 @@ public class GameController {
 		return PlayerInputEnum.N;
 	}
 
-	private void nextPlayerPlays(UUID playerId) {
+	private void playerRollsDice(UUID roundId, UUID playerId) {
 		RollScoreDm rollScoreDm = new RollScoreDm();
+		rollScoreDm.roundId = roundId;
 		rollScoreDm.playerId = playerId;
 		rollScoreDm.roll = _roll.getRoll();
+		rollScoreDm.turnId = UUID.randomUUID();
 		_rollScoreBo.create(rollScoreDm);
-
-		this.displaySummary();
-		rollScoreDm = null;
 	}
 
 	private void displaySummary() {
-		RollScoreDm score = this._rollScoreBo.getLastRollScore();
+		RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
 
-		if (score.gameStatus == GameStatusEnum.WINNER) {
-			this.displaySummaryForWinner(score);
+		if (lastRollScore.gameStatus == GameStatusEnum.WINNER) {
+			this.displaySummaryForWinner(lastRollScore);
 		} else {
-			this.displayRollScoreSummary(score);
+			this.displayRollScoreSummary(lastRollScore);
 		}
 	}
 
-	private void displayRollScoreSummary(RollScoreDm score) {
-		PlayerController.displayRollScoreSummary(score);
+	private void displayRollScoreSummary(RollScoreDm lastRollScore) {
+		PlayerController.displayRollScoreSummary(lastRollScore);
 	}
 
-	private void displaySummaryForWinner(RollScoreDm score) {
+	//todo rename this method. single resp
+	private void displaySummaryForWinner(RollScoreDm lastRollScore) {
 		
-		// TODO
 		String winnerName = this._playerBo.getWinner().name;
 		PlayerController.displayWinnerAndChoices(winnerName);
 		boolean winnerContinues = this.getPlayerInputFromChoices() == PlayerInputEnum.Y;
+		this._rollScoreBo.setScoreFromWinnerChoice(winnerContinues, lastRollScore);
 
-		_rollScoreBo.playLastChance(score);
-		// set game to continue
-		// set last turn score to no winner.
-		// player will always be a winner until he scores skunk
-		// skunkn should reset scores to zero
+		//todo start here
+		//how to proceed after WINNER_CONTINUE_ROLL
+		//how to proceed after LAST_CHANCE
+		
+//		if (winnerContinues) {
+//		DONE: player will always be a winner until he scores skunk
+//		} else {
+//			int goal = this._rollScoreBo.g
+//			BREAK OUT OF THE PLAYER LOOP ABOVE AND START A LOSERS LOOP
+		// LOSERS LOOP WILL HAVE NO CHOICES TO PICK. 
+		// THEY CAN ONLY ROLL ONCE
+		
+//		DONE: player will always be a winner until he scores skunk
+//		}
+			// set game to continue
+//		_rollScoreBo.playLastChance(score);
+ // MOVE CHIPS
+		// DISPLAY SUMMARY
+
 		
 	}
 
-
+	//todo
 	private void displayPlayerSummary() {
 
 	}
 
-	//
-//	private void displayGameSummary()
-//	{
-//		
-//	}	
+	//todo
+	private void displayGameSummary()
+	{
+		
+	}	
 
 	private boolean getPlayerChoice() {
-		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
+		PlayerInputEnum playerChoice = PlayerInputEnum.N;
 		if (this._playerBo.canContinuePlay()) {
 			playerChoice = this.getPlayerInputFromChoices();
-			
 		}
 		return playerChoice == PlayerInputEnum.Y;
 	}
 	
 	private PlayerInputEnum getPlayerInputFromChoices() {
-		PlayerInputEnum playerChoice = PlayerInputEnum.CANNOT_PLAY;
+		PlayerInputEnum playerChoice = PlayerInputEnum.N;
 		do {
 			playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
 			
@@ -160,9 +200,9 @@ public class GameController {
 				case M:
 					this.displayMyScore();
 					break;
-			default:
-				playerChoice = PlayerInputEnum.Y;
-				break;
+				default:
+					playerChoice = PlayerInputEnum.N;
+					break;
 			}
 
 		} while (playerChoice == PlayerInputEnum.HELP ||
@@ -171,15 +211,17 @@ public class GameController {
 		
 		return playerChoice;
 	}
-
+	//TODO
 	public void displayRoundSummary()
 	{
 	//TODO
 		System.out.println("TODO: displayRoundSummary");
 	}
-	
+	//TODO
 	public void displayMyScore()
 	{
 		System.out.println("TODO: displayMyScore");	
 	}
+	
+	//TODO: display last chance and goal set by winner
 }
