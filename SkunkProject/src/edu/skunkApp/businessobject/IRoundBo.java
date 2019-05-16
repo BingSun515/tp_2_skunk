@@ -6,5 +6,5 @@ public interface IRoundBo
 {
 	public UUID create();
 	
-	public boolean canProceedToNext();
+	public boolean canProceedToNextRound();
 }

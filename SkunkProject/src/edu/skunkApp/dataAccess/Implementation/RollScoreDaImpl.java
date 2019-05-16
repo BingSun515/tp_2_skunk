@@ -67,7 +67,7 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		System.out.println("getPlayerTurnScore");
 		if(score.isEmpty())
 		{
-			return (RollScoreDm) List.of();
+			return new RollScoreDm();
 		}
 		return score.get(score.size());
 	}

@@ -50,7 +50,7 @@ public class GameController {
 	private void startNextRound() {
 		do {
 			this.startRound();
-		} while (this._roundBo.canProceedToNext());
+		} while (this._roundBo.canProceedToNextRound());
 	}
 
 	private void startRound() {
@@ -91,11 +91,11 @@ public class GameController {
 		rollScoreDm.roll = _roll.getRoll();
 		_rollScoreBo.create(rollScoreDm);
 
-		this.displaySummaries();
+		this.displaySummary();
 		rollScoreDm = null;
 	}
 
-	private void displaySummaries() {
+	private void displaySummary() {
 		RollScoreDm score = this._rollScoreBo.getLastRollScore();
 
 		if (score.gameStatus == GameStatusEnum.WINNER) {

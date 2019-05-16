@@ -18,18 +18,19 @@ public class RollScoreBoImpl implements IRollScoreBo
 
 	public void create(RollScoreDm rollScoreDm)
 	{
+		//TODO: check to see if it errors .. if there are no previous score
 		RollScoreDm previousScore = _rollScoreDa.getPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
-		boolean hasWinner = this._playerDa.hasWinner();
-		this._gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore, hasWinner);
+
+		this._gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore);
 		this._rollScoreDa.create(rollScoreDm);
-		this.setSkunkScores(rollScoreDm);
+		this.resetPlayerScoresForSkunk(rollScoreDm);
 	}
 	
-	public void setSkunkScores(RollScoreDm rollScoreDm)
+	public void resetPlayerScoresForSkunk(RollScoreDm previousScore)
 	{
-		if (rollScoreDm.rollStatus != SkunkEnum.NOSKUNK)
+		if (previousScore.rollStatus != SkunkEnum.NOSKUNK)
 		{
-			this._gameRulesEngine.resetRollScoreForSkunk(rollScoreDm);
+			this._gameRulesEngine.resetPlayerScoresForSkunk(previousScore);
 		}
 		
 		//SET THIS STATUS ONLY WHEN THE WINNER DECIDES SETS HIS GOAL
@@ -50,8 +51,14 @@ public class RollScoreBoImpl implements IRollScoreBo
 	{
 		return this._rollScoreDa.getLastRollScore();
 	}
-
-	public void setWinnerForWinningScore(RollScoreDm rollScoreDm) {
-		
+	
+	public void setScoreFromWinnerChoice(boolean winnerContinues) {
+		if (winnerContinues) {
+			
+		} else {
+			//Winner sets score as Goal
+			int goal = this._gameRulesEngine.getGoalScore();
+			this._playerDa.setWinnerScore(goal);
+		}
 	}
 }

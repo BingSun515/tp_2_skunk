@@ -75,4 +75,9 @@ public class PlayerDaImpl implements IPlayerDa
 					.count() == 1 ;
 	}
 	
+	public void setWinnerScore(int goalScore)
+	{
+		PlayerDm winner = this.getWinner();
+		winner.Score = goalScore;
+	}
 }

@@ -1,8 +1,10 @@
 package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
+import edu.skunkApp.common.Constants;
 import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
@@ -39,13 +41,12 @@ import edu.skunkApp.domainModels.RollScoreDm;
 public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 {
 	private final IRollScoreDa _rollScoreDa = SkunkAppModule.provideRollScoreDa();
-	private final int WINNING_SCORE = 100;
 	private final IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
 	private final IKittyDa _kittyDa = SkunkAppModule.provideKittyDa();
 		
 	public boolean getGameStatus(int roundTotal)
 	{
-		return roundTotal >= this.WINNING_SCORE;
+		return roundTotal >= Constants.WINNING_SCORE;
 	}
 	
 	//TODO
@@ -68,7 +69,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 	}
 	
 	//START: SKUNK
-	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm, boolean hasWinner)
+	public void setSkunkAndScore(RollScoreDm rollScoreDm, RollScoreDm previousScoreDm)
 	{
 		//TODO: how to set game status
 		rollScoreDm.roll.diceTotal = rollScoreDm.roll.die1 + rollScoreDm.roll.die2;
@@ -101,16 +102,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 			rollScoreDm.rollStatus = SkunkEnum.NOSKUNK;
 			rollScoreDm.turnTotal = previousScoreDm.turnTotal + rollScoreDm.roll.diceTotal;
 			rollScoreDm.roundTotal = previousScoreDm.roundTotal + rollScoreDm.roll.diceTotal;
-
-			if(hasWinner)
-			{
-				rollScoreDm.gameStatus = GameStatusEnum.CONTINUE_ROLL;
-			}
-			else
-			{
-				rollScoreDm.gameStatus = this.getGameStatus(rollScoreDm.roundTotal) ?
-											GameStatusEnum.WINNER : GameStatusEnum.CONTINUE_ROLL;
-			}
+			this.setGameStatus(rollScoreDm);
 		}
 	}
 	
@@ -129,6 +121,27 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 		return (roll.die1 == 1) && (roll.die2 == 2 ) || (roll.die2 == 1 ) && (roll.die1 == 2 );
 	}
 
+	public void setGameStatus(RollScoreDm rollScoreDm) {
+
+		PlayerDm winner = this._playerDa.getWinner();
+		boolean hasWinner = winner != null;
+
+		//No winner and New winner
+		if(!hasWinner && this.getGameStatus(rollScoreDm.roundTotal))
+		{
+			rollScoreDm.gameStatus = GameStatusEnum.WINNER;
+		}
+		//There is a winner and winner is currently playing turn to increase score
+		else if(hasWinner)
+		{
+			rollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;
+		}
+		else //No winner yet, player continue to roll
+		{
+			rollScoreDm.gameStatus = GameStatusEnum.CONTINUE_ROLL;
+		}
+	}
+	
 	public GameStatusEnum getGameStatus()
 	{
 		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();
@@ -139,7 +152,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 		return lastTurnScore.gameStatus;
 	}
 
-	public void resetRollScoreForSkunk(RollScoreDm rollScoreDm)
+	public void resetPlayerScoresForSkunk(RollScoreDm rollScoreDm)
 	{
 		if (rollScoreDm.rollStatus == SkunkEnum.DOUBLESKUNK)
 		{
@@ -154,7 +167,6 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 		this._playerDa.setChipCount(rollScoreDm.playerId, rollScoreDm.chipChange);
 	}
 
-	
 	public boolean canContinueTurn()
 	{
 		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();
@@ -163,5 +175,16 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo
 			return true;
 		}
 		return lastTurnScore.rollStatus == SkunkEnum.NOSKUNK;
+	}
+
+	//Calculate Goal - Total of winning Score
+	public int getGoalScore() {
+
+		PlayerDm winner = this._playerDa.getWinner();
+		ArrayList<RollScoreDm> winnerScores = this._rollScoreDa.getFilteredRollScore(winner.playerId, null, null);
+		return winnerScores.stream()
+						.map(score -> score.roundTotal)
+						.reduce(0, (a,b) -> a + b);
+
 	}
 }

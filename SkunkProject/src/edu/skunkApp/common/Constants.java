@@ -2,6 +2,8 @@ package edu.skunkApp.common;
 
 public class Constants
 {
+	public static final int WINNING_SCORE = 100;
+	
 	public static final String LINE = "--------------------------------------------";
 	public static final String DOUBLE_LINE = "===========================================";
 	

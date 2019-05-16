@@ -9,5 +9,6 @@ public enum GameStatusEnum {
 	GAME_COMPLETED,
 	SKUNK_TURN,
 	WINNER,
+	WINNER_CONTINUE_ROLL,
 	CONTINUE_ROLL
 }

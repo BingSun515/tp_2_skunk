@@ -17,7 +17,7 @@ public class RoundBoImpl implements IRoundBo {
 		return _roundDa.create();
 	}
 
-	public boolean canProceedToNext() {
+	public boolean canProceedToNextRound() {
 		return (this._gameRulesEngineBo.getGameStatus() != GameStatusEnum.GAME_COMPLETED);
 	}
 }

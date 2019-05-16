@@ -14,4 +14,5 @@ public interface IPlayerDa {
 	public void setWinner(UUID playerId);
 	public ArrayList<PlayerDm> getLosers();
 	public boolean hasWinner();
+	public void setWinnerScore(int goalScore);
 }
