@@ -9,7 +9,7 @@ public interface IRollScoreDa {
 	public void create(RollScoreDm score);
 	public ArrayList<RollScoreDm> baseQuery();
 	public ArrayList<RollScoreDm> getFilteredRollScore(UUID playerId, UUID turnId, UUID roundId);
-	public RollScoreDm getPlayerTurnScore(UUID playerId, UUID turnId);
+	public RollScoreDm getPlayerLastTurnScore(UUID playerId, UUID turnId);
 	public RollScoreDm getLastRollScore();
 
 	public void setPlayerLastTurnGameStatus(RollScoreDm rollScoreDm);

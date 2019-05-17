@@ -43,7 +43,6 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		return roundTotal >= Constants.WINNING_SCORE;
 	}
 
-	// TODO
 	public void moveChipsFromLosers(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers) {
 		for (PlayerDm loser : losers) {
 			if (loser.Score == 0) {
@@ -53,8 +52,11 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 				loser.chipCount -= 5;
 				rollScoreDm.chipChange += 5;
 			}
+			//For Losers
+			this._playerDa.setChipCount(loser.playerId, loser.chipCount);
 		}
-
+		//For Winners
+		this._playerDa.setChipCount(rollScoreDm.playerId, rollScoreDm.chipChange);
 	}
 
 	// START: SKUNK
@@ -108,11 +110,11 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 			rollScoreDm.gameStatus = GameStatusEnum.WINNER;
 		}
 		// There is a winner and winner is currently playing turn to increase score
-		else if (hasWinner) {
+		else if (hasWinner)
+		{
 			rollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;
-		} else if (hasWinner) {// TODO: how to Set the last Chance?
-			rollScoreDm.gameStatus = GameStatusEnum.LAST_CHANCE;
-		} else // No winner yet, player continue to roll
+		} 
+		else // No winner yet, player continue to roll
 		{
 			rollScoreDm.gameStatus = GameStatusEnum.CONTINUE_ROLL;
 		}
@@ -132,7 +134,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		} else if (rollScoreDm.rollStatus == SkunkEnum.SINGLESKUNK || rollScoreDm.rollStatus == SkunkEnum.DEUCESKUNK) {
 			_rollScoreDa.resetPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 		}
-		this._kittyDa.setChipCount(rollScoreDm.chipChange);
+		this._kittyDa.setChipCount(rollScoreDm.kittyChange);
 		this._playerDa.setChipCount(rollScoreDm.playerId, rollScoreDm.chipChange);
 	}
 
@@ -142,8 +144,10 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 			return true;
 		}
 		boolean noSkunk = lastRollScore.rollStatus == SkunkEnum.NOSKUNK;
-		boolean lastChance = lastRollScore.gameStatus == GameStatusEnum.LAST_CHANCE;
-		return noSkunk || lastChance;
+		boolean lostStatus = lastRollScore.gameStatus == GameStatusEnum.LAST_CHANCE ||
+				lastRollScore.gameStatus == GameStatusEnum.TURN_COMPLETED;
+
+		return noSkunk || lostStatus;
 	}
 
 	// Calculate Goal - Total of winning Score

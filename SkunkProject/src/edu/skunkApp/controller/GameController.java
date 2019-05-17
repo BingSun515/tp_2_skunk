@@ -48,17 +48,18 @@ public class GameController {
 	private void startRound() {
 		do {
 			this.startNextRound();
-			this.displayRoundSummary();
-		} while (this._roundBo.canProceedToNextRound());
+		} while (this._roundBo.canProceedToNextRound());//TODO check this condition in related after losers play
 	}
 
 	private void startNextRound() {
 		UUID roundId = _roundBo.create();
-		//Winner is set from his rollChoices and after earning a score of 100
+		//Winner is set from his rollChoices and 
+		//		after earning a winning score
 		ArrayList<PlayerDm> losers = this.getLosers();
 		
 		if (losers.isEmpty()) {
 			this.playersPlay(roundId);
+			this.displayRoundSummary(roundId);
 		} else {
 			this.losersPlay(roundId, losers);
 		}
@@ -74,7 +75,7 @@ public class GameController {
 			{
 				break;
 			}
-			this.playerPlayTillDone(roundId, player.playerId);
+			this.playerPlayTillDone(roundId, UUID.randomUUID(), player.playerId);
 		}		
 	}
 	
@@ -82,20 +83,17 @@ public class GameController {
 		return this._playerBo.getLosers();
 	}
 	
-	//TODO
 	private void losersPlay(UUID roundId, ArrayList<PlayerDm> losers)
 	{
-//		loser play once and provide roll summary
-
 		for (PlayerDm player : losers) {
-			this.playerRollsDice(roundId, player.playerId);
+			this.playerRollsDice(roundId, UUID.randomUUID(), player.playerId, GameStatusEnum.LAST_CHANCE);
 			this.displaySummary();
 		}
 	}
 
-	private void playerPlayTillDone(UUID roundId, UUID playerId) {
+	private void playerPlayTillDone(UUID roundId, UUID turnId, UUID playerId) {
 		do {
-			this.playerRollsDice(roundId, playerId);
+			this.playerRollsDice(roundId, turnId, playerId, null);
 			this.displaySummary();
 		} while (this.getPlayerChoice());
 	}
@@ -112,12 +110,14 @@ public class GameController {
 		return PlayerInputEnum.N;
 	}
 
-	private void playerRollsDice(UUID roundId, UUID playerId) {
+	private void playerRollsDice(UUID roundId, UUID turnId, UUID playerId, GameStatusEnum gameStatus) {
 		RollScoreDm rollScoreDm = new RollScoreDm();
 		rollScoreDm.roundId = roundId;
 		rollScoreDm.playerId = playerId;
 		rollScoreDm.roll = _roll.getRoll();
-		rollScoreDm.turnId = UUID.randomUUID();
+		rollScoreDm.turnId = turnId;
+		rollScoreDm.rollId = UUID.randomUUID();
+		rollScoreDm.gameStatus = gameStatus;
 		_rollScoreBo.create(rollScoreDm);
 	}
 
@@ -141,40 +141,29 @@ public class GameController {
 		String winnerName = this._playerBo.getWinner().name;
 		PlayerController.displayWinnerAndChoices(winnerName);
 		boolean winnerContinues = this.getPlayerInputFromChoices() == PlayerInputEnum.Y;
-		this._rollScoreBo.setScoreFromWinnerChoice(winnerContinues, lastRollScore);
-
-		//todo start here
-		//how to proceed after WINNER_CONTINUE_ROLL
-		//how to proceed after LAST_CHANCE
-		
-//		if (winnerContinues) {
-//		DONE: player will always be a winner until he scores skunk
-//		} else {
-//			int goal = this._rollScoreBo.g
-//			BREAK OUT OF THE PLAYER LOOP ABOVE AND START A LOSERS LOOP
-		// LOSERS LOOP WILL HAVE NO CHOICES TO PICK. 
-		// THEY CAN ONLY ROLL ONCE
-		
-//		DONE: player will always be a winner until he scores skunk
-//		}
-			// set game to continue
-//		_rollScoreBo.playLastChance(score);
- // MOVE CHIPS
-		// DISPLAY SUMMARY
-
-		
+		this._rollScoreBo.setScoreFromWinnerChoice(winnerContinues, lastRollScore);	
 	}
 
-	//todo
-	private void displayPlayerSummary() {
-
-	}
-
-	//todo
 	private void displayGameSummary()
 	{
+		ArrayList<PlayerDm> players = this._playerBo.get();
+		//display non winners
+		players.forEach(player -> {
+			if (!player.isWinner)
+			{
+				this.displayMyScore(player.playerId);
+			}
+		});
 		
-	}	
+		//display winner
+		players.forEach(player -> {
+			if (player.isWinner)
+			{
+				this.displayMyScore(player.playerId);
+			}
+		});
+		
+	}
 
 	private boolean getPlayerChoice() {
 		PlayerInputEnum playerChoice = PlayerInputEnum.N;
@@ -211,17 +200,16 @@ public class GameController {
 		
 		return playerChoice;
 	}
-	//TODO
-	public void displayRoundSummary()
+
+	public void displayRoundSummary(UUID roundId)
 	{
-	//TODO
-		System.out.println("TODO: displayRoundSummary");
+		this._rollScoreBo.getScores(null, roundId, null)
+					.forEach(score -> this.displayRollScoreSummary(score));
 	}
-	//TODO
-	public void displayMyScore()
+
+	public void displayMyScore(UUID playerId)
 	{
-		System.out.println("TODO: displayMyScore");	
+		this._rollScoreBo.getScores(playerId, null, null)
+			.forEach(score -> this.displayRollScoreSummary(score));
 	}
-	
-	//TODO: display last chance and goal set by winner
 }

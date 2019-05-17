@@ -23,7 +23,7 @@ public class RollScoreBoImpl implements IRollScoreBo
 
 	public void create(RollScoreDm rollScoreDm)
 	{
-		RollScoreDm previousScore = _rollScoreDa.getPlayerTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
+		RollScoreDm previousScore = _rollScoreDa.getPlayerLastTurnScore(rollScoreDm.playerId, rollScoreDm.turnId);
 
 		this._gameRulesEngine.setSkunkAndScore(rollScoreDm, previousScore);
 		this._rollScoreDa.create(rollScoreDm);
@@ -43,11 +43,12 @@ public class RollScoreBoImpl implements IRollScoreBo
 		RollScoreDm rollScoreDm = new RollScoreDm();
 		rollScoreDm.playerId = playerId;
 		this._gameRulesEngine.moveChipsFromLosers(rollScoreDm, losers);
-		this.moveKittyChange(rollScoreDm);
+		this.moveKittyChangeToWinner(rollScoreDm);
+		rollScoreDm.gameStatus = GameStatusEnum.GAME_COMPLETED;
 		this._rollScoreDa.create(rollScoreDm);
 	}
 	
-	public void moveKittyChange(RollScoreDm rollScoreDm)
+	public void moveKittyChangeToWinner(RollScoreDm rollScoreDm)
 	{
 		rollScoreDm.kittyChange = this._kittyDa.getChipCount();
 		this._kittyDa.setChipCount(0);		
@@ -60,15 +61,18 @@ public class RollScoreBoImpl implements IRollScoreBo
 	
 	public void setScoreFromWinnerChoice(boolean winnerContinues, RollScoreDm lastRollScoreDm) {
 		if (winnerContinues) {
-			//winner continue roll
-			lastRollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;
-			
-		} else {
-			//tODO: is last chance set?
+			lastRollScoreDm.gameStatus = GameStatusEnum.WINNER_CONTINUE_ROLL;			
+		}
+		else
+		{
 			lastRollScoreDm.gameStatus = GameStatusEnum.WINNER;
 			int goal = this._gameRulesEngine.getGoalScore();
 			this._playerDa.setWinnerScore(goal);
 		}
 		this._rollScoreDa.setPlayerLastTurnGameStatus(lastRollScoreDm);
+	}
+
+	public ArrayList<RollScoreDm> getScores(UUID playerId, UUID roundId, UUID turnId) {
+		return this._rollScoreDa.getFilteredRollScore(playerId, turnId, roundId);
 	}
 }

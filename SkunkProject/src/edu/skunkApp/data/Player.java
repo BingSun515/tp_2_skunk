@@ -9,5 +9,5 @@ public class Player {
 	public UUID playerId;
 	public String name;
 	public boolean isWinner;
-	public int chipCount; //TODO: should the chipCount be tracked here?
+	public int chipCount;
 }

@@ -19,7 +19,7 @@ public class Constants
 	public static final String PLAYER_CONTINUE = " Do you like to continue roll ? ";
 	public static final String PLAYER_ROLL_CHOICES = "Roll Choices :: Y (roll again) / N (stop my Turn) / HELP (Display game rules) / R (Round Score) / M (My Score)" ;
 
-	public static final String LAST_ROLL = "Dice with last roll: %3$d => %1$d + %2$d" ;
+	public static final String LAST_ROLL = "Dice with (last) roll: %3$d => %1$d + %2$d" ;
 	
 	public static final String GAME_SUMMARY = "               GAME SUMMARY               ";
 

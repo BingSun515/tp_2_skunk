@@ -49,7 +49,6 @@ public class PlayerController {
 		return players;
 	}
 
-	//TODO: move this to PlayerInitController.java ?
 	public static String getPlayerName(String nthPlayer)
 	{
 		return GameUI.getPlayerInput(String.format(Constants.ENTER_PLAYER_NAME, nthPlayer));

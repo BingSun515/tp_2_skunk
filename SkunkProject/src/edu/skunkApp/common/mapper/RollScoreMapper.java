@@ -16,7 +16,7 @@ public class RollScoreMapper {
 		score.playerId =  rollScoreDm.playerId;
 		score.roundId =  rollScoreDm.roundId;
 		score.turnId =  rollScoreDm.turnId;
-		score.rollId =  rollScoreDm.rollId; //TODO WHAT IS THIS?
+		score.rollId =  rollScoreDm.rollId;
 		score.die1 =  rollScoreDm.roll.die1;
 		score.die2 =  rollScoreDm.roll.die2;
 		score.diceTotal =  rollScoreDm.roll.diceTotal;
@@ -41,7 +41,7 @@ public class RollScoreMapper {
 		score.playerId =  rollScore.playerId;
 		score.roundId =  rollScore.roundId;
 		score.turnId =  rollScore.turnId;
-		score.rollId =  rollScore.rollId; //TODO WHAT IS THIS?
+		score.rollId =  rollScore.rollId;
 		
 		score.rollStatus =  rollScore.rollStatus;
 		score.turnTotal =  rollScore.turnTotal;

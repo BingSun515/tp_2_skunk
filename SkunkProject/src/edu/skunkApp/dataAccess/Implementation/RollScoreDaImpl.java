@@ -15,7 +15,6 @@ import edu.skunkApp.domainModels.RollScoreDm;
 
 public class RollScoreDaImpl implements IRollScoreDa {
 	
-	//TODO: inject
 	private final ArrayList<RollScore> rollScores = Store.getRollScore();
 
 	//Insert
@@ -61,7 +60,7 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		return (ArrayList<RollScoreDm>) rollScoreDmSupplier.get().collect(Collectors.toList());
 	}
 	
-	public RollScoreDm getPlayerTurnScore(UUID playerId, UUID turnId)
+	public RollScoreDm getPlayerLastTurnScore(UUID playerId, UUID turnId)
 	{
 		ArrayList<RollScoreDm> score = this.getFilteredRollScore(playerId, turnId, null);
 		System.out.println("getPlayerTurnScore");
@@ -89,7 +88,6 @@ public class RollScoreDaImpl implements IRollScoreDa {
 	
 	public void resetPlayerScore(UUID playerId)
 	{
-		//TODO: check if the update works
 		this.rollScores.stream()
 				.filter(score -> score.playerId == playerId)
 				.map(score -> score.roundTotal = 0);
@@ -97,7 +95,6 @@ public class RollScoreDaImpl implements IRollScoreDa {
 	
 	public void resetPlayerTurnScore(UUID playerId, UUID turnId)
 	{
-		//TODO: check if the update works
 		this.rollScores.stream()
 				.filter(score -> score.playerId == playerId && score.turnId == turnId)
 				.map(score -> score.turnTotal = 0);

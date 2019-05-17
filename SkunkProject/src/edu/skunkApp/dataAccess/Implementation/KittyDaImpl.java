@@ -7,7 +7,6 @@ import edu.skunkApp.dataAccess.IKittyDa;
 
 public class KittyDaImpl implements IKittyDa {
 
-	//TODO: inject
 	private ArrayList<Integer> _chips = Store.getKitty();
 
 	public int getChipCount() {
