@@ -6,7 +6,7 @@ import edu.skunkApp.domainModels.PlayerDm;
 
 public interface IPlayerBo {
 	public boolean create(ArrayList<PlayerDm> players);
-	public ArrayList<PlayerDm> get();
+	public ArrayList<PlayerDm> getPlayers();
 	public boolean canContinuePlay();
 	
 	public PlayerDm getWinner();

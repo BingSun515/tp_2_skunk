@@ -21,7 +21,7 @@ public class RoundMapper {
 
 		for (Round round: rounds)
 		{
-			toRoundDm(round);
+			list.add(RoundMapper.toRoundDm(round));
 		}
 		return list;
 	}

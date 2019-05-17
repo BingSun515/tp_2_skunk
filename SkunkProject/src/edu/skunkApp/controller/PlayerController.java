@@ -73,10 +73,54 @@ public class PlayerController {
 	
 	public static void displayRollScoreSummary(RollScoreDm score) {
 
-		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
-				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
+		TextStringBuilder tb = new TextStringBuilder()
+				.appendln("\n"+String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
 				.appendln(Constants.LINE);
 		GameUI.display(tb.toString());
 	}
 
+	public static void displaySkunkSummary(RollScoreDm score) {
+
+		String skunkMessage = "";
+		
+		switch (score.rollStatus) {
+		case SINGLESKUNK:
+			skunkMessage = Constants.SINGLE_SKUNK;
+			break;
+		case DEUCESKUNK:
+			skunkMessage = Constants.DEUCE_SKUNK;
+			break;
+		case DOUBLESKUNK:
+			skunkMessage = Constants.DOUBLE_SKUNK;
+			break;
+		default:
+			
+			break;
+		}
+		
+		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
+				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
+				.appendln(skunkMessage)
+				.appendln(Constants.LINE);
+		GameUI.display(tb.toString());
+	}
+
+	public static void displayCurrentPlayer(String playerName)
+	{
+		GameUI.display("\n" + Constants.CURRENT_PLAYER + playerName + "\n");
+	}
+	
+	public static void displayPlayerName(String playerName)
+	{
+		GameUI.display("\n" + Constants.PLAYER + playerName + "\n");
+	}
+
+	public static void displayRoundSummary(String roundName)
+	{
+		TextStringBuilder tb = new TextStringBuilder()
+				.appendln(Constants.ROUND_SUMMARY)
+//				.appendln(Constants.PLAYER + playerName)
+				.appendln(Constants.LINE);
+		GameUI.display(tb.toString());
+	}
 }

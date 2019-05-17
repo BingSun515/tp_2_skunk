@@ -10,8 +10,8 @@ public class Constants
 	public static final String WELCOME_MESSAGE = "Game of Skunk. Welcome!";
 
 	public static final String PLAYER_INPUT = "Enter the # of players : ";
-	public static final String CURRENT_PLAYER = " :: Current PLAYER :: ";
-	public static final String PLAYER_NAME = "   PLAYER NAME:: ";
+	public static final String CURRENT_PLAYER = " :: Current player :: ";
+	public static final String PLAYER = "   PLAYER :: ";
 //	public static final String WINNER = " Winner is player, ";
 	public static final String MINIMUM_PLAYERS = " Two players needed to play this game ";
 	public static final String ENTER_PLAYER_NAME = " Enter player name for, player %s : ";
@@ -21,10 +21,15 @@ public class Constants
 
 	public static final String LAST_ROLL = "Dice with (last) roll: %3$d => %1$d + %2$d" ;
 	
+	public static final String ROUND_SUMMARY = "               ROUND SUMMARY               ";
 	public static final String GAME_SUMMARY = "               GAME SUMMARY               ";
 
 	public static final String GAME_RULES = "               GAME RULES               ";
 	
+	public static final String SINGLE_SKUNK = " Last roll was a single skunk !! \n  Player loses turn and turn points.";
+	public static final String DEUCE_SKUNK = " Last roll was a deuce skunk !! \\n  Player loses turn and turn points.";
+	public static final String DOUBLE_SKUNK = " Last roll was a double skunk !!  \\n  Player loses turn, round and all scored points.";
+//	Last roll was a single skunk
 	
 	public static final String GAME_RULE1 = "1:Each letter of skunk represents a different round of the game; Total 5 rounds per Game.";
 	

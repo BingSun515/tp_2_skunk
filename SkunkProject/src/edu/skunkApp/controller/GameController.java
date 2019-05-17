@@ -1,7 +1,9 @@
 package edu.skunkApp.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.apache.commons.text.TextStringBuilder;
 
@@ -13,9 +15,11 @@ import edu.skunkApp.businessobject.IRoundBo;
 import edu.skunkApp.common.Constants;
 import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.PlayerInputEnum;
+import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
+import edu.skunkApp.domainModels.RoundDm;
 
 public class GameController {
 
@@ -29,13 +33,13 @@ public class GameController {
 		this.displayGameSummary();
 	}
 
-	private void initializeNewGame() {
+	public void initializeNewGame() {
 		AppUIController.displayWelcome();
 		this.createPlayers();
 		this.startRound();
 	}
 
-	private void createPlayers() {
+	public void createPlayers() {
 		ArrayList<PlayerDm> players = PlayerController.getNewPlayers();
 
 		boolean result = this._playerBo.create(players);
@@ -45,13 +49,13 @@ public class GameController {
 		}
 	}
 
-	private void startRound() {
+	public void startRound() {
 		do {
 			this.startNextRound();
 		} while (this._roundBo.canProceedToNextRound());//TODO check this condition in related after losers play
 	}
 
-	private void startNextRound() {
+	public void startNextRound() {
 		UUID roundId = _roundBo.create();
 		//Winner is set from his rollChoices and 
 		//		after earning a winning score
@@ -59,15 +63,15 @@ public class GameController {
 		
 		if (losers.isEmpty()) {
 			this.playersPlay(roundId);
-			this.displayRoundSummary(roundId);
+			this.getRoundSummary();
 		} else {
 			this.losersPlay(roundId, losers);
 		}
 	}
 	
-	private void playersPlay(UUID roundId)
+	public void playersPlay(UUID roundId)
 	{
-		ArrayList<PlayerDm> players = _playerBo.get();
+		ArrayList<PlayerDm> players = this.getPlayers();
 
 		for (PlayerDm player : players) {
 			
@@ -75,30 +79,39 @@ public class GameController {
 			{
 				break;
 			}
+			PlayerController.displayCurrentPlayer(player.name);
 			this.playerPlayTillDone(roundId, UUID.randomUUID(), player.playerId);
 		}		
 	}
 	
-	private ArrayList<PlayerDm> getLosers() {
+	public ArrayList<PlayerDm> getLosers() {
 		return this._playerBo.getLosers();
 	}
 	
-	private void losersPlay(UUID roundId, ArrayList<PlayerDm> losers)
+	public void losersPlay(UUID roundId, ArrayList<PlayerDm> losers)
 	{
 		for (PlayerDm player : losers) {
 			this.playerRollsDice(roundId, UUID.randomUUID(), player.playerId, GameStatusEnum.LAST_CHANCE);
-			this.displaySummary();
+			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+			this.displaySummary(lastRollScore);
 		}
 	}
 
-	private void playerPlayTillDone(UUID roundId, UUID turnId, UUID playerId) {
+	public void playerPlayTillDone(UUID roundId, UUID turnId, UUID playerId) {
 		do {
 			this.playerRollsDice(roundId, turnId, playerId, null);
-			this.displaySummary();
+			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+			this.displaySummary(lastRollScore);
+			
+			if (lastRollScore.rollStatus !=  SkunkEnum.NOSKUNK)
+			{
+				break;
+			}
+			
 		} while (this.getPlayerChoice());
 	}
 
-	private PlayerInputEnum getPlayerInputChoice(String choice) {
+	public PlayerInputEnum getPlayerInputChoice(String choice) {
 		if (!choice.isBlank()) {
 			try {
 				return PlayerInputEnum.valueOf(choice.toUpperCase());
@@ -110,7 +123,7 @@ public class GameController {
 		return PlayerInputEnum.N;
 	}
 
-	private void playerRollsDice(UUID roundId, UUID turnId, UUID playerId, GameStatusEnum gameStatus) {
+	public void playerRollsDice(UUID roundId, UUID turnId, UUID playerId, GameStatusEnum gameStatus) {
 		RollScoreDm rollScoreDm = new RollScoreDm();
 		rollScoreDm.roundId = roundId;
 		rollScoreDm.playerId = playerId;
@@ -121,22 +134,27 @@ public class GameController {
 		_rollScoreBo.create(rollScoreDm);
 	}
 
-	private void displaySummary() {
-		RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+	public void displaySummary(RollScoreDm lastRollScore) {	
 
 		if (lastRollScore.gameStatus == GameStatusEnum.WINNER) {
 			this.displaySummaryForWinner(lastRollScore);
-		} else {
+		} else if (lastRollScore.rollStatus == SkunkEnum.NOSKUNK){
 			this.displayRollScoreSummary(lastRollScore);
+		} else {
+			this.displaySkunkSummary(lastRollScore);
 		}
 	}
 
-	private void displayRollScoreSummary(RollScoreDm lastRollScore) {
+	public void displayRollScoreSummary(RollScoreDm lastRollScore) {
 		PlayerController.displayRollScoreSummary(lastRollScore);
+	}
+	
+	public void displaySkunkSummary(RollScoreDm lastRollScore) {
+		PlayerController.displaySkunkSummary(lastRollScore);
 	}
 
 	//todo rename this method. single resp
-	private void displaySummaryForWinner(RollScoreDm lastRollScore) {
+	public void displaySummaryForWinner(RollScoreDm lastRollScore) {
 		
 		String winnerName = this._playerBo.getWinner().name;
 		PlayerController.displayWinnerAndChoices(winnerName);
@@ -144,9 +162,9 @@ public class GameController {
 		this._rollScoreBo.setScoreFromWinnerChoice(winnerContinues, lastRollScore);	
 	}
 
-	private void displayGameSummary()
+	public void displayGameSummary()
 	{
-		ArrayList<PlayerDm> players = this._playerBo.get();
+		ArrayList<PlayerDm> players = this._playerBo.getPlayers();
 		//display non winners
 		players.forEach(player -> {
 			if (!player.isWinner)
@@ -165,7 +183,7 @@ public class GameController {
 		
 	}
 
-	private boolean getPlayerChoice() {
+	public boolean getPlayerChoice() {
 		PlayerInputEnum playerChoice = PlayerInputEnum.N;
 		if (this._playerBo.canContinuePlay()) {
 			playerChoice = this.getPlayerInputFromChoices();
@@ -173,7 +191,7 @@ public class GameController {
 		return playerChoice == PlayerInputEnum.Y;
 	}
 	
-	private PlayerInputEnum getPlayerInputFromChoices() {
+	public PlayerInputEnum getPlayerInputFromChoices() {
 		PlayerInputEnum playerChoice = PlayerInputEnum.N;
 		do {
 			playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
@@ -184,14 +202,13 @@ public class GameController {
 					AppUIController.displayHelp();
 					break;
 				case R:
-					this.displayRoundSummary(null);
+					this.getRoundSummary();
 					break;
 				case M:
 					this.displayMyScore(null);
 					break;
-				default:
-					playerChoice = PlayerInputEnum.Y;
-					break;
+			default:
+				break;
 			}
 
 		} while (playerChoice == PlayerInputEnum.HELP ||
@@ -201,16 +218,49 @@ public class GameController {
 		return playerChoice;
 	}
 
-	public void displayRoundSummary(UUID scoreRoundId)
+	public void getRoundSummary()
 	{
-		UUID roundId = scoreRoundId;
-		if (scoreRoundId == null )
-		{
-			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();	
-			roundId = lastRollScore.roundId;
-		}
+		RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();	
+		UUID roundId = lastRollScore.roundId;
+
+		String roundName = this.getRoundDescription(lastRollScore.roundId);
+		PlayerController.displayRoundSummary(roundName);		
 		this._rollScoreBo.getScores(null, roundId, null)
 					.forEach(score -> this.displayRollScoreSummary(score));
+	}
+	
+	public void displayRoundSummary(RollScoreDm lastRollScore)
+	{
+		String playerName = this.getPlayerName(lastRollScore.playerId);
+		PlayerController.displayPlayerName(playerName);
+		this.displayRollScoreSummary(lastRollScore);
+		
+	}
+	
+	public String getRoundDescription(UUID roundId)
+	{
+		List<RoundDm> rounds = this.getRounds().stream()
+				.filter(round -> round.id == roundId)
+				.collect(Collectors.toList());
+		return rounds.get(0).description;
+	}
+	
+	public List<RoundDm> getRounds()
+	{
+		return _roundBo.getRounds();		
+	}
+	
+	public ArrayList<PlayerDm> getPlayers()
+	{
+		return _playerBo.getPlayers();		
+	}
+	
+	public String getPlayerName(UUID playerId)
+	{
+		List<PlayerDm> players = this.getPlayers().stream()
+										.filter(player -> player.playerId == playerId)
+										.collect(Collectors.toList());
+		return players.get(0).name;
 	}
 
 	public void displayMyScore(UUID scorePlayerId)
