@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.skunkApp.common.GameStatusEnum;
 import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.dataAccess.IRollScoreDa;
@@ -73,9 +74,14 @@ public class GameRulesEngineBoImplTest {
 	public void testgetGameStatus() {
 		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
-		RollScoreDaImpl rsdi1 = new RollScoreDaImpl();
-		
-
+		assertEquals(GameStatusEnum.CONTINUE_ROLL ,grebi1.getGameStatus());
+	}
+	
+	@Test
+	public void testsetGamestatus() {
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		RollScoreDm rsd1 = new RollScoreDm();
+		grebi1.setGameStatus(rsd1);
 	}
 	
 	@Test
@@ -111,7 +117,6 @@ public class GameRulesEngineBoImplTest {
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
 		assertEquals(0, grebi1.getGoalScore());
 	}
-
 	
 	//##############################################################
 	
