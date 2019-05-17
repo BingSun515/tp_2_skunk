@@ -41,7 +41,7 @@
   </class>  
   <class id="5" language="java" name="edu.skunkApp.common.mapper.RoundMapper" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/mapper/RoundMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="110" width="203" x="518" y="1112"/>    
+    <position height="110" width="203" x="554" y="1114"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -336,7 +336,7 @@
   </interface>  
   <interface id="37" language="java" name="edu.skunkApp.dataAccess.IRoundDa" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/IRoundDa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="129" width="192" x="248" y="1115"/>    
+    <position height="133" width="197" x="158" y="1103"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      

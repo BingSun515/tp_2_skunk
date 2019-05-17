@@ -7,7 +7,7 @@ public class Constants
 	public static final String LINE = "--------------------------------------------";
 	public static final String DOUBLE_LINE = "===========================================";
 	
-	public static final String WELCOME_MESSAGE = "Game of Skunk. Welcome!";
+	public static final String WELCOME_MESSAGE = "         Game of Skunk. Welcome!";
 
 	public static final String PLAYER_INPUT = "Enter the # of players : ";
 	public static final String CURRENT_PLAYER = " :: Current player :: ";
