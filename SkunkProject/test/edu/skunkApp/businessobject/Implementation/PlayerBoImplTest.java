@@ -11,50 +11,58 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.mockito.Mock;
 
+import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.dataAccess.IPlayerDa;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 
 public class PlayerBoImplTest {
-
-	@Test
-	public void createarraylist() {
-		
-		PlayerBoImpl pb1 = new PlayerBoImpl();
-		PlayerDm pd1 = new PlayerDm();
-		pd1.name = "Bing";
-		ArrayList<PlayerDm> ap1 = new ArrayList<PlayerDm>() ;
-   
-		//assertEquals(false,pb1.create(ap1));
-		
-	}
-
-
-	@Test
-	public void testgetplayer() {
-		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
-		PlayerDm player = new PlayerDm();
-		player.name = "Eric";
-		ar1.add(player);
-		PlayerBoImpl pb1 = new PlayerBoImpl();
-		
-	}
 	
-	
-	//#########################Mockito Test#######################
 	@Test
 	public void testcreate() {
 		PlayerBoImpl pbi1 = new PlayerBoImpl();
-		PlayerDm pd1 = new PlayerDm();
-		ArrayList<PlayerDm> ar1 = new ArrayList<PlayerDm>();
-		pd1.isWinner = true;
-		ar1.add(pd1);
+		PlayerDm pb1 = new PlayerDm();
+		pb1.name = "Eric";
+		ArrayList<PlayerDm> players = new ArrayList<>();
+		players.add(pb1);
+		assertEquals(true, pbi1.create(players));
 	}
 	
-	
-	
+	@Test
+	public void testgetPlayers() {
+		PlayerBoImpl pbi1 = new PlayerBoImpl();
+		PlayerDm pb1 = new PlayerDm();
+		pb1.name = "Eric";
+		ArrayList<PlayerDm> players = new ArrayList<>();
+		players.add(pb1);
+		assertEquals(true, pbi1.getPlayers().add(pb1));
 	}
 	
-	//#########################Mockito Test#######################
-
+	@Test
+	public void testcanContinuePlay() {
+		PlayerBoImpl pbi1 = new PlayerBoImpl();
+		assertEquals(true, pbi1.canContinuePlay());
+	}
+	
+	@Test
+	public void testgetWinner() {
+		PlayerBoImpl pbi1 = new PlayerBoImpl();
+		PlayerDm pb1 = new PlayerDm();
+		pb1.name = "Eric";
+		pb1.isWinner = true;
+		assertEquals(0, pbi1.getWinner().Score);
+	}
+	
+	@Test
+	public void testgetLosers() {
+		PlayerBoImpl pbi1 = new PlayerBoImpl();
+		PlayerDm pb1 = new PlayerDm();
+		pb1.name = "Eric";
+		pb1.isWinner = false;
+		ArrayList<PlayerDm> players = new ArrayList<>();
+		players.add(pb1);
+		assertEquals(true, pbi1.getLosers().add(pb1));
+	}
+	
+}
 	
