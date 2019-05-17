@@ -1,6 +1,7 @@
 package edu.skunkApp.controller;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import org.apache.commons.text.TextStringBuilder;
 
@@ -42,6 +43,7 @@ public class PlayerController {
 			playerName = PlayerController.getPlayerName("" + (players.size() + 1));
 			
 			PlayerDm player = new PlayerDm();
+			player.playerId = UUID.randomUUID();
 			player.name = playerName;
 			players.add(player);
 		}
@@ -74,6 +76,7 @@ public class PlayerController {
 		TextStringBuilder tb = new TextStringBuilder().appendln(Constants.LINE)
 				.appendln(String.format(Constants.LAST_ROLL, score.roll.die1, score.roll.die2, score.roll.diceTotal))
 				.appendln(Constants.LINE);
+		GameUI.display(tb.toString());
 	}
 
 }

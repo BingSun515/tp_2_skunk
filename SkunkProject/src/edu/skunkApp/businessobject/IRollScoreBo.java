@@ -13,5 +13,5 @@ public interface IRollScoreBo {
 	public void setScoreFromWinnerChoice(boolean winnerContinues, RollScoreDm lastRollScoreDm);
 	public void createRollScoreForWinner(UUID playerId, ArrayList<PlayerDm> losers);
 	public void moveKittyChangeToWinner(RollScoreDm rollScoreDm);
-	public ArrayList<RollScoreDm> getScores(UUID playerId, UUID roundId, UUID turnId)
+	public ArrayList<RollScoreDm> getScores(UUID playerId, UUID roundId, UUID turnId);
 }

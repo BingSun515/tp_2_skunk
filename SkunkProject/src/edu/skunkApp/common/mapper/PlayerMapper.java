@@ -43,7 +43,7 @@ public class PlayerMapper {
 		for (Player player: players) {
 			_players.add(PlayerMapper.toPlayerDm1(player));
 		}
-		System.out.println("_players :: "  +_players.size());
+
 		return _players;
 	}
 

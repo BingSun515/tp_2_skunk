@@ -184,13 +184,13 @@ public class GameController {
 					AppUIController.displayHelp();
 					break;
 				case R:
-					this.displayRoundSummary();
+					this.displayRoundSummary(null);
 					break;
 				case M:
-					this.displayMyScore();
+					this.displayMyScore(null);
 					break;
 				default:
-					playerChoice = PlayerInputEnum.N;
+					playerChoice = PlayerInputEnum.Y;
 					break;
 			}
 
@@ -201,14 +201,26 @@ public class GameController {
 		return playerChoice;
 	}
 
-	public void displayRoundSummary(UUID roundId)
+	public void displayRoundSummary(UUID scoreRoundId)
 	{
+		UUID roundId = scoreRoundId;
+		if (scoreRoundId == null )
+		{
+			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();	
+			roundId = lastRollScore.roundId;
+		}
 		this._rollScoreBo.getScores(null, roundId, null)
 					.forEach(score -> this.displayRollScoreSummary(score));
 	}
 
-	public void displayMyScore(UUID playerId)
+	public void displayMyScore(UUID scorePlayerId)
 	{
+		UUID playerId = scorePlayerId;
+		if (scorePlayerId == null)
+		{
+			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+			playerId = lastRollScore.playerId;
+		}
 		this._rollScoreBo.getScores(playerId, null, null)
 			.forEach(score -> this.displayRollScoreSummary(score));
 	}

@@ -13,7 +13,7 @@ public class GameUI {
 	public static String getPlayerInput(String message)
 	{
 		GameUI.displayMessage("\n"+message);
-		return StdIn.readString().trim();
+		return StdIn.readString().trim().toUpperCase();
 	}
 	
 	public static void displayMessage(String message)

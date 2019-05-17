@@ -56,19 +56,19 @@ public class RollScoreDaImpl implements IRollScoreDa {
 			rollScoreDmSupplier.get().filter(rollScore -> rollScore.roundId == roundId);
 		}
 		rollScoreDmSupplier.get().sorted((score1, score2) -> Integer.compare(score2.id, score1.id));
-		System.out.println("getFilteredRollScore");
+
 		return (ArrayList<RollScoreDm>) rollScoreDmSupplier.get().collect(Collectors.toList());
 	}
 	
 	public RollScoreDm getPlayerLastTurnScore(UUID playerId, UUID turnId)
 	{
 		ArrayList<RollScoreDm> score = this.getFilteredRollScore(playerId, turnId, null);
-		System.out.println("getPlayerTurnScore");
+
 		if(score.isEmpty())
 		{
 			return new RollScoreDm();
 		}
-		return score.get(score.size());
+		return score.get(score.size() - 1);
 	}
 
 	public RollScoreDm getLastRollScore()
@@ -77,7 +77,7 @@ public class RollScoreDaImpl implements IRollScoreDa {
 		{
 			return null;
 		}
-		return this.baseQuery().get(this.rollScores.size());
+		return this.baseQuery().get(this.rollScores.size() - 1);
 	}
 
 	public void setPlayerLastTurnGameStatus(RollScoreDm lastRollScoreDm) {
