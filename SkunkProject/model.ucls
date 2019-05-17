@@ -5,7 +5,7 @@
     project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/businessobject/Implementation/GameRulesEngineBoImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="70" width="214" x="406" y="86"/>    
+    <position height="70" width="214" x="278" y="378"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -14,7 +14,7 @@
   </class>  
   <class id="2" language="java" name="edu.skunkApp.common.di.SkunkAppModule" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/di/SkunkAppModule.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="60" width="178" x="183" y="227"/>    
+    <position height="152" width="190" x="1207" y="675"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -23,7 +23,7 @@
   </class>  
   <class id="3" language="java" name="edu.skunkApp.common.mapper.PlayerMapper" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/mapper/PlayerMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="87" width="179" x="786" y="263"/>    
+    <position height="87" width="179" x="1348" y="841"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -32,7 +32,7 @@
   </class>  
   <class id="4" language="java" name="edu.skunkApp.common.mapper.RollScoreMapper" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/mapper/RollScoreMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="109" width="190" x="51" y="-193"/>    
+    <position height="109" width="190" x="383" y="-181"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -41,7 +41,7 @@
   </class>  
   <class id="5" language="java" name="edu.skunkApp.common.mapper.RoundMapper" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/mapper/RoundMapper.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="110" width="203" x="12" y="522"/>    
+    <position height="110" width="203" x="518" y="1112"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -50,8 +50,8 @@
   </class>  
   <class id="6" language="java" name="edu.skunkApp.common.AutoInteger" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/AutoInteger.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="337" y="-163"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="163" width="207" x="82" y="-183"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -60,7 +60,7 @@
   <class id="7" language="java" name="java.util.concurrent.atomic.AtomicInteger" project="SkunkProject" 
     file="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/jrt-fs.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="109" width="174" x="442" y="-229"/>    
+    <position height="109" width="174" x="484" y="-3"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -69,7 +69,7 @@
   </class>  
   <class id="8" language="java" name="edu.skunkApp.common.Constants" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/Constants.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="79" width="162" x="796" y="-86"/>    
+    <position height="79" width="162" x="1244" y="74"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -78,7 +78,7 @@
   </class>  
   <class id="9" language="java" name="edu.skunkApp.common.GameConstants" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/GameConstants.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1107" y="330"/>    
+    <position height="-1" width="-1" x="1157" y="890"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -87,7 +87,7 @@
   </class>  
   <enumeration id="10" language="java" name="edu.skunkApp.common.GameStatusEnum" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/GameStatusEnum.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="137" width="244" x="298" y="-84"/>    
+    <position height="137" width="244" x="754" y="-204"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -96,7 +96,7 @@
   </enumeration>  
   <class id="11" language="java" name="edu.skunkApp.common.IntegerUtil" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/IntegerUtil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="920" y="-185"/>    
+    <position height="-1" width="-1" x="1238" y="-175"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -105,7 +105,7 @@
   </class>  
   <enumeration id="12" language="java" name="edu.skunkApp.common.PlayerInputEnum" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/PlayerInputEnum.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="107" width="140" x="3" y="219"/>    
+    <position height="107" width="140" x="41" y="203"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -115,7 +115,7 @@
   <class id="13" language="java" name="java.lang.Enum" project="SkunkProject" 
     file="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/jrt-fs.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="78" width="146" x="244" y="99"/>    
+    <position height="78" width="146" x="98" y="25"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -124,7 +124,7 @@
   </class>  
   <enumeration id="14" language="java" name="edu.skunkApp.common.SkunkEnum" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/common/SkunkEnum.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="95" width="161" x="30" y="96"/>    
+    <position height="95" width="161" x="44" y="450"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -133,7 +133,7 @@
   </enumeration>  
   <class id="15" language="java" name="edu.skunkApp.controller.AppUIController" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/controller/AppUIController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="112" width="150" x="1104" y="-72"/>    
+    <position height="112" width="150" x="1652" y="-156"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -142,7 +142,7 @@
   </class>  
   <class id="16" language="java" name="edu.skunkApp.controller.GameController" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/controller/GameController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="94" width="223" x="861" y="25"/>    
+    <position height="94" width="223" x="1395" y="285"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -151,7 +151,7 @@
   </class>  
   <class id="17" language="java" name="edu.skunkApp.controller.PlayerController" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/controller/PlayerController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="97" width="190" x="625" y="-234"/>    
+    <position height="97" width="190" x="977" y="26"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -160,7 +160,7 @@
   </class>  
   <class id="18" language="java" name="edu.skunkApp.data.Player" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/data/Player.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1025" y="467"/>    
+    <position height="-1" width="-1" x="1697" y="943"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -170,7 +170,7 @@
   <class id="19" language="java" name="java.util.UUID" project="SkunkProject" 
     file="/Library/Java/JavaVirtualMachines/jdk-11.0.3.jdk/Contents/Home/lib/jrt-fs.jar" binary="true" 
     corner="BOTTOM_RIGHT">    
-    <position height="108" width="164" x="575" y="317"/>    
+    <position height="188" width="222" x="811" y="885"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -179,7 +179,7 @@
   </class>  
   <class id="20" language="java" name="edu.skunkApp.data.Round" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/data/Round.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="106" width="186" x="225" y="485"/>    
+    <position height="106" width="186" x="815" y="1125"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -188,7 +188,7 @@
   </class>  
   <class id="21" language="java" name="edu.skunkApp.data.Store" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/data/Store.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="161" width="229" x="695" y="561"/>    
+    <position height="161" width="229" x="1377" y="1213"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -198,7 +198,7 @@
   <class id="22" language="java" name="edu.skunkApp.dataAccess.Implementation.KittyDaImpl" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/Implementation/KittyDaImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="307" y="394"/>    
+    <position height="-1" width="-1" x="2039" y="942"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -208,7 +208,7 @@
   <class id="23" language="java" name="edu.skunkApp.dataAccess.Implementation.PlayerDaImpl" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/Implementation/PlayerDaImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="156" width="199" x="1168" y="378"/>    
+    <position height="156" width="199" x="1726" y="556"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -218,7 +218,7 @@
   <class id="24" language="java" name="edu.skunkApp.dataAccess.Implementation.RollScoreDaImpl" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/Implementation/RollScoreDaImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="100" width="199" x="849" y="136"/>    
+    <position height="100" width="199" x="1091" y="262"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -227,8 +227,8 @@
   </class>  
   <class id="25" language="java" name="edu.skunkApp.data.RollScore" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/data/RollScore.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="713" y="155"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="213" width="178" x="820" y="208"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
@@ -237,7 +237,7 @@
   <class id="26" language="java" name="edu.skunkApp.dataAccess.Implementation.RoundDaImpl" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/Implementation/RoundDaImpl.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="88" width="204" x="260" y="625"/>    
+    <position height="88" width="204" x="676" y="1289"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -246,7 +246,7 @@
   </class>  
   <class id="27" language="java" name="edu.skunkApp.SkunkAppMain" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/SkunkAppMain.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1182" y="127"/>    
+    <position height="-1" width="-1" x="1664" y="115"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -255,7 +255,7 @@
   </class>  
   <class id="28" language="java" name="edu.skunkApp.domainModels.PlayerDm" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/domainModels/PlayerDm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="568" y="614"/>    
+    <position height="-1" width="-1" x="1204" y="1106"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -264,7 +264,7 @@
   </class>  
   <interface id="29" language="java" name="edu.skunkApp.businessobject.IGameRulesEngineBo" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/businessobject/IGameRulesEngineBo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="108" width="261" x="12" y="-20"/>    
+    <position height="162" width="266" x="470" y="704"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -273,7 +273,7 @@
   </interface>  
   <class id="30" language="java" name="edu.skunkApp.domainModels.RollDm" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/domainModels/RollDm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="653" y="-28"/>    
+    <position height="-1" width="-1" x="353" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -282,7 +282,7 @@
   </class>  
   <class id="31" language="java" name="edu.skunkApp.domainModels.RollScoreDm" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/domainModels/RollScoreDm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="142" width="142" x="409" y="190"/>    
+    <position height="142" width="142" x="40" y="772"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -291,7 +291,7 @@
   </class>  
   <class id="32" language="java" name="edu.skunkApp.domainModels.RoundDm" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/domainModels/RoundDm.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="90" width="142" x="630" y="449"/>    
+    <position height="90" width="142" x="264" y="979"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -300,7 +300,7 @@
   </class>  
   <class id="33" language="java" name="edu.skunkApp.GameUI" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/GameUI.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1119" y="-165"/>    
+    <position height="-1" width="-1" x="1499" y="-141"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -309,7 +309,7 @@
   </class>  
   <interface id="34" language="java" name="edu.skunkApp.dataAccess.IKittyDa" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/IKittyDa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1295" y="242"/>    
+    <position height="-1" width="-1" x="1957" y="390"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -318,7 +318,7 @@
   </interface>  
   <interface id="35" language="java" name="edu.skunkApp.dataAccess.IPlayerDa" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/IPlayerDa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="137" width="169" x="8" y="354"/>    
+    <position height="137" width="169" x="298" y="544"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -327,7 +327,7 @@
   </interface>  
   <interface id="36" language="java" name="edu.skunkApp.dataAccess.IRollScoreDa" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/IRollScoreDa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="198" width="211" x="1008" y="575"/>    
+    <position height="198" width="211" x="550" y="421"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -336,424 +336,526 @@
   </interface>  
   <interface id="37" language="java" name="edu.skunkApp.dataAccess.IRoundDa" project="SkunkProject" 
     file="/SkunkProject/src/edu/skunkApp/dataAccess/IRoundDa.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="129" width="192" x="8" y="665"/>    
+    <position height="129" width="192" x="248" y="1115"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <generalization id="38">    
+  <interface id="38" language="java" name="edu.skunkApp.businessobject.IPlayerBo" project="SkunkProject" 
+    file="/SkunkProject/src/edu/skunkApp/businessobject/IPlayerBo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="80" width="196" x="1043" y="468"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="39" language="java" name="edu.skunkApp.businessobject.IRollBo" project="SkunkProject" 
+    file="/SkunkProject/src/edu/skunkApp/businessobject/IRollBo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="637" y="214"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="40" language="java" name="edu.skunkApp.businessobject.IRollScoreBo" project="SkunkProject" 
+    file="/SkunkProject/src/edu/skunkApp/businessobject/IRollScoreBo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1926" y="120"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="41" language="java" name="edu.skunkApp.businessobject.IRoundBo" project="SkunkProject" 
+    file="/SkunkProject/src/edu/skunkApp/businessobject/IRoundBo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1394" y="492"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <generalization id="42">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="13"/>  
   </generalization>  
-  <association id="39">    
+  <association id="43">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="40" name="IRoundDaSingleton"/>      
-      <multiplicity id="41" minimum="0" maximum="1"/>    
+      <attribute id="44" name="IRoundDaSingleton"/>      
+      <multiplicity id="45" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="37" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="42">    
+  <association id="46">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="47" name="IRoundBoSingleton"/>      
+      <multiplicity id="48" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="49">    
     <end type="SOURCE" refId="29"/>    
     <end type="TARGET" refId="30"/>  
   </dependency>  
-  <association id="43">    
+  <association id="50">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="44" name="IPlayerDaSingleton"/>      
-      <multiplicity id="45" minimum="0" maximum="1"/>    
+      <attribute id="51" name="IPlayerDaSingleton"/>      
+      <multiplicity id="52" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="35" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="46">    
+  <association id="53">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="47" name="gameStatus"/>      
-      <multiplicity id="48" minimum="0" maximum="1"/>    
+      <attribute id="54" name="gameStatus"/>      
+      <multiplicity id="55" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="49">    
+  <dependency id="56">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="50">    
+  <dependency id="57">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="12"/>  
   </dependency>  
-  <association id="51">    
+  <association id="58">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="59" name="_roundBo"/>      
+      <multiplicity id="60" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="61">    
     <end type="SOURCE" refId="20" navigable="false">      
-      <attribute id="52" name="id"/>      
-      <multiplicity id="53" minimum="0" maximum="1"/>    
+      <attribute id="62" name="id"/>      
+      <multiplicity id="63" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="54">    
+  <association id="64">    
     <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="55" name="roundId"/>      
-      <multiplicity id="56" minimum="0" maximum="1"/>    
+      <attribute id="65" name="roundId"/>      
+      <multiplicity id="66" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="57">    
+  <association id="67">    
     <end type="SOURCE" refId="32" navigable="false">      
-      <attribute id="58" name="id"/>      
-      <multiplicity id="59" minimum="0" maximum="1"/>    
+      <attribute id="68" name="id"/>      
+      <multiplicity id="69" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="60">    
+  <association id="70">    
     <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="61" name="playerId"/>      
-      <multiplicity id="62" minimum="0" maximum="1"/>    
+      <attribute id="71" name="playerId"/>      
+      <multiplicity id="72" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="63">    
+  <dependency id="73">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="19"/>  
   </dependency>  
-  <association id="64">    
+  <association id="74">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="65" name="rollId"/>      
-      <multiplicity id="66" minimum="0" maximum="1">        
-        <position height="17" width="26" x="710" y="543"/>      
+      <attribute id="75" name="rollId"/>      
+      <multiplicity id="76" minimum="0" maximum="1">        
+        <position height="17" width="26" x="946" y="1111"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="67">    
+  <association id="77">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="78" name="_rollScoreBo"/>      
+      <multiplicity id="79" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="80">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
-  <dependency id="68">    
+  <association id="81">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="82" name="_playerBo"/>      
+      <multiplicity id="83" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="84">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="11"/>  
   </dependency>  
-  <dependency id="69">    
+  <dependency id="85">    
     <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="21"/>  
   </dependency>  
-  <association id="70">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="71" name="_rollScoreDa"/>      
-      <multiplicity id="72" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="36" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="73">    
-    <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="74" name="rollStatus"/>      
-      <multiplicity id="75" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="14" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="76">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="30"/>  
-  </dependency>  
-  <realization id="77">    
-    <end type="SOURCE" refId="23"/>    
-    <end type="TARGET" refId="35"/>  
-  </realization>  
-  <dependency id="78">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="30"/>  
-  </dependency>  
-  <association id="79">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="80" name="_playerDa"/>      
-      <multiplicity id="81" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="35" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="82">    
-    <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="83" name="rollId"/>      
-      <multiplicity id="84" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="85">    
-    <end type="SOURCE" refId="27"/>    
-    <end type="TARGET" refId="16"/>  
-  </dependency>  
   <association id="86">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="87" name="IRollScoreDaSingleton"/>      
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="87" name="_rollScoreDa"/>      
       <multiplicity id="88" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="36" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="89">    
-    <end type="SOURCE" refId="28" navigable="false">      
-      <attribute id="90" name="playerId"/>      
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="90" name="rollStatus"/>      
       <multiplicity id="91" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="19" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="92">    
-    <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="93" name="rollStatus">        
-        <position height="19" width="62" x="269" y="147"/>      
-      </attribute>      
-      <multiplicity id="94" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="95">    
+  <association id="92">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="93" name="IRollBoSingleton"/>      
+      <multiplicity id="94" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="95">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <realization id="96">    
+    <end type="SOURCE" refId="23"/>    
+    <end type="TARGET" refId="35"/>  
+  </realization>  
+  <dependency id="97">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="30"/>  
+  </dependency>  
+  <association id="98">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="96" name="_kittyDa"/>      
-      <multiplicity id="97" minimum="0" maximum="1"/>    
+      <attribute id="99" name="_playerDa"/>      
+      <multiplicity id="100" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="35" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="101">    
+    <end type="SOURCE" refId="31" navigable="false">      
+      <attribute id="102" name="rollId"/>      
+      <multiplicity id="103" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="104">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="16"/>  
+  </dependency>  
+  <association id="105">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="106" name="IRollScoreDaSingleton"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="36" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="28" navigable="false">      
+      <attribute id="109" name="playerId"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="25" navigable="false">      
+      <attribute id="112" name="rollStatus">        
+        <position height="19" width="62" x="283" y="501"/>      
+      </attribute>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="115" name="_kittyDa"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="34" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="98">    
+  <realization id="117">    
     <end type="SOURCE" refId="26"/>    
     <end type="TARGET" refId="37"/>  
   </realization>  
-  <dependency id="99">    
+  <dependency id="118">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <generalization id="100">    
+  <generalization id="119">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="13"/>  
   </generalization>  
-  <realization id="101">    
+  <realization id="120">    
     <end type="SOURCE" refId="24"/>    
     <end type="TARGET" refId="36"/>  
   </realization>  
-  <association id="102">    
+  <association id="121">    
     <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="103" name="roll"/>      
-      <multiplicity id="104" minimum="0" maximum="1"/>    
+      <attribute id="122" name="roll"/>      
+      <multiplicity id="123" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="30" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="105">    
+  <dependency id="124">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <association id="106">    
+  <association id="125">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="107" name="roundId"/>      
-      <multiplicity id="108" minimum="0" maximum="1"/>    
+      <attribute id="126" name="roundId"/>      
+      <multiplicity id="127" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="109">    
+  <association id="128">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="110" name="rollScoreSingleton"/>      
-      <multiplicity id="111" minimum="0" maximum="2147483647"/>    
+      <attribute id="129" name="rollScoreSingleton"/>      
+      <multiplicity id="130" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="112">    
+  <dependency id="131">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="113">    
+  <dependency id="132">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="33"/>  
   </dependency>  
-  <association id="114">    
+  <association id="133">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="115" name="playerSingleton"/>      
-      <multiplicity id="116" minimum="0" maximum="2147483647"/>    
+      <attribute id="134" name="playerSingleton"/>      
+      <multiplicity id="135" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="117">    
+  <association id="136">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="118" name="IGameRulesEngineBoSingleton">        
-        <position height="19" width="180" x="309" y="61"/>      
+      <attribute id="137" name="IGameRulesEngineBoSingleton">        
+        <position height="19" width="180" x="767" y="835"/>      
       </attribute>      
-      <multiplicity id="119" minimum="0" maximum="1"/>    
+      <multiplicity id="138" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="29" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="120">    
+  <dependency id="139">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="6"/>  
   </dependency>  
-  <dependency id="121">    
+  <dependency id="140">    
     <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="8"/>  
   </dependency>  
-  <dependency id="122">    
+  <dependency id="141">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="15"/>  
   </dependency>  
-  <association id="123">    
+  <association id="142">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="124" name="playerId"/>      
-      <multiplicity id="125" minimum="0" maximum="1"/>    
+      <attribute id="143" name="playerId"/>      
+      <multiplicity id="144" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="126">    
+  <dependency id="145">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="22"/>  
   </dependency>  
-  <dependency id="127">    
+  <association id="146">    
+    <end type="SOURCE" refId="16" navigable="false">      
+      <attribute id="147" name="_roll"/>      
+      <multiplicity id="148" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="149">    
     <end type="SOURCE" refId="15"/>    
     <end type="TARGET" refId="33"/>  
   </dependency>  
-  <dependency id="128">    
+  <dependency id="150">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="2"/>  
   </dependency>  
-  <dependency id="129">    
+  <dependency id="151">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="18"/>  
   </dependency>  
-  <realization id="130">    
+  <realization id="152">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="29"/>  
   </realization>  
-  <association id="131">    
+  <association id="153">    
     <end type="SOURCE" refId="26" navigable="false">      
-      <attribute id="132" name="_rounds"/>      
-      <multiplicity id="133" minimum="0" maximum="2147483647"/>    
+      <attribute id="154" name="_rounds"/>      
+      <multiplicity id="155" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="134">    
+  <association id="156">    
     <end type="SOURCE" refId="21" navigable="false">      
-      <attribute id="135" name="roundSingleton"/>      
-      <multiplicity id="136" minimum="0" maximum="2147483647"/>    
+      <attribute id="157" name="roundSingleton"/>      
+      <multiplicity id="158" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="20" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="137">    
+  <association id="159">    
     <end type="SOURCE" refId="23" navigable="false">      
-      <attribute id="138" name="_players"/>      
-      <multiplicity id="139" minimum="0" maximum="2147483647"/>    
+      <attribute id="160" name="_players"/>      
+      <multiplicity id="161" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="18" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="140">    
+  <generalization id="162">    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="13"/>  
   </generalization>  
-  <association id="141">    
+  <association id="163">    
     <end type="SOURCE" refId="24" navigable="false">      
-      <attribute id="142" name="rollScores"/>      
-      <multiplicity id="143" minimum="0" maximum="2147483647"/>    
+      <attribute id="164" name="rollScores"/>      
+      <multiplicity id="165" minimum="0" maximum="2147483647"/>    
     </end>    
     <end type="TARGET" refId="25" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="144">    
+  <realization id="166">    
     <end type="SOURCE" refId="22"/>    
     <end type="TARGET" refId="34"/>  
   </realization>  
-  <dependency id="145">    
+  <dependency id="167">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="30"/>  
   </dependency>  
-  <association id="146">    
+  <association id="168">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="147" name="IKittyDaSingleton"/>      
-      <multiplicity id="148" minimum="0" maximum="1"/>    
+      <attribute id="169" name="IKittyDaSingleton"/>      
+      <multiplicity id="170" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="34" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="149">    
+  <dependency id="171">    
     <end type="SOURCE" refId="4"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <dependency id="150">    
+  <dependency id="172">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="20"/>  
   </dependency>  
-  <association id="151">    
+  <association id="173">    
     <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="152" name="gameStatus"/>      
-      <multiplicity id="153" minimum="0" maximum="1"/>    
+      <attribute id="174" name="gameStatus"/>      
+      <multiplicity id="175" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="10" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="154">    
+  <dependency id="176">    
     <end type="SOURCE" refId="3"/>    
     <end type="TARGET" refId="9"/>  
   </dependency>  
-  <association id="155">    
+  <association id="177">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="156" name="count"/>      
-      <multiplicity id="157" minimum="0" maximum="1"/>    
+      <attribute id="178" name="count">        
+        <position height="19" width="38" x="428" y="-97"/>      
+      </attribute>      
+      <multiplicity id="179" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="158">    
+  <association id="180">    
     <end type="SOURCE" refId="31" navigable="false">      
-      <attribute id="159" name="turnId"/>      
-      <multiplicity id="160" minimum="0" maximum="1"/>    
+      <attribute id="181" name="turnId"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="161">    
+  <association id="183">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="184" name="IPlayerBoSingleton"/>      
+      <multiplicity id="185" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="38" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="186">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="30"/>  
   </dependency>  
-  <association id="162">    
+  <association id="187">    
     <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="163" name="playerId"/>      
-      <multiplicity id="164" minimum="0" maximum="1"/>    
+      <attribute id="188" name="playerId"/>      
+      <multiplicity id="189" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="165">    
+  <dependency id="190">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="33"/>  
   </dependency>  
-  <dependency id="166">    
+  <association id="191">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="192" name="IRollScoreBoSingleton"/>      
+      <multiplicity id="193" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="40" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="194">    
     <end type="SOURCE" refId="16"/>    
     <end type="TARGET" refId="17"/>  
   </dependency>  
-  <dependency id="167">    
+  <dependency id="195">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="1"/>  
   </dependency>  
-  <association id="168">    
+  <association id="196">    
     <end type="SOURCE" refId="25" navigable="false">      
-      <attribute id="169" name="turnId"/>      
-      <multiplicity id="170" minimum="0" maximum="1"/>    
+      <attribute id="197" name="turnId"/>      
+      <multiplicity id="198" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="19" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="171">    
+  <dependency id="199">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
