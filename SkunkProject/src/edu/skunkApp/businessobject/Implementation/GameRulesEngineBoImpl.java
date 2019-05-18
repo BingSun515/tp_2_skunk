@@ -39,8 +39,27 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 	private final IKittyDa _kittyDa = SkunkAppModule.provideKittyDa();
 
 	//TODO: do player score calculation
+	//TODO: ASK winner every time he wants to stop playing
+	//EXIT game
 	public boolean getGameStatus(int roundTotal) {
 		return roundTotal >= Constants.WINNING_SCORE;
+	}
+	
+	public boolean gameHasWinningScore(RollScoreDm rollScore) {
+		ArrayList<PlayerDm> player = this.getScores(rollScore.playerId, null, null);
+		if (player != null && player.size() == 1)
+		{
+			return player.get(0).Score + rollScore.roll.diceTotal >= Constants.WINNING_SCORE; 
+		}
+		return false;
+	}
+
+	public GameStatusEnum getGameStatus() {
+		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();
+		if (lastTurnScore == null) {
+			return GameStatusEnum.CONTINUE_ROLL;
+		}
+		return lastTurnScore.gameStatus;
 	}
 
 	public void moveChipsFromLosers(RollScoreDm rollScoreDm, ArrayList<PlayerDm> losers) {
@@ -116,14 +135,6 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		{
 			rollScoreDm.gameStatus = GameStatusEnum.CONTINUE_ROLL;
 		}
-	}
-
-	public GameStatusEnum getGameStatus() {
-		RollScoreDm lastTurnScore = _rollScoreDa.getLastRollScore();
-		if (lastTurnScore == null) {
-			return GameStatusEnum.CONTINUE_ROLL;
-		}
-		return lastTurnScore.gameStatus;
 	}
 
 	public void resetPlayerScoresForSkunk(RollScoreDm rollScoreDm) {

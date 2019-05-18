@@ -23,4 +23,5 @@ public interface IGameRulesEngineBo {
 	public GameStatusEnum getGameStatus();
 	public boolean canContinueRoll();
 	public int getGoalScore();
+	public boolean gameHasWinningScore(RollScoreDm rollScoreDm);
 }

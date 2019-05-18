@@ -7,7 +7,6 @@ import edu.skunkApp.businessobject.IPlayerBo;
 import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.common.mapper.PlayerMapper;
 import edu.skunkApp.dataAccess.IPlayerDa;
-import edu.skunkApp.dataAccess.Implementation.PlayerDaImpl;
 import edu.skunkApp.domainModels.PlayerDm;
 
 public class PlayerBoImpl implements IPlayerBo {
@@ -33,7 +32,7 @@ public class PlayerBoImpl implements IPlayerBo {
 	public PlayerDm getWinner() {
 		return this._playerDa.getWinner();
 	}
-	
+		
 	public ArrayList<PlayerDm> getLosers() {
 		return this._playerDa.getLosers();
 	}

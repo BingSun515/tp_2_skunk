@@ -77,4 +77,9 @@ public class RollScoreBoImpl implements IRollScoreBo
 	public ArrayList<PlayerDm> getScores(UUID playerId, UUID roundId, UUID turnId) {
 		return this._gameRulesEngine.getScores(playerId, roundId, turnId);
 	}
+
+	public boolean gameHasWinningScore(RollScoreDm rollScoreDm)
+	{
+		return this._gameRulesEngine.gameHasWinningScore(rollScoreDm);
+	}
 }

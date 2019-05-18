@@ -47,7 +47,7 @@ public class GameController {
 	public void startRound() {
 		do {
 			this.startNextRound();
-		} while (this._roundBo.canProceedToNextRound());//TODO check this condition in related after losers play
+		} while (this._roundBo.canProceedToNextRound());
 	}
 
 	public void startNextRound() {
@@ -77,10 +77,6 @@ public class GameController {
 			PlayerController.displayCurrentPlayer(player.name);
 			this.playerPlayTillDone(roundId, UUID.randomUUID(), player.playerId);
 		}		
-	}
-	
-	public ArrayList<PlayerDm> getLosers() {
-		return this._playerBo.getLosers();
 	}
 	
 	public void losersPlay(UUID roundId, ArrayList<PlayerDm> losers)
@@ -165,12 +161,11 @@ public class GameController {
 		_rollScoreBo.create(rollScoreDm);
 	}
 
-	public void displaySummary(RollScoreDm lastRollScore) {	
-
-		if (lastRollScore.gameStatus == GameStatusEnum.WINNER) {
+	public void displaySummary(RollScoreDm lastRollScore) {			
+	 	if (lastRollScore.rollStatus == SkunkEnum.NOSKUNK){
+	 		this.displayRollScoreSummary(lastRollScore);
+		} else if (this._rollScoreBo.gameHasWinningScore(lastRollScore)) {
 			this.displaySummaryForWinner(lastRollScore);
-		} else if (lastRollScore.rollStatus == SkunkEnum.NOSKUNK){
-			this.displayRollScoreSummary(lastRollScore);
 		} else {
 			this.displaySkunkSummary(lastRollScore);
 		}
@@ -240,6 +235,10 @@ public class GameController {
 		return _playerBo.getPlayers();		
 	}
 
+	public ArrayList<PlayerDm> getLosers() {
+		return this._playerBo.getLosers();
+	}	
+	
 	public RollScoreDm getLastRollScore()
 	{
 		return this._rollScoreBo.getLastRollScore();
