@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import edu.skunkApp.common.GameStatusEnum;
+import edu.skunkApp.common.SkunkEnum;
+import edu.skunkApp.common.di.SkunkAppModule;
+import edu.skunkApp.dataAccess.IRollScoreDa;
 import edu.skunkApp.dataAccess.Implementation.RollScoreDaImpl;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
@@ -56,20 +60,64 @@ public class GameRulesEngineBoImplTest {
 	
 	@Test
 	public void testsetSkunkAndScore() {
-		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
-		
-		
+		RollScoreDm rsd1 = new RollScoreDm();
+//		RollScoreDm rsd2 = new RollScoreDm();
+//		rsd1.roll.die1 = 1;
+//		rsd1.roll.die2 = 2;
+//		grebi1.setSkunkAndScore(rsd1, rsd2);
+
+		// have no idea, keeping implement
 	}
 	
 	@Test
 	public void testgetGameStatus() {
 		
 		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
-		RollScoreDaImpl rsdi1 = new RollScoreDaImpl();
-		
-
+		assertEquals(GameStatusEnum.CONTINUE_ROLL ,grebi1.getGameStatus());
 	}
+	
+	@Test
+	public void testsetGamestatus() {
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		RollScoreDm rsd1 = new RollScoreDm();
+		grebi1.setGameStatus(rsd1);
+	}
+	
+	@Test
+	public void testresetPlayerScoresForSkunk1() {
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		RollScoreDm rsd1 = new RollScoreDm();
+		rsd1.id=123;
+		rsd1.rollStatus = SkunkEnum.DOUBLESKUNK;
+		grebi1.resetPlayerScoresForSkunk(rsd1);
+		assertEquals(123, rsd1.id);
+	}
+	//not implementes well##########################################
+	
+	@Test
+	public void testresetPlayerScoresForSkunk2() {
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		RollScoreDm rsd1 = new RollScoreDm();
+		rsd1.id=123;
+		rsd1.rollStatus = SkunkEnum.SINGLESKUNK;
+		grebi1.resetPlayerScoresForSkunk(rsd1);
+		assertEquals(123, rsd1.id);
+	}
+	//not implementes well##########################################
+	
+	@Test
+	public void testcanContinueRoll() {
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		assertEquals(true, grebi1.canContinueRoll());	
+	}
+	
+	@Test
+	public void testgetGoalScore() {
+		GameRulesEngineBoImpl grebi1 = new GameRulesEngineBoImpl();
+		assertEquals(0, grebi1.getGoalScore());
+	}
+	
 	//##############################################################
 	
 	@Test

@@ -34,6 +34,7 @@ public class AppUIController {
 							Constants.GAME_RULE4 +
 							Constants.GAME_RULE5 +
 							Constants.GAME_RULE6 +
+							Constants.GAME_RULE7 +
 							Constants.GAME_RULE8;
 				
 		GameUI.display(message);
