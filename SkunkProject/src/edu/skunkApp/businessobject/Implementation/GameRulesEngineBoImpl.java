@@ -17,11 +17,30 @@ import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollDm;
 import edu.skunkApp.domainModels.RollScoreDm;
 
+/**
+ * TODO: https://stthomas.instructure.com/courses/23037/assignments/216762 Game
+ * rules live here Any number can play. [Assume at least two players!] The
+ * suggested number of chips to start is 50. There are sufficient chips in the
+ * box to allow 8 players to start with 50 chips by placing a par value of "one"
+ * on white chips, 5 for 1 on red chips and 10 for 1 on the blue chips.
+ * 
+ * The first player to accumulate a total of 100 or more points can continue to
+ * score as many points over 100 as he believes is needed to win.
+ * 
+ * When he decides to stop, his total score is the ¡°goal.¡±
+
+ * DONE: moveChips The winner of each game collects all chips in "kitty" and in
+ * addition five chips from each losing player or 10 chips from any player
+ * without a score.
+ **/
 public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 	private final IRollScoreDa _rollScoreDa = SkunkAppModule.provideRollScoreDa();
 	private final IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
 	private final IKittyDa _kittyDa = SkunkAppModule.provideKittyDa();
 
+	//TODO: do player score calculation
+	//TODO: ASK winner every time he wants to stop playing
+	//EXIT game
 	public boolean getGameStatus(int roundTotal) {
 		return roundTotal >= Constants.WINNING_SCORE;
 	}
@@ -30,7 +49,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		ArrayList<PlayerDm> player = this.getScores(rollScore.playerId, null, null);
 		if (player != null && player.size() == 1)
 		{
-			return player.get(0).Score >= Constants.WINNING_SCORE; 
+			return player.get(0).Score + rollScore.roll.diceTotal >= Constants.WINNING_SCORE; 
 		}
 		return false;
 	}

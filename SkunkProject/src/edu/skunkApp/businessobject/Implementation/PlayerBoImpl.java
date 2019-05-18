@@ -1,8 +1,6 @@
 package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IPlayerBo;
@@ -37,13 +35,5 @@ public class PlayerBoImpl implements IPlayerBo {
 		
 	public ArrayList<PlayerDm> getLosers() {
 		return this._playerDa.getLosers();
-	}
-
-	public PlayerDm getPlayer(UUID playerId)
-	{
-		return this.getPlayers().stream()
-				.filter(player -> player.playerId == playerId)
-				.collect(Collectors.toList())
-				.get(0);
 	}
 }
