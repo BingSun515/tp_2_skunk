@@ -54,12 +54,24 @@ public class GameController {
 		UUID roundId = _roundBo.create();
 		//Winner is set from his rollChoices and 
 		//		after earning a winning score
-		ArrayList<PlayerDm> losers = this.getLosers();
+//		ArrayList<PlayerDm> losers = this.getLosers();
+//		
+//		if (losers.isEmpty()) {
+//			this.playersPlay(roundId);
+//			this.displayRoundSummary();
+//		} else {
+//			this.losersPlay(roundId, losers);
+//		}
+//		
 		
-		if (losers.isEmpty()) {
-			this.playersPlay(roundId);
-			this.displayRoundSummary();
-		} else {
+		
+		
+		this.playersPlay(roundId);
+		ArrayList<PlayerDm> losers = this.getLosers();
+		if (!losers.isEmpty())
+		{
+//			this.displayRoundSummary();
+//		} else {
 			this.losersPlay(roundId, losers);
 		}
 	}
@@ -96,6 +108,11 @@ public class GameController {
 			this.displaySummary(lastRollScore);
 			
 			if (lastRollScore.rollStatus !=  SkunkEnum.NOSKUNK)
+			{
+				break;
+			}
+			
+			if (lastRollScore.gameStatus == GameStatusEnum.WINNER)
 			{
 				break;
 			}
@@ -138,6 +155,12 @@ public class GameController {
 		return playerChoice;
 	}
 	
+	public PlayerInputEnum getwinnerInputFromChoices() {
+		PlayerInputEnum playerChoice = PlayerInputEnum.N;
+		playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.WINNER_ROLL_CHOICES));
+		return playerChoice;
+	}
+	
 	public PlayerInputEnum getPlayerInputChoice(String choice) {
 		if (!choice.isBlank()) {
 			try {
@@ -162,11 +185,11 @@ public class GameController {
 	}
 
 	public void displaySummary(RollScoreDm lastRollScore) {			
-	 	if (lastRollScore.rollStatus == SkunkEnum.NOSKUNK){
-	 		this.displayRollScoreSummary(lastRollScore);
-		} else if (this._rollScoreBo.gameHasWinningScore(lastRollScore)) {
+	 	if (this._rollScoreBo.gameHasWinningScore(lastRollScore)) {
 			this.displaySummaryForWinner(lastRollScore);
-		} else {
+	 	} else if (lastRollScore.rollStatus == SkunkEnum.NOSKUNK){
+	 		this.displayRollScoreSummary(lastRollScore);
+	 	} else {
 			this.displaySkunkSummary(lastRollScore);
 		}
 	}
@@ -181,9 +204,9 @@ public class GameController {
 
 	public void displaySummaryForWinner(RollScoreDm lastRollScore) {
 		
-		String winnerName = this._playerBo.getWinner().name;
+		String winnerName = this._playerBo.getPlayer(lastRollScore.playerId).name;
 		PlayerController.displayWinnerAndChoices(winnerName);
-		boolean winnerContinues = this.getPlayerInputFromChoices() == PlayerInputEnum.Y;
+		boolean winnerContinues = this.getwinnerInputFromChoices() == PlayerInputEnum.Y;
 		this._rollScoreBo.setScoreFromWinnerChoice(winnerContinues, lastRollScore);	
 	}
 
