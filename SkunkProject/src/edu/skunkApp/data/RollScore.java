@@ -18,7 +18,5 @@ public class RollScore {
 	public int die2;
 	public int diceTotal;
 	public SkunkEnum rollStatus;
-	public int turnTotal;
-	public int roundTotal;
 	public GameStatusEnum gameStatus;
 }

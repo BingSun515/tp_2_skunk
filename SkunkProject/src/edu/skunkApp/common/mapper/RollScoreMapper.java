@@ -21,8 +21,6 @@ public class RollScoreMapper {
 		score.die2 =  rollScoreDm.roll.die2;
 		score.diceTotal =  rollScoreDm.roll.diceTotal;
 		score.rollStatus =  rollScoreDm.rollStatus;
-		score.turnTotal =  rollScoreDm.turnTotal;
-		score.roundTotal =  rollScoreDm.roundTotal;
 		score.gameStatus = rollScoreDm.gameStatus;
 		return score;
 	}
@@ -44,8 +42,6 @@ public class RollScoreMapper {
 		score.rollId =  rollScore.rollId;
 		
 		score.rollStatus =  rollScore.rollStatus;
-		score.turnTotal =  rollScore.turnTotal;
-		score.roundTotal =  rollScore.roundTotal;
 		score.gameStatus = rollScore.gameStatus;
 		return score;
 	}

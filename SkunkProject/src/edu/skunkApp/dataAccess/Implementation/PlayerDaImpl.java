@@ -20,7 +20,7 @@ public class PlayerDaImpl implements IPlayerDa
 	{
 		this._players.stream()
 					.filter(player -> player.playerId == playerId)
-					.map(player -> player.chipCount += chipCount);
+					.forEach(player -> player.chipCount += chipCount);
 	}
 
 	public boolean create(ArrayList<Player> players)
@@ -56,7 +56,7 @@ public class PlayerDaImpl implements IPlayerDa
 	
 	public void setWinner(UUID playerId) {
 		this._players.stream().filter(player -> player.playerId == playerId)
-				.map(player -> player.isWinner = true);
+				.forEach(player -> player.isWinner = true);
 	}
 	
 	public ArrayList<PlayerDm> getLosers() {

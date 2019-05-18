@@ -17,7 +17,7 @@ public interface IGameRulesEngineBo {
 	public boolean isRollSingleSkunk(RollDm roll);
 	public boolean isRollDoubleSkunk(RollDm roll);
 	public boolean isRollDeuceSkunk(RollDm roll);
-	
+	public ArrayList<PlayerDm> getScores(UUID playerId, UUID roundId, UUID turnId);
 	public void resetPlayerScoresForSkunk(RollScoreDm rollScoreDm);
 	public void setGameStatus(RollScoreDm rollScoreDm);
 	public GameStatusEnum getGameStatus();

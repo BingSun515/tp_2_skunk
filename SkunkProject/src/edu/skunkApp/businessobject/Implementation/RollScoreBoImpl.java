@@ -1,7 +1,9 @@
 package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.businessobject.IRollScoreBo;
@@ -72,7 +74,7 @@ public class RollScoreBoImpl implements IRollScoreBo
 		this._rollScoreDa.setPlayerLastTurnGameStatus(lastRollScoreDm);
 	}
 
-	public ArrayList<RollScoreDm> getScores(UUID playerId, UUID roundId, UUID turnId) {
-		return this._rollScoreDa.getFilteredRollScore(playerId, turnId, roundId);
+	public ArrayList<PlayerDm> getScores(UUID playerId, UUID roundId, UUID turnId) {
+		return this._gameRulesEngine.getScores(playerId, roundId, turnId);
 	}
 }

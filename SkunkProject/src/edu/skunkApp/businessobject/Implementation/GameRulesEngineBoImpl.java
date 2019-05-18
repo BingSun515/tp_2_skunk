@@ -1,7 +1,9 @@
 package edu.skunkApp.businessobject.Implementation;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import edu.skunkApp.businessobject.IGameRulesEngineBo;
 import edu.skunkApp.common.Constants;
@@ -26,10 +28,7 @@ import edu.skunkApp.domainModels.RollScoreDm;
  * score as many points over 100 as he believes is needed to win.
  * 
  * When he decides to stop, his total score is the ¡°goal.¡±
- * 
- * DO CONTROLLER LAYER ------------------- Each succeeding player receives one
- * more chance to better the goal and end the game.
- * 
+
  * DONE: moveChips The winner of each game collects all chips in "kitty" and in
  * addition five chips from each losing player or 10 chips from any player
  * without a score.
@@ -39,6 +38,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 	private final IPlayerDa _playerDa = SkunkAppModule.providePlayerDa();
 	private final IKittyDa _kittyDa = SkunkAppModule.provideKittyDa();
 
+	//TODO: do player score calculation
 	public boolean getGameStatus(int roundTotal) {
 		return roundTotal >= Constants.WINNING_SCORE;
 	}
@@ -82,8 +82,6 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 			rollScoreDm.turnTotal = 0;
 		} else {
 			rollScoreDm.rollStatus = SkunkEnum.NOSKUNK;
-			rollScoreDm.turnTotal = previousScoreDm.turnTotal + rollScoreDm.roll.diceTotal;
-			rollScoreDm.roundTotal = previousScoreDm.roundTotal + rollScoreDm.roll.diceTotal;
 			this.setGameStatus(rollScoreDm);
 		}
 	}
@@ -106,7 +104,7 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		boolean hasWinner = winner != null;
 
 		// No winner and New winner
-		if (!hasWinner && this.getGameStatus(rollScoreDm.roundTotal)) {
+		if (!hasWinner && this.getGameStatus(rollScoreDm.roll.diceTotal)) {
 			rollScoreDm.gameStatus = GameStatusEnum.WINNER;
 		}
 		// There is a winner and winner is currently playing turn to increase score
@@ -150,12 +148,36 @@ public class GameRulesEngineBoImpl implements IGameRulesEngineBo {
 		return noSkunk || lostStatus;
 	}
 
+	public ArrayList<PlayerDm> getScores(UUID playerId, UUID roundId, UUID turnId) {
+
+		
+		ArrayList<RollScoreDm> scoreSummary = this._rollScoreDa.getFilteredRollScore(playerId, turnId, roundId);
+		
+		List<UUID> playerIds = this._rollScoreDa.getFilteredRollScore(playerId, turnId, roundId)
+													.stream()
+													.map( p -> p.playerId)
+													.distinct()
+													.collect(Collectors.toList());
+
+		List<PlayerDm> players = this._playerDa.getPlayers()
+												.stream()
+												.filter(player -> playerIds.contains(player.playerId))
+												.collect(Collectors.toList());
+		
+		
+		for(PlayerDm player : players)
+		{
+			player.Score =  scoreSummary.stream().filter(score -> score.playerId == player.playerId)
+												.mapToInt(scoreRound -> scoreRound.roll.diceTotal)
+												.sum();
+		}
+		return (ArrayList<PlayerDm>) players;
+	}
+	
 	// Calculate Goal - Total of winning Score
 	public int getGoalScore() {
 
 		PlayerDm winner = this._playerDa.getWinner();
-		ArrayList<RollScoreDm> winnerScores = this._rollScoreDa.getFilteredRollScore(winner.playerId, null, null);
-		return winnerScores.stream().map(score -> score.roundTotal).reduce(0, (a, b) -> a + b);
-
+		return this.getScores(winner.playerId, null, null).get(0).Score;
 	}
 }

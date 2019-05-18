@@ -1,11 +1,7 @@
 package edu.skunkApp.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.apache.commons.text.TextStringBuilder;
 
 import edu.skunkApp.GameUI;
 import edu.skunkApp.businessobject.IPlayerBo;
@@ -19,7 +15,6 @@ import edu.skunkApp.common.SkunkEnum;
 import edu.skunkApp.common.di.SkunkAppModule;
 import edu.skunkApp.domainModels.PlayerDm;
 import edu.skunkApp.domainModels.RollScoreDm;
-import edu.skunkApp.domainModels.RoundDm;
 
 public class GameController {
 
@@ -63,7 +58,7 @@ public class GameController {
 		
 		if (losers.isEmpty()) {
 			this.playersPlay(roundId);
-			this.getRoundSummary();
+			this.displayRoundSummary();
 		} else {
 			this.losersPlay(roundId, losers);
 		}
@@ -90,9 +85,10 @@ public class GameController {
 	
 	public void losersPlay(UUID roundId, ArrayList<PlayerDm> losers)
 	{
+		PlayerController.displayMessageTitle(Constants.LAST_CHANCE);
 		for (PlayerDm player : losers) {
 			this.playerRollsDice(roundId, UUID.randomUUID(), player.playerId, GameStatusEnum.LAST_CHANCE);
-			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+			RollScoreDm lastRollScore = this.getLastRollScore();
 			this.displaySummary(lastRollScore);
 		}
 	}
@@ -100,7 +96,7 @@ public class GameController {
 	public void playerPlayTillDone(UUID roundId, UUID turnId, UUID playerId) {
 		do {
 			this.playerRollsDice(roundId, turnId, playerId, null);
-			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+			RollScoreDm lastRollScore = this.getLastRollScore();
 			this.displaySummary(lastRollScore);
 			
 			if (lastRollScore.rollStatus !=  SkunkEnum.NOSKUNK)
@@ -111,6 +107,41 @@ public class GameController {
 		} while (this.getPlayerChoice());
 	}
 
+	public boolean getPlayerChoice() {
+		PlayerInputEnum playerChoice = PlayerInputEnum.N;
+		if (this._playerBo.canContinuePlay()) {
+			playerChoice = this.getPlayerInputFromChoices();
+		}
+		return playerChoice == PlayerInputEnum.Y;
+	}
+	
+	public PlayerInputEnum getPlayerInputFromChoices() {
+		PlayerInputEnum playerChoice = PlayerInputEnum.N;
+		do {
+			playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
+			
+			switch(playerChoice)
+			{
+				case HELP:
+					AppUIController.displayHelp();
+					break;
+				case R:
+					this.displayRoundSummary();
+					break;
+				case M:
+					this.displayMyScore(null);
+					break;
+			default:
+				break;
+			}
+
+		} while (playerChoice == PlayerInputEnum.HELP ||
+				 playerChoice == PlayerInputEnum.R ||
+				 playerChoice == PlayerInputEnum.M);
+		
+		return playerChoice;
+	}
+	
 	public PlayerInputEnum getPlayerInputChoice(String choice) {
 		if (!choice.isBlank()) {
 			try {
@@ -153,7 +184,6 @@ public class GameController {
 		PlayerController.displaySkunkSummary(lastRollScore);
 	}
 
-	//todo rename this method. single resp
 	public void displaySummaryForWinner(RollScoreDm lastRollScore) {
 		
 		String winnerName = this._playerBo.getWinner().name;
@@ -164,7 +194,7 @@ public class GameController {
 
 	public void displayGameSummary()
 	{
-		ArrayList<PlayerDm> players = this._playerBo.getPlayers();
+		ArrayList<PlayerDm> players = this.getPlayers();
 		//display non winners
 		players.forEach(player -> {
 			if (!player.isWinner)
@@ -183,84 +213,13 @@ public class GameController {
 		
 	}
 
-	public boolean getPlayerChoice() {
-		PlayerInputEnum playerChoice = PlayerInputEnum.N;
-		if (this._playerBo.canContinuePlay()) {
-			playerChoice = this.getPlayerInputFromChoices();
-		}
-		return playerChoice == PlayerInputEnum.Y;
-	}
-	
-	public PlayerInputEnum getPlayerInputFromChoices() {
-		PlayerInputEnum playerChoice = PlayerInputEnum.N;
-		do {
-			playerChoice = this.getPlayerInputChoice(GameUI.getPlayerInput(Constants.PLAYER_ROLL_CHOICES));
-			
-			switch(playerChoice)
-			{
-				case HELP:
-					AppUIController.displayHelp();
-					break;
-				case R:
-					this.getRoundSummary();
-					break;
-				case M:
-					this.displayMyScore(null);
-					break;
-			default:
-				break;
-			}
-
-		} while (playerChoice == PlayerInputEnum.HELP ||
-				 playerChoice == PlayerInputEnum.R ||
-				 playerChoice == PlayerInputEnum.M);
-		
-		return playerChoice;
-	}
-
-	public void getRoundSummary()
+	public void displayRoundSummary()
 	{
-		RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();	
+		RollScoreDm lastRollScore = this.getLastRollScore();	
 		UUID roundId = lastRollScore.roundId;
-
-		String roundName = this.getRoundDescription(lastRollScore.roundId);
-		PlayerController.displayRoundSummary(roundName);		
-		this._rollScoreBo.getScores(null, roundId, null)
-					.forEach(score -> this.displayRollScoreSummary(score));
-	}
-	
-	public void displayRoundSummary(RollScoreDm lastRollScore)
-	{
-		String playerName = this.getPlayerName(lastRollScore.playerId);
-		PlayerController.displayPlayerName(playerName);
-		this.displayRollScoreSummary(lastRollScore);
-		
-	}
-	
-	public String getRoundDescription(UUID roundId)
-	{
-		List<RoundDm> rounds = this.getRounds().stream()
-				.filter(round -> round.id == roundId)
-				.collect(Collectors.toList());
-		return rounds.get(0).description;
-	}
-	
-	public List<RoundDm> getRounds()
-	{
-		return _roundBo.getRounds();		
-	}
-	
-	public ArrayList<PlayerDm> getPlayers()
-	{
-		return _playerBo.getPlayers();		
-	}
-	
-	public String getPlayerName(UUID playerId)
-	{
-		List<PlayerDm> players = this.getPlayers().stream()
-										.filter(player -> player.playerId == playerId)
-										.collect(Collectors.toList());
-		return players.get(0).name;
+		PlayerController.displayMessageTitle(Constants.ROUND_SUMMARY);
+		ArrayList<PlayerDm> players = this._rollScoreBo.getScores(null, roundId, null);
+		PlayerController.displayPlayerSummary(players);
 	}
 
 	public void displayMyScore(UUID scorePlayerId)
@@ -268,10 +227,21 @@ public class GameController {
 		UUID playerId = scorePlayerId;
 		if (scorePlayerId == null)
 		{
-			RollScoreDm lastRollScore = this._rollScoreBo.getLastRollScore();
+			RollScoreDm lastRollScore = this.getLastRollScore();
 			playerId = lastRollScore.playerId;
 		}
-		this._rollScoreBo.getScores(playerId, null, null)
-			.forEach(score -> this.displayRollScoreSummary(score));
+		ArrayList<PlayerDm> players =  this._rollScoreBo.getScores(playerId, null, null);
+		PlayerController.displayMessageTitle(Constants.PLAYER_SUMMARY);
+		PlayerController.displayPlayerSummary(players);
+	}
+		
+	public ArrayList<PlayerDm> getPlayers()
+	{
+		return _playerBo.getPlayers();		
+	}
+
+	public RollScoreDm getLastRollScore()
+	{
+		return this._rollScoreBo.getLastRollScore();
 	}
 }

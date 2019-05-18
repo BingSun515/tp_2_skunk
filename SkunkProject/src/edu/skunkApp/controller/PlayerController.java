@@ -109,18 +109,25 @@ public class PlayerController {
 	{
 		GameUI.display("\n" + Constants.CURRENT_PLAYER + playerName + "\n");
 	}
-	
-	public static void displayPlayerName(String playerName)
-	{
-		GameUI.display("\n" + Constants.PLAYER + playerName + "\n");
-	}
 
-	public static void displayRoundSummary(String roundName)
+	public static void displayMessageTitle(String Title)
 	{
 		TextStringBuilder tb = new TextStringBuilder()
-				.appendln(Constants.ROUND_SUMMARY)
-//				.appendln(Constants.PLAYER + playerName)
+				.appendln(Constants.LINE)
+				.appendln(Title)
 				.appendln(Constants.LINE);
 		GameUI.display(tb.toString());
+	}
+	
+	public static void displayPlayerSummary(ArrayList<PlayerDm> players)
+	{
+		TextStringBuilder tb;
+		for (PlayerDm player: players)
+		{
+			tb = new TextStringBuilder()
+					.appendln("\n"+String.format(Constants.PLAYER, player.name, player.Score))
+					.appendln(Constants.LINE);
+			GameUI.display(tb.toString());	
+		}
 	}
 }

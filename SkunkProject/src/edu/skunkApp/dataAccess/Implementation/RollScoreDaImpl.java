@@ -3,9 +3,7 @@ package edu.skunkApp.dataAccess.Implementation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import edu.skunkApp.common.mapper.RollScoreMapper;
 import edu.skunkApp.data.RollScore;
@@ -40,24 +38,35 @@ public class RollScoreDaImpl implements IRollScoreDa {
 												UUID turnId,
 												UUID roundId)
 	{
-		Supplier<Stream<RollScoreDm>> rollScoreDmSupplier = () -> this.baseQuery().stream();
+		
+		List<RollScoreDm> rollScores = this.baseQuery();
+
 		if (playerId != null)
 		{
-			rollScoreDmSupplier.get().filter(rollScore -> rollScore.playerId == playerId);
-		}
-		
-		if (turnId != null)
-		{
-			rollScoreDmSupplier.get().filter(rollScore -> rollScore.turnId == turnId);
+			rollScores = rollScores.stream()
+								.filter(rollScore -> rollScore.playerId == playerId)
+								.collect(Collectors.toList());
 		}
 		
 		if (roundId != null)
 		{
-			rollScoreDmSupplier.get().filter(rollScore -> rollScore.roundId == roundId);
+			rollScores = rollScores.stream()
+					.filter(rollScore -> rollScore.roundId == roundId)
+					.collect(Collectors.toList());
 		}
-		rollScoreDmSupplier.get().sorted((score1, score2) -> Integer.compare(score2.id, score1.id));
+		
+		if (turnId != null)
+		{
+			rollScores = rollScores.stream()
+					.filter(rollScore -> rollScore.turnId == turnId)
+					.collect(Collectors.toList());
+		}
+		rollScores = rollScores.stream()
+					.sorted((score1, score2) -> Integer.compare(score2.id, score1.id))
+					.collect(Collectors.toList());
 
-		return (ArrayList<RollScoreDm>) rollScoreDmSupplier.get().collect(Collectors.toList());
+		return (ArrayList<RollScoreDm>) rollScores;
+
 	}
 	
 	public RollScoreDm getPlayerLastTurnScore(UUID playerId, UUID turnId)
@@ -83,21 +92,21 @@ public class RollScoreDaImpl implements IRollScoreDa {
 	public void setPlayerLastTurnGameStatus(RollScoreDm lastRollScoreDm) {
 		this.rollScores.stream()
 					.filter(score -> score.id == lastRollScoreDm.id)
-					.map(score -> score.gameStatus = lastRollScoreDm.gameStatus);
+					.forEach(score -> score.gameStatus = lastRollScoreDm.gameStatus);
 	}
 	
 	public void resetPlayerScore(UUID playerId)
 	{
 		this.rollScores.stream()
 				.filter(score -> score.playerId == playerId)
-				.map(score -> score.roundTotal = 0);
+				.forEach(score -> score.diceTotal = 0);
 	}
 	
 	public void resetPlayerTurnScore(UUID playerId, UUID turnId)
 	{
 		this.rollScores.stream()
 				.filter(score -> score.playerId == playerId && score.turnId == turnId)
-				.map(score -> score.turnTotal = 0);
+				.forEach(score -> score.diceTotal = 0);
 	}
 
 }
