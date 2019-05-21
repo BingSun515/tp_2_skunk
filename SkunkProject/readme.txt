@@ -14,6 +14,15 @@ java -cp lib/commons-text-1.6.jar;lib/stdlib-package.jar;dist/SkunkApp-1.0.0.jar
 RUN ALL tests: mvn test -P dev
 For single TEST: mvn test -Dtest=test/edu.skunkApp.businessobject.Implementation.RollBoImplTest
 
+###########TP2 project describe###########
+
+src folder: source code
+
+test folder: Unit test code
+
+before.png: Before UML diagram
+
+after.ucls: After UML diagram
 
 ###########Github account###########
 
